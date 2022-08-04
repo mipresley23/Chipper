@@ -9,11 +9,10 @@ export default function Splash() {
   const dispatch = useDispatch()
 
   const [chirps, setChirps] = useState([])
-  const [title, setTitle] = useState('')
   const [body, setBody] = useState('');
   const [media, setMedia] = useState('');
-  const [showForm, setShowForm] = useState(false)
   const [news, setNews] = useState([]);
+  const [showMore, setShowMore] = useState(false)
 
   const reverseChirps = []
   if(chirps){
@@ -35,7 +34,7 @@ export default function Splash() {
   };
 
   const getNews = async() => {
-    const response = fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
+    const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
       .then(response => response.json())
       .then(response => setNews(response));
   }
@@ -51,6 +50,9 @@ console.log('news value: ', news.value)
 
 const newsArray = news.value
 console.log('newsArray: ', newsArray)
+
+const firstFiveNews = newsArray && newsArray.slice(0, 5)
+console.log('firstFive: ', firstFiveNews)
 
 
   useEffect(() => {
@@ -71,11 +73,6 @@ console.log('newsArray: ', newsArray)
     await dispatch(thunkAddChirp(chirp))
   }
 
-  const handleNewsClick = (e) => {
-    e.preventDefault();
-    window.location.href = e.target.value;
-    return null;
-  }
 
 
   const handleDeleteChirp = async (e) => {
@@ -94,7 +91,6 @@ console.log('newsArray: ', newsArray)
   } else {
     return (
       <div id="splash-main-content">
-        <h1>Welcome Back to Chipper</h1>
         <form onSubmit={addChirp}>
           <div id="chirp-input-button-contatiner">
             <input id="splash-chirp-input"
@@ -125,21 +121,41 @@ console.log('newsArray: ', newsArray)
 
           }
         </div>
-        <div id="">
+        <div id="all-news-container">
+          <h2>Trending Topics</h2>
         {
-          newsArray && newsArray.map(article => (
-            <div>
-              <Link to={article.webSearchUrl} target="_blank" rel="noopener noreferrer">
-                <div>
-                  <img src={article.image.url} alt={article.name}/>
-                  <p>Image by {article.image.provider[0].name}</p>
+          !showMore && firstFiveNews && firstFiveNews.map(article => (
+            <div id="each-news-container">
+              <Link to={article.webSearchUrl.slice(article.webSearchUrl.indexOf('/'))} target="_blank" rel="noopener noreferrer">
+                <div id="news-text">
+                  <h4 id="news-headline">{article.name}</h4>
+                  <div id="news-image-info">
+                    <img id='news-image' src={article.image.url} alt={article.name}/>
+                    {/* <p id="news-image-provider">Image by {article.image.provider[0].name}</p> */}
+                  </div>
                 </div>
               </Link>
-
             </div>
           ))
         }
-      </div>
+        {!showMore && <button className='news-buttons' type="button" onClick={() => setShowMore(true)}>Show More</button>}
+        {
+          showMore && newsArray && newsArray.map(article => (
+            <div id="each-news-container">
+              <Link to={article.webSearchUrl.slice(article.webSearchUrl.indexOf('/'))} target="_blank" rel="noopener noreferrer">
+                <div id="news-text">
+                  <h4 id="news-headline">{article.name}</h4>
+                  <div id="news-image-info">
+                    <img id='news-image' src={article.image.url} alt={article.name}/>
+                    <p id="news-image-provider">Image by {article.image.provider[0].name}</p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))
+        }
+        {showMore && <button className='news-buttons' type="button" onClick={() => setShowMore(false)}>Show Less</button>}
+        </div>
     </div>
     )
   }
