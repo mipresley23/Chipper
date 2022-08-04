@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link, Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp } from "../../store/chirp";
 import "./splash.css"
@@ -13,6 +13,7 @@ export default function Splash() {
   const [body, setBody] = useState('');
   const [media, setMedia] = useState('');
   const [showForm, setShowForm] = useState(false)
+  const [news, setNews] = useState([]);
 
   const reverseChirps = []
   if(chirps){
@@ -24,7 +25,32 @@ export default function Splash() {
 
   const chirpSelector = useSelector(state => state.chirps)
   const sessionUser = useSelector(state => state.session.user)
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-BingApis-SDK': 'true',
+      'X-RapidAPI-Key': '063bad3f64msh1af9bb8147faf8dp1e0680jsn9d6abba6e550',
+      'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
+    }
+  };
 
+  const getNews = async() => {
+    const response = fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
+      .then(response => response.json())
+      .then(response => setNews(response));
+  }
+
+useEffect(() => {
+  getNews()
+}, [])
+
+console.log('news: ', news)
+
+
+console.log('news value: ', news.value)
+
+const newsArray = news.value
+console.log('newsArray: ', newsArray)
 
 
   useEffect(() => {
@@ -45,6 +71,11 @@ export default function Splash() {
     await dispatch(thunkAddChirp(chirp))
   }
 
+  const handleNewsClick = (e) => {
+    e.preventDefault();
+    window.location.href = e.target.value;
+    return null;
+  }
 
 
   const handleDeleteChirp = async (e) => {
@@ -91,9 +122,25 @@ export default function Splash() {
                 </NavLink>
             </div>
             ))
+
           }
         </div>
+        <div id="">
+        {
+          newsArray && newsArray.map(article => (
+            <div>
+              <Link to={article.webSearchUrl} target="_blank" rel="noopener noreferrer">
+                <div>
+                  <img src={article.image.url} alt={article.name}/>
+                  <p>Image by {article.image.provider[0].name}</p>
+                </div>
+              </Link>
+
+            </div>
+          ))
+        }
       </div>
+    </div>
     )
   }
 }

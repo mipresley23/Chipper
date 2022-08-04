@@ -13,9 +13,8 @@
   background-color: #f1f4f5;
 }
 #each-chirp-container{
-  margin: 10px;
   width: 100%;
-  box-sizing: border-box;
+
   border-bottom: 1px solid #f1f4f5;
 }
 
@@ -24,8 +23,9 @@
 }
 
 #all-chirps-container{
+  display: flex;
+  flex-direction: column;
   width: 33%;
-  padding: 10px;
   position: absolute;
   top: 100px;
   left: 33%;
@@ -35,9 +35,7 @@
 
 }
 
-#splash-main-content{
-  width: 33%;
-}
+
 
 
 
