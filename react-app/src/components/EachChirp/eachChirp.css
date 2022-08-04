@@ -1,0 +1,25 @@
+#each-chirp-main-content{
+  width: 33%;
+}
+
+#chirp-container{
+  width: 33%;
+  padding: 10px;
+  position: absolute;
+  top: 100px;
+  left: 33%;
+  overflow-wrap: normal;
+  border: 1px solid #f1f4f5;
+}
+
+#all-comments-container{
+  width: 33%;
+  padding: 10px;
+  position: absolute;
+  top: 200px;
+  left: 33%;
+  overflow-wrap: normal;
+  border-left: 1px solid #f1f4f5;
+  border-right: 1px solid #f1f4f5;
+  border-bottom: 1px solid #f1f4f5;
+}
