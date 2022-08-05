@@ -110,7 +110,7 @@ useEffect(() => {
         <button id='each-chirp-go-back-button' type="button" onClick={handleGoBackToSplash}>Back</button>
       </div>
       {correctUser && <div id="edit-chirp-container">
-      <button id='edit-chirp-button' type="button" onClick={() => setShowForm(true)}>Edit Chirp</button>
+      { !showForm && <button id='edit-chirp-button' type="button" onClick={() => setShowForm(true)}>Edit Chirp</button>}
                 {showForm && <form id="edit-chirp-form" onSubmit={editChirp}>
                   <img id="edit-chirp-profile-pic" src={sessionUser.profile_pic} alt='' />
                   <textarea id='edit-chirp-input'
@@ -136,13 +136,16 @@ useEffect(() => {
       </form>
       </div>
       <div id="chirp-container">
-        <h3>{thisChirp.user.username}</h3>
-        <p>{thisChirp.body}</p>
+        <div id="each-chirp-user-container">
+          <img id='chirp-profile-pic' src={thisChirp.user.profile_pic} alt={thisChirp.user.username}/>
+          <p id="each-chirp-user">{thisChirp.user.username}</p>
+        </div>
+        <p id="each-chirp-body">{thisChirp.body}</p>
       </div>
       <div id="all-comments-container">
       {
         reverseComments && reverseComments.map(comment => (
-          <div>
+          <div id='each-comment-container'>
             <NavLink to={`/comments/${comment.id}`}>
               <h6>Replying to: {thisChirp.user.username}</h6>
               <h3>{comment.user.username}</h3>
