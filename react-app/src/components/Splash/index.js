@@ -33,15 +33,15 @@ export default function Splash() {
     }
   };
 
-  const getNews = async() => {
-    const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
-      .then(response => response.json())
-      .then(response => setNews(response));
-  }
+  // const getNews = async() => {
+  //   const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
+  //     .then(response => response.json())
+  //     .then(response => setNews(response));
+  // }
 
-useEffect(() => {
-  getNews()
-}, [])
+// useEffect(() => {
+//   getNews()
+// }, [])
 
 console.log('news: ', news)
 
@@ -91,7 +91,7 @@ console.log('firstFive: ', firstFiveNews)
   } else {
     return (
       <div id="splash-main-content">
-        <form onSubmit={addChirp}>
+        <form id='add-chirp-form' onSubmit={addChirp}>
           <div id="chirp-input-button-contatiner">
             <input id="splash-chirp-input"
             type="text"
@@ -131,7 +131,6 @@ console.log('firstFive: ', firstFiveNews)
                   <h4 id="news-headline">{article.name}</h4>
                   <div id="news-image-info">
                     <img id='news-image' src={article.image.url} alt={article.name}/>
-                    {/* <p id="news-image-provider">Image by {article.image.provider[0].name}</p> */}
                   </div>
                 </div>
               </Link>
@@ -147,7 +146,6 @@ console.log('firstFive: ', firstFiveNews)
                   <h4 id="news-headline">{article.name}</h4>
                   <div id="news-image-info">
                     <img id='news-image' src={article.image.url} alt={article.name}/>
-                    <p id="news-image-provider">Image by {article.image.provider[0].name}</p>
                   </div>
                 </div>
               </Link>

@@ -42,7 +42,11 @@ export default function EachChirp() {
     correctUser = sessionUser && sessionUser.id === thisChirp.user.id;
   }
 
-  console.log(correctUser)
+useEffect(() => {
+  if(thisChirp){
+    setChirpBody(thisChirp.body)
+  }
+}, [thisChirp])
 
 
 
@@ -111,6 +115,7 @@ export default function EachChirp() {
                     onChange={(e) => setChirpBody(e.target.value)}
                   />
                   <button>Edit Chirp</button>
+                  <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
                 </form>}
       </div>}
       <div id="chirp-reply">

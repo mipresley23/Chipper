@@ -43,7 +43,7 @@
   display: flex;
 }
 
-form{
+#add-chirp-form{
   position: absolute;
   top: 10px;
   left: 33%;
@@ -52,6 +52,8 @@ form{
 
 #all-news-container{
   position: absolute;
+  display: inline-flex;
+  flex-direction: column;
   width: 20%;
   overflow-wrap: normal;
   top: 30px;
@@ -61,11 +63,9 @@ form{
 }
 
 #each-news-container{
+  display: inline;
   height: 80px;
-  padding-top: 11px;
-  padding-bottom: 11px;
-  padding-right: 15px;
-  padding-left: 15px;
+  width: 90%;
 }
 
 #each-news-container:hover{
@@ -88,7 +88,6 @@ form{
   border: 0;
   color: rgb(38, 159, 240);
   width: 100%;
-  box-sizing: border-box;
 }
 
 .news-buttons:hover{
@@ -100,7 +99,14 @@ form{
   height: 60px;
   width: 60px;
   border-radius: 12px;
-  position: relative;
-  left: 150%;
-  margin-left: 5px;
+}
+
+#news-image-info{
+  text-align: end;
+  width: 100%;
+  margin: 0;
+}
+
+#news-text{
+  width: 100%;
 }
