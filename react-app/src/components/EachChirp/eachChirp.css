@@ -23,3 +23,30 @@
   border-right: 1px solid #f1f4f5;
   border-bottom: 1px solid #f1f4f5;
 }
+
+#edit-chirp-form{
+  position: absolute;
+  top: 10px;
+  left: 33%;
+  width: 100%;
+}
+
+#edit-chirp-button{
+  position: absolute;
+  top: 50px;
+  left: 33%;
+}
+
+#title-back-button-container{
+  display: flex;
+  flex-direction: row-reverse;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 33%;
+}
+
+#each-main-title{
+  margin-top: 0;
+  margin-left: 10px;
+}
