@@ -16,7 +16,7 @@
   width: 33%;
   padding: 10px;
   position: absolute;
-  top: 200px;
+  top: 250px;
   left: 33%;
   overflow-wrap: normal;
   border-left: 1px solid #f1f4f5;
@@ -26,7 +26,7 @@
 
 #edit-chirp-form{
   position: absolute;
-  top: 10px;
+  top: 80px;
   left: 33%;
   width: 100%;
 }
@@ -49,4 +49,19 @@
 #each-main-title{
   margin-top: 0;
   margin-left: 10px;
+}
+
+#chirp-reply{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 214px;
+  left: 33%;
+  width: 33%;
+}
+
+#chirp-reply textarea{
+  display: block;
+  width: 80%;
+  width: 100%;
 }

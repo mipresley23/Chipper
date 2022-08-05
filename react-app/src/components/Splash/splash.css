@@ -86,8 +86,10 @@
   height: 40px;
   text-align: left;
   border: 0;
-  color: rgb(38, 159, 240);
+  color: #269ff0;
   width: 100%;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
 .news-buttons:hover{

@@ -29,6 +29,12 @@ export default function EachComment() {
     setComments(Object.values(commentSelector))
   }, [commentSelector])
 
+  useEffect(() => {
+    if(thisComment){
+      setCommentBody(thisComment.body)
+    }
+  }, [thisComment])
+
   const editComment = async (e) => {
     e.preventDefault();
     const comment = {

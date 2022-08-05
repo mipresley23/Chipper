@@ -128,13 +128,14 @@ useEffect(() => {
       </div>}
       <div id="chirp-reply">
       <form onSubmit={addComment}>
-        <input
+        <textarea
+        cols={60}
             type="text"
             placeholder='Chirp Your Reply'
             value={commentBody}
             onChange={(e) => setCommentBody(e.target.value)}
         />
-        <button type="submit">Reply</button>
+        <button id='chirp-reply-button' type="submit">Reply</button>
       </form>
       </div>
       <div id="all-comments-container">
