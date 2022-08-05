@@ -1,12 +1,13 @@
 import React, { useState, useEffect }from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useHistory } from "react-router-dom";
 import { thunkGetChirps, thunkEditChirp } from "../../store/chirp";
 import { thunkAddComment, thunkDeleteComment, thunkGetComments } from "../../store/comment";
 import './eachChirp.css';
 
 export default function EachChirp() {
   const dispatch = useDispatch()
+  const history = useHistory();
 
   const {chirpId} = useParams();
 
@@ -96,18 +97,25 @@ useEffect(() => {
     await dispatch(thunkDeleteComment(e.target.value))
   }
 
+  const handleGoBackToSplash = (e) => {
+    e.preventDefault();
+    history.push('/')
+  }
 
   if(!thisChirp) return null;
   return(
     <div id="each-chirp-main-content">
-      <h1>Each Chirp Page</h1>
+      <div id="title-back-button-container">
+        <h1 id="each-main-title">Chirp</h1>
+        <button id='each-chirp-go-back-button' type="button" onClick={handleGoBackToSplash}>Back</button>
+      </div>
       <div id="chirp-container">
         <h3>{thisChirp.user.username}</h3>
         <p>{thisChirp.body}</p>
       </div>
       {correctUser && <div id="edit-chirp-container">
       <button id='edit-chirp-button' type="button" onClick={() => setShowForm(true)}>Edit Chirp</button>
-                {showForm && <form onSubmit={editChirp}>
+                {showForm && <form id="edit-chirp-form" onSubmit={editChirp}>
                   <input
                     type="text"
                     value={chirpBody}
