@@ -14,6 +14,11 @@
   border-right: 1px solid #f1f4f5;
 }
 
+#each-chirp-user-container{
+  display: flex;
+}
+
+
 #chirp-container{
   width: 100%;
   font-size: 12px;
@@ -21,6 +26,10 @@
   padding-bottom: 10px;
   padding-top: 10px;
   overflow-wrap: break-word;
+}
+
+#chirp-container:hover{
+  background-color: #f1f4f5;
 }
 
 #all-comments-container{
@@ -74,16 +83,13 @@
   width: 33%;
 }
 
-#chirp-reply textarea{
-
-}
-
 #chirp-user{
   font-weight: bold;
 }
 
 a{
   text-decoration: none;
+  color: black;
 }
 
 #edit-chirp-input{
@@ -96,9 +102,23 @@ a{
   border: none;
   margin-bottom: 10px;
   height: 60px;
-  overflow-y:scroll;
+  overflow-y: auto;
 }
 
 #edit-chirp-input:focus{
   outline: none;
+}
+
+#edit-chirp-profile-pic{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+#chirp-profile-pic{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 5px;
 }

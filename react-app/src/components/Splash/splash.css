@@ -42,7 +42,6 @@
   overflow-wrap: normal;
   border-left: 1px solid #f1f4f5;
   border-right: 1px solid #f1f4f5;
-
 }
 
 #splash-chirp-input{
@@ -55,7 +54,7 @@
   border: none;
   margin-bottom: 10px;
   height: 60px;
-  overflow-y:scroll;
+  overflow-y:auto;
 }
 
 #splash-chirp-input:focus{
