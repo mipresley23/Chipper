@@ -24,6 +24,7 @@ export default function Splash() {
 
   const chirpSelector = useSelector(state => state.chirps)
   const sessionUser = useSelector(state => state.session.user)
+
   const options = {
     method: 'GET',
     headers: {
@@ -33,26 +34,20 @@ export default function Splash() {
     }
   };
 
-  const getNews = async() => {
-    const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
-      .then(response => response.json())
-      .then(response => setNews(response));
-  }
+//   const getNews = async() => {
+//     const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
+//       .then(response => response.json())
+//       .then(response => setNews(response));
+//   }
 
-useEffect(() => {
-  getNews()
-}, [])
+// useEffect(() => {
+//   getNews()
+// }, [])
 
-console.log('news: ', news)
+const newsArray = news.value;
+const firstFiveNews = newsArray && newsArray.slice(0, 5);
 
 
-console.log('news value: ', news.value)
-
-const newsArray = news.value
-console.log('newsArray: ', newsArray)
-
-const firstFiveNews = newsArray && newsArray.slice(0, 5)
-console.log('firstFive: ', firstFiveNews)
 
 
   useEffect(() => {
@@ -77,7 +72,7 @@ console.log('firstFive: ', firstFiveNews)
 
   const handleDeleteChirp = async (e) => {
     e.preventDefault();
-    await dispatch(thunkDeleteChirp(e.target.value))
+      await dispatch(thunkDeleteChirp(e.target.value))
   }
 
   if (!chirps) return null;
@@ -91,16 +86,22 @@ console.log('firstFive: ', firstFiveNews)
   } else {
     return (
       <div id="splash-main-content">
+        <h3 id="splash-logged-in-header">Home</h3>
         <form id='add-chirp-form' onSubmit={addChirp}>
+          <img id="add-chirp-profile-pic" src={sessionUser.profile_pic} alt=''/>
           <div id="chirp-input-button-contatiner">
-            <input id="splash-chirp-input"
+            <textarea id="splash-chirp-input"
             type="text"
             placeholder="What's Chirpin'?"
             value={body}
             onChange={(e) => setBody(e.target.value)}
             />
-            <button type="submit">Chirp</button>
           </div>
+            {body.length <= 290 ? <p id="chirp-counter">{body.length}/300</p> :
+            body.length <= 300 ? <p id="chirp-counter-close-to-limit">{body.length}/300</p> :
+            <p id="chirp-counter-over-limit">Chirp Must Be 300 Characters Or Less. {body.length}/300</p>}
+            {body.length <= 300 & body.length > 0 ? <button id='add-chirp-button' type="submit">Chirp</button> :
+            <button id="add-chirp-button-disabled" type="button">Chirp</button>}
         </form>
         <div id="all-chirps-container">
           {
@@ -114,7 +115,7 @@ console.log('firstFive: ', firstFiveNews)
                     </div>
                     <p id="chirp-body">{chirp.body}</p>
                   </div>
-                  <button type="button" value={chirp.id} onClick={handleDeleteChirp}>Delete</button>
+                  {sessionUser.id === chirp.user.id ? <button type="button" value={chirp.id} onClick={handleDeleteChirp}>Delete</button> : null}
                 </NavLink>
             </div>
             ))

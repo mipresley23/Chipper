@@ -35,7 +35,6 @@ const actionDeleteChirp = (chirpId) => {
 export const thunkGetChirps = (chirps) => async(dispatch) => {
   const res = await fetch("/api/chirps/");
   const chirps = await res.json();
-  console.log('thunkChirps:', chirps)
   dispatch(actionGetChirps(chirps))
   return res;
 }

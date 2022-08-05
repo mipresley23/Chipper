@@ -106,26 +106,23 @@ useEffect(() => {
   return(
     <div id="each-chirp-main-content">
       <div id="title-back-button-container">
-        <h1 id="each-main-title">Chirp</h1>
+        <h3 id="each-main-title">Chirp</h3>
         <button id='each-chirp-go-back-button' type="button" onClick={handleGoBackToSplash}>Back</button>
-      </div>
-      <div id="chirp-container">
-        <h3>{thisChirp.user.username}</h3>
-        <p>{thisChirp.body}</p>
       </div>
       {correctUser && <div id="edit-chirp-container">
       <button id='edit-chirp-button' type="button" onClick={() => setShowForm(true)}>Edit Chirp</button>
                 {showForm && <form id="edit-chirp-form" onSubmit={editChirp}>
-                  <input
+                  <img id="edit-chirp-profile-pic" src={sessionUser.profile_pic} alt='' />
+                  <textarea id='edit-chirp-input'
                     type="text"
                     value={chirpBody}
-                    defaultValue={thisChirp.body}
                     onChange={(e) => setChirpBody(e.target.value)}
                   />
                   <button>Edit Chirp</button>
                   <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
                 </form>}
       </div>}
+        <div id="chirp-and-comments-container">
       <div id="chirp-reply">
       <form onSubmit={addComment}>
         <textarea
@@ -137,6 +134,10 @@ useEffect(() => {
         />
         <button id='chirp-reply-button' type="submit">Reply</button>
       </form>
+      </div>
+      <div id="chirp-container">
+        <h3>{thisChirp.user.username}</h3>
+        <p>{thisChirp.body}</p>
       </div>
       <div id="all-comments-container">
       {
@@ -151,6 +152,7 @@ useEffect(() => {
           </div>
         ))
       }
+      </div>
       </div>
     </div>
   )
