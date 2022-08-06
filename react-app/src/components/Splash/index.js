@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Link, Redirect } from 'react-router-dom'
+import { NavLink, Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
+import NavBar from "../NavBar";
+import { demoLogin } from "../../store/session";
 import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp } from "../../store/chirp";
+import birdLogoWhite from '../assets/birdLogo-white.png';
+import birdLogoBlue from '../assets/birdLogo.png';
+import splashGraffiti from '../assets/graffiti-background-vertical.jpg';
 import "./splash.css"
 
 export default function Splash() {
 
   const dispatch = useDispatch()
+  const history = useHistory();
 
   const [chirps, setChirps] = useState([])
   const [body, setBody] = useState('');
@@ -69,6 +75,10 @@ const firstFiveNews = newsArray && newsArray.slice(0, 5);
     await setBody('')
   }
 
+  const handleDemo = () => {
+    dispatch(demoLogin())
+  }
+
 
 
   const handleDeleteChirp = async (e) => {
@@ -81,12 +91,37 @@ const firstFiveNews = newsArray && newsArray.slice(0, 5);
 
     return (
       <div>
-        <h1>Welcome to Chipper</h1>
+        <img id='splash-graffiti-logo' src={splashGraffiti} alt=''/>
+        <img id='white-bird-logo' src={birdLogoWhite} alt=''/>
+        <div id="user-auth-side">
+            <div>
+              <img id='user-auth-home-logo' src={birdLogoBlue} alt=''/>
+            </div>
+            <div id="user-auth-section-headers">
+              <h1 id="chipper-main-logo">Welcome to Chipper</h1>
+            </div>
+            <div id="sign-up-demo-container">
+              <h2>Join Chipper Today!</h2>
+              <button id="signup-button">
+                <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                  Sign Up
+                </NavLink>
+              </button>
+              <button id='demo-button' type='button' onClick={handleDemo}>Demo</button>
+            </div>
+            <div id="login-section">
+              <h4>Already Have An Account?</h4>
+              <button id="login-button" onClick={() => history.push('/login')}>
+                  Login
+              </button>
+            </div>
+          </div>
       </div>
     )
   } else {
     return (
       <div id="splash-main-content">
+        <NavBar />
         <div id="splash-header-form-conatiner">
           <h3 id="splash-logged-in-header">Home</h3>
           <form id='add-chirp-form' onSubmit={addChirp}>
