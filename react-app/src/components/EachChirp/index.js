@@ -102,12 +102,20 @@ useEffect(() => {
     history.push('/')
   }
 
+  const handleCancelForm = (e) => {
+    e.preventDefault();
+    setShowForm(false)
+    setChirpBody(thisChirp.body)
+  }
+
   if(!thisChirp) return null;
   return(
     <div id="each-chirp-main-content">
       <div id="title-back-button-container">
         <h3 id="each-main-title">Chirp</h3>
-        <button id='each-chirp-go-back-button' type="button" onClick={handleGoBackToSplash}>Back</button>
+        <button id='each-chirp-go-back-button' type="button" onClick={handleGoBackToSplash}>
+          <img id="each-chirp-go-back-button-image" src={require('../assets/back-arrow.png')} alt='Back'/>
+        </button>
       </div>
       {correctUser && <div id="edit-chirp-container">
       { !showForm && <button id='edit-chirp-button' type="button" onClick={() => setShowForm(true)}>Edit Chirp</button>}
@@ -118,8 +126,10 @@ useEffect(() => {
                     value={chirpBody}
                     onChange={(e) => setChirpBody(e.target.value)}
                   />
-                  <button>Edit Chirp</button>
-                  <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
+                  {chirpBody.length <= 290 ? <p id="edit-chirp-counter">{chirpBody.length}/300</p> :
+                  chirpBody.length <= 300 ? <p id="edit-chirp-counter-close-to-limit">{chirpBody.length}/300</p> : <p id="edit-chirp-over-limit">Chirp Must Be 300 Characters Or Less. {chirpBody.length}/300</p>}
+                  {chirpBody.length <= 300 & chirpBody.length > 0 ? <button id="edit-chirp-submit-button">Confirm</button> : <button id='edit-chirp-button-disabled' type="button">Confirm</button>}
+                  <button id='edit-chirp-cancel-button' type="button" onClick={handleCancelForm}>Cancel</button>
                 </form>}
       </div>}
         <div id="chirp-and-comments-container">

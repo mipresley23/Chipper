@@ -18,6 +18,27 @@
   display: flex;
 }
 
+#each-chirp-go-back-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: white;
+}
+
+#each-chirp-go-back-button:hover{
+  background-color: #eeeeee;
+}
+
+#each-chirp-go-back-button-image{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
 
 #chirp-container{
   width: 100%;
@@ -51,13 +72,20 @@
   top: 50px;
   left: 33%;
   width: 33%;
-  height: 10%;
+  height: 17%;
 }
 
 #edit-chirp-button{
   position: absolute;
-  top: 80px;
-  left: 33%;
+  right: 34.5%;
+  top: 15%;
+  width: 72px;
+  height: 34px;
+  border: none;
+  border-radius: 20px;
+  background-color: #1d9bf0;
+  color: white;
+  font-weight: bold;
 }
 
 #title-back-button-container{
@@ -70,8 +98,8 @@
 }
 
 #each-main-title{
-  margin-top: 0;
-  margin-left: 10px;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 
 #chirp-reply{
@@ -121,4 +149,66 @@ a{
   width: 50px;
   border-radius: 50%;
   margin-right: 5px;
+}
+
+#edit-chirp-counter{
+  position: absolute;
+  bottom: 5px;
+  right:100px;
+  margin-bottom: 0;
+}
+
+#edit-chirp-counter-close-to-limit{
+  position: absolute;
+ bottom: 5px;
+ right:100px;
+ margin-bottom: 0;
+ color: orange;
+}
+
+#edit-chirp-over-limit{
+  position: absolute;
+ bottom: 5px;
+ right:100px;
+ margin-bottom: 0;
+ color: red;
+}
+
+#edit-chirp-submit-button{
+  width: 72px;
+  height: 34px;
+  border: none;
+  border-radius: 20px;
+  background-color: #1d9bf0;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  right: 5px;
+  bottom: 40px;
+}
+
+#edit-chirp-button-disabled{
+  width: 72px;
+  height: 34px;
+  border: none;
+  border-radius: 20px;
+  background-color: #8ecdf7;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  right: 5px;
+  bottom: 40px;
+}
+
+#edit-chirp-cancel-button{
+  width: 72px;
+  height: 34px;
+  border: none;
+  border-radius: 20px;
+  background-color: #1d9bf0;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
 }
