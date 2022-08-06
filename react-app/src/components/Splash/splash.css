@@ -1,13 +1,14 @@
 #splash-logged-in-header{
   position: absolute;
   top: 10px;
-  left: 33%;
+  left: 27%;
   margin-top: 0;
 }
 
 #chirp-user-container{
   display: flex;
 }
+
 
 #chirp-user-image{
   height: 50px;
@@ -21,11 +22,13 @@
 }
 #each-chirp-container{
   width: 100%;
-  font-size: 12px;
+  height: fit-content;
+  font-size: 14px;
   border-bottom: 1px solid #f1f4f5;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding: 15px;
+  padding-top: 5px;
   overflow-wrap: break-word;
+  box-sizing: border-box;
 }
 
 #each-chirp-container:hover{
@@ -35,10 +38,10 @@
 #all-chirps-container{
   display: flex;
   flex-direction: column;
-  width: 33%;
+  width: 39.5%;
   position: absolute;
-  top: 200px;
-  left: 33%;
+  top: 29%;
+  left: 26.5%;
   overflow-wrap: normal;
   border-left: 1px solid #f1f4f5;
   border-right: 1px solid #f1f4f5;
@@ -53,7 +56,7 @@
   padding: 0%;
   border: none;
   margin-bottom: 10px;
-  height: 60px;
+  height: 65%;
   overflow-y:auto;
 }
 
@@ -102,9 +105,14 @@
   justify-content: space-between;
   position: absolute;
   top: 50px;
-  left: 33%;
-  width: 33%;
-  height: 10%;
+  left: 26.5%;
+  width: 39.5%;
+  height: 22%;
+  border-left: 1px solid #f1f4f5;
+  border-right: 1px solid #f1f4f5;
+  border-bottom: 1px solid #f1f4f5;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 #add-chirp-button{
@@ -201,4 +209,14 @@
   width: 50px;
   border-radius: 50%;
   margin-right: 5px;
+}
+
+#delete-chirp-button{
+  width: 72px;
+  height: 34px;
+  border: none;
+  border-radius: 20px;
+  background-color: #1d9bf0;
+  color: white;
+  font-weight: bold;
 }
