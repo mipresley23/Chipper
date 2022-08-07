@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { demoLogin } from "../../store/session";
 import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp } from "../../store/chirp";
+import SignupModal from "../auth/SignupModal";
 import birdLogoWhite from '../assets/birdLogo-white.png';
 import birdLogoBlue from '../assets/birdLogo.png';
 import splashGraffiti from '../assets/graffiti-background-vertical.jpg';
@@ -102,11 +103,7 @@ const firstFiveNews = newsArray && newsArray.slice(0, 5);
             </div>
             <div id="sign-up-demo-container">
               <h2>Join Chipper Today!</h2>
-              <button id="signup-button">
-                <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                  Sign Up
-                </NavLink>
-              </button>
+              <SignupModal />
               <button id='demo-button' type='button' onClick={handleDemo}>Demo</button>
             </div>
             <div id="login-section">
@@ -125,7 +122,7 @@ const firstFiveNews = newsArray && newsArray.slice(0, 5);
         <div id="splash-header-form-conatiner">
           <h3 id="splash-logged-in-header">Home</h3>
           <form id='add-chirp-form' onSubmit={addChirp}>
-            <img id="add-chirp-profile-pic" src={sessionUser.profile_pic} alt=''/>
+            <img id="add-chirp-profile-pic" src={sessionUser.profile_pic ? sessionUser.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt=''/>
             <div id="chirp-input-button-contatiner">
               <textarea id="splash-chirp-input"
               type="text"
@@ -148,7 +145,7 @@ const firstFiveNews = newsArray && newsArray.slice(0, 5);
                 <NavLink to={`/chirps/${chirp.id}`}>
                   <div>
                     <div id="chirp-user-container">
-                      <img id='chirp-user-image' src={chirp.user.profile_pic} alt={chirp.user.username}></img>
+                      <img id='chirp-user-image' src={chirp.user.profile_pic ? chirp.user.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={chirp.user.username}></img>
                       <p id="chirp-user">{chirp.user.username}</p>
                     </div>
                     <p id="chirp-body">{chirp.body}</p>
