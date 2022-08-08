@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { thunkGetChirps, thunkEditChirp } from "../../store/chirp";
 import { thunkAddComment, thunkDeleteComment, thunkGetComments } from "../../store/comment";
+import NavBar from "../NavBar";
 import './eachChirp.css';
 
 export default function EachChirp() {
@@ -110,6 +111,8 @@ useEffect(() => {
 
   if(!thisChirp) return null;
   return(
+  <>
+    <NavBar />
     <div id="each-chirp-main-content">
       <div id="title-back-button-container">
         <h3 id="each-main-title">Chirp</h3>
@@ -125,7 +128,7 @@ useEffect(() => {
                     type="text"
                     value={chirpBody}
                     onChange={(e) => setChirpBody(e.target.value)}
-                  />
+                    />
                   {chirpBody.length <= 290 ? <p id="edit-chirp-counter">{chirpBody.length}/300</p> :
                   chirpBody.length <= 300 ? <p id="edit-chirp-counter-close-to-limit">{chirpBody.length}/300</p> : <p id="edit-chirp-over-limit">Chirp Must Be 300 Characters Or Less. {chirpBody.length}/300</p>}
                   {chirpBody.length <= 300 & chirpBody.length > 0 ? <button id="edit-chirp-submit-button">Confirm</button> : <button id='edit-chirp-button-disabled' type="button">Confirm</button>}
@@ -137,10 +140,10 @@ useEffect(() => {
       <form onSubmit={addComment}>
         <textarea
         cols={60}
-            type="text"
-            placeholder='Chirp Your Reply'
-            value={commentBody}
-            onChange={(e) => setCommentBody(e.target.value)}
+        type="text"
+        placeholder='Chirp Your Reply'
+        value={commentBody}
+        onChange={(e) => setCommentBody(e.target.value)}
         />
         <button id='chirp-reply-button' type="submit">Reply</button>
       </form>
@@ -168,5 +171,6 @@ useEffect(() => {
       </div>
       </div>
     </div>
+  </>
   )
 }
