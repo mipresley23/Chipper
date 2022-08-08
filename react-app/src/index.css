@@ -6,18 +6,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   list-style: none;
+  margin-left: 100px;
 }
 
-#navbar-profile-pic{
-  height:80px;
-  width: 80px;
-}
 
-#nav-home-logo{
+.navbar-icons{
   height: 30px;
   width: 30px;
+  border-radius: 50%;
 }
 
 #nav-home-birdhouse{
@@ -38,19 +36,22 @@
   background-color: #eeeeee;
 }
 
-#nav-home-birdhouse-container{
+.navbar-containers{
   display: flex;
   align-items: center;
-  height: 45px;
-  width: 120px;
-  border-radius: 20px;
+  height: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: auto;
+  border-radius: 30px;
+  margin-right: 100px;
 }
 
-#nav-home-birdhouse-container:hover{
+.navbar-containers:hover{
   background-color: #eeeeee;
 }
 
-#nav-home-birdhouse-words{
+.navbar-labels{
   font-size: large;
   font-weight: bold;
   margin-left: 20px;
@@ -64,4 +65,34 @@ body{
 
 button:hover{
   cursor: pointer;
+}
+
+#mp-github-links{
+  display: flex;
+  justify-content: center;
+}
+
+#mp-linkedin{
+  display: flex;
+  justify-content: center;
+}
+
+
+#navbar-username-label{
+  position: relative;
+  top: 2px;
+}
+
+#logout-button{
+  width: 72px;
+  height: 34px;
+  border: none;
+  border-radius: 20px;
+  background-color: #1d9bf0;
+  color: white;
+  font-weight: bold;
+}
+
+#logout-button:hover{
+  background-color: #1A8CD8;
 }
