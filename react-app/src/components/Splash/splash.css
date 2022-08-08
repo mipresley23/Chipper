@@ -9,6 +9,10 @@
   display: flex;
 }
 
+#chirp-user{
+  font-weight: bold;
+}
+
 
 #chirp-user-image{
   height: 50px;

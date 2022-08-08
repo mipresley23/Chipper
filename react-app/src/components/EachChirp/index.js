@@ -123,52 +123,59 @@ useEffect(() => {
       {correctUser && <div id="edit-chirp-container">
       { !showForm && <button id='edit-chirp-button' type="button" onClick={() => setShowForm(true)}>Edit Chirp</button>}
                 {showForm && <form id="edit-chirp-form" onSubmit={editChirp}>
-                  <img id="edit-chirp-profile-pic" src={sessionUser.profile_pic} alt='' />
+                  <img id="edit-chirp-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic} alt='' />
                   <textarea id='edit-chirp-input'
                     type="text"
                     value={chirpBody}
                     onChange={(e) => setChirpBody(e.target.value)}
                     />
-                  {chirpBody.length <= 290 ? <p id="edit-chirp-counter">{chirpBody.length}/300</p> :
+                  {chirpBody.length === 0 ? <p id="edit-chirp-counter-zero">Chirps must be at least 1 character. {chirpBody.length}/300</p> : chirpBody.length <= 290 ? <p id="edit-chirp-counter">{chirpBody.length}/300</p> :
                   chirpBody.length <= 300 ? <p id="edit-chirp-counter-close-to-limit">{chirpBody.length}/300</p> : <p id="edit-chirp-over-limit">Chirp Must Be 300 Characters Or Less. {chirpBody.length}/300</p>}
-                  {chirpBody.length <= 300 & chirpBody.length > 0 ? <button id="edit-chirp-submit-button">Confirm</button> : <button id='edit-chirp-button-disabled' type="button">Confirm</button>}
+                  {chirpBody.length <= 300 & chirpBody.length > 0 ? <button className='chirp-submit-buttons' id="edit-chirp-submit-button">Confirm</button> : <button id='edit-chirp-button-disabled' type="button">Confirm</button>}
                   <button id='edit-chirp-cancel-button' type="button" onClick={handleCancelForm}>Cancel</button>
                 </form>}
       </div>}
-        <div id="chirp-and-comments-container">
-      <div id="chirp-reply">
-      <form onSubmit={addComment}>
-        <textarea
-        cols={60}
-        type="text"
-        placeholder='Chirp Your Reply'
-        value={commentBody}
-        onChange={(e) => setCommentBody(e.target.value)}
-        />
-        <button id='chirp-reply-button' type="submit">Reply</button>
-      </form>
-      </div>
-      <div id="chirp-container">
-        <div id="each-chirp-user-container">
-          <img id='chirp-profile-pic' src={thisChirp.user.profile_pic} alt={thisChirp.user.username}/>
-          <p id="each-chirp-user">{thisChirp.user.username}</p>
-        </div>
-        <p id="each-chirp-body">{thisChirp.body}</p>
-      </div>
-      <div id="all-comments-container">
-      {
-        reverseComments && reverseComments.map(comment => (
-          <div id='each-comment-container'>
-            <NavLink to={`/comments/${comment.id}`}>
-              <h6>Replying to: {thisChirp.user.username}</h6>
-              <h3>{comment.user.username}</h3>
-              <p>{comment.body}</p>
-              <button type="button" value={comment.id} onClick={handleDeleteComment}>Delete Comment</button>
-            </NavLink>
+      <div id="chirp-and-comments-container">
+        <div id="chirp-container">
+          <div id="each-chirp-user-container">
+            <img id='chirp-profile-pic' src={thisChirp.user.profile_pic} alt={thisChirp.user.username}/>
+            <p id="each-chirp-user">{thisChirp.user.username}</p>
           </div>
-        ))
-      }
-      </div>
+          <p id="each-chirp-body">{thisChirp.body}</p>
+        </div>
+        <form id='chirp-reply-form' onSubmit={addComment}>
+          <img id="chirp-reply-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic} alt='' />
+          <textarea id='chirp-reply-input'
+          cols={60}
+          type="text"
+          placeholder='Chirp Your Reply'
+          value={commentBody}
+          onChange={(e) => setCommentBody(e.target.value)}
+          />
+          {commentBody.length === 0 ? <p id="comment-counter-zero">Comments must be at least 1 character. {commentBody.length}/300</p> :
+          commentBody.length > 0 & commentBody.length <= 290 ? <p id="comment-counter">{commentBody.length}/300</p> :
+          commentBody.length <= 300 ? <p id="comment-counter-close-to-limit">{commentBody.length}/300</p> :
+          <p id="comment-over-limit">Comments Must Be 300 Characters Or Less. {commentBody.length}/300</p>}
+          {commentBody.length > 0 & commentBody.length <= 300 ? <button className='chirp-submit-buttons' id='chirp-reply-button' onCLick={() => setCommentBody('')} type="submit">Reply</button> :
+          <button className='chirp-submit-buttons' id="chirp-reply-button-disabled" type="button">Reply</button>}
+        </form>
+        {/* <div id="all-comments">
+        {
+          reverseComments && reverseComments.map(comment => (
+            <div id='each-comment-container'>
+              <NavLink to={`/comments/${comment.id}`}>
+                <h6 id="replying-to">Replying to: {thisChirp.user.username}</h6>
+                <div id="comment-user-info">
+                  <img id='comment-user-pic' src={comment.user.profile_pic} alt='' />
+                  <p id="comment-user">{comment.user.username}</p>
+                </div>
+                <p id="comment-body">{comment.body}</p>
+                <button className='chirp-submit-buttons' type="button" value={comment.id} onClick={handleDeleteComment}>Delete Comment</button>
+              </NavLink>
+            </div>
+          ))
+        }
+        {/* </div> */}
       </div>
     </div>
   </>
