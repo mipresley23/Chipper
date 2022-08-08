@@ -5,6 +5,7 @@ import NavBar from "../NavBar";
 import { demoLogin } from "../../store/session";
 import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp } from "../../store/chirp";
 import SignupModal from "../auth/SignupModal";
+import LoginModal from "../auth/LoginModal";
 import birdLogoWhite from '../assets/birdLogo-white.png';
 import birdLogoBlue from '../assets/birdLogo.png';
 import splashGraffiti from '../assets/graffiti-background-vertical.jpg';
@@ -108,9 +109,7 @@ const firstFiveNews = newsArray && newsArray.slice(0, 5);
             </div>
             <div id="login-section">
               <h4>Already Have An Account?</h4>
-              <button id="login-button" onClick={() => history.push('/login')}>
-                  Login
-              </button>
+              <LoginModal />
             </div>
           </div>
       </div>
