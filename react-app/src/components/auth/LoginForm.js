@@ -70,7 +70,7 @@ const LoginForm = ({setShowModal}) => {
           </div>
           <div>
             <button className='modal-form-submit-buttons' type='submit'>Login</button>
-            <p>-------or-------</p>
+            <p id='login-form-button-sep'>------------or------------</p>
             <button className='modal-form-submit-buttons' type='button' onClick={handleDemo}>Demo</button>
           </div>
           {/* <div id='login-modal-signup-container'>

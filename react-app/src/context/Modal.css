@@ -69,6 +69,8 @@
 
 .modal-errors{
   color: red;
+  position: relative;
+  bottom: 35px;
 }
 
 .required:after {
@@ -108,4 +110,8 @@
   border-radius: 20px;
   background-color: #E8F5FD;
   font-weight: bold;
+}
+
+#login-form-button-sep{
+  text-align: center;
 }
