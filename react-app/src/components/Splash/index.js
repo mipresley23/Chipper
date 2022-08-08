@@ -108,7 +108,7 @@ const firstFiveNews = newsArray && newsArray.slice(0, 5);
               <button id='demo-button' type='button' onClick={handleDemo}>Demo</button>
             </div>
             <div id="login-section">
-              <h4>Already Have An Account?</h4>
+              <h4 id="splash-login-header">Already Have An Account?</h4>
               <LoginModal />
             </div>
           </div>

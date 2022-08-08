@@ -34,7 +34,7 @@
 }
 
 .form-header-input-containers{
-  height: 75%;
+  height: 70%;
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -113,5 +113,10 @@
 }
 
 #login-form-button-sep{
+  text-align: center;
+}
+
+#splash-login-header{
+  margin-bottom: 10px;
   text-align: center;
 }
