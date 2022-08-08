@@ -1,4 +1,8 @@
 /* TODO Add site wide styles */
+*{
+  margin: 0;
+  padding: 0;
+}
 
 #side-bar-user-info-container{
   height: 600px;
@@ -8,7 +12,8 @@
   justify-content: space-between;
   align-items: flex-start;
   list-style: none;
-  margin-left: 100px;
+  margin-left: 10%;
+  margin-top: 8%;
 }
 
 
@@ -23,12 +28,23 @@
   width: 30px;
 }
 
+#nav-home-logo{
+  height: 40px;
+  width: 40px;
+  position: relative;
+  bottom: 3px;
+  left: 1px;
+}
+
 #nav-home-logo-container{
+  position: absolute;
+  left: 10.5%;
+  top: 2%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 50px;
+  align-items: flex-end;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
 }
 
@@ -95,4 +111,15 @@ button:hover{
 
 #logout-button:hover{
   background-color: #1A8CD8;
+}
+
+#navbar-current-user{
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+#navbar-user-logout-container{
+  position: relative;
+  left: 4%;
 }
