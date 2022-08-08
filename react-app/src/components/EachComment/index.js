@@ -2,7 +2,7 @@ import React, { useState, useEffect }from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import { thunkEditComment, thunkGetComments } from "../../store/comment";
-
+import './eachComment.css';
 export default function EachComment() {
   const dispatch = useDispatch()
 
@@ -50,9 +50,9 @@ export default function EachComment() {
 
   if(!thisComment) return null;
   return(
-    <div>
+    <div id="comment-page-main-content">
       <h1>Comment</h1>
-      <div>
+      <div id="all-comments-container">
         <div id="each-comment-container">
           <h3>{thisComment.title}</h3>
           <p>{thisComment.body}</p>

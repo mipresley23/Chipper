@@ -1,0 +1,27 @@
+#each-comment-container{
+  width: 100%;
+  height: fit-content;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f4f5;
+  padding: 20px;
+  padding-top: 5px;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+}
+
+#each-comment-container:hover{
+  background-color: #f1f4f5;
+}
+
+
+#all-comments-container{
+  display: flex;
+  flex-direction: column;
+  width: 39.5%;
+  position: absolute;
+  top: 29%;
+  left: 26.5%;
+  overflow-wrap: normal;
+  border-left: 1px solid #f1f4f5;
+  border-right: 1px solid #f1f4f5;
+}
