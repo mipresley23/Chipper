@@ -4,14 +4,17 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 const SignUpForm = ({setShowModal}) => {
+  const dispatch = useDispatch();
+
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const [profile_pic, setprofile_Pic] = useState("https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg")
+  const [profile_pic, setprofile_Pic] = useState("")
+  const [showErrors, setShowErrors] = useState(false);
+
   const user = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
 
   const validateProfileImg = (url) => {
     let res = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg)/i;
@@ -70,17 +73,17 @@ const SignUpForm = ({setShowModal}) => {
 
   return (
   <>
-  <button id='signup-cancel-button' onClick={() => setShowModal(false)}>x</button>
-    <form id='signup-form' onSubmit={onSignUp}>
+  <button className='modal-cancel-buttons' id='signup-cancel-button' onClick={() => setShowModal(false)}>x</button>
+    <form className='modal-forms' id='signup-form' onSubmit={onSignUp}>
       <div>
-        {errors.map((error, ind) => (
-          <div id='signup-form-errors' key={ind}>{error}</div>
+        {showErrors && errors.map((error, ind) => (
+          <div className='modal-errors' id='signup-form-errors' key={ind}>{error}</div>
           ))}
       </div>
-      <div id='form-header-input-container'>
-        <h2 id='signup-form-header'>Create Your Account</h2>
+      <div className='form-header-input-containers'>
+        <h2 className='modal-form-headers' id='signup-form-header'>Create Your Account</h2>
         <div id='signup-username'>
-          <label className='signup-labels required'>User Name</label>
+          <label className='modal-labels required'>User Name</label>
           <input
             type='text'
             name='username'
@@ -89,7 +92,7 @@ const SignUpForm = ({setShowModal}) => {
             ></input>
         </div>
         <div id='signup-email'>
-          <label className='signup-labels required'>Email</label>
+          <label className='modal-labels required'>Email</label>
           <input
             type='text'
             name='email'
@@ -98,7 +101,7 @@ const SignUpForm = ({setShowModal}) => {
             ></input>
         </div>
         <div id='signup-profilepic'>
-          <label className='signup-labels'>Profile Picture</label>
+          <label className='modal-labels'>Profile Picture</label>
           <input
             type='text'
             name='profilePic'
@@ -107,7 +110,7 @@ const SignUpForm = ({setShowModal}) => {
             ></input>
         </div>
         <div id='signup-password'>
-          <label className='signup-labels required'>Password</label>
+          <label className='modal-labels required'>Password</label>
           <input
             type='password'
             name='password'
@@ -116,7 +119,7 @@ const SignUpForm = ({setShowModal}) => {
             ></input>
         </div>
         <div id='signup-repeat-password'>
-          <label className='signup-labels required'>Repeat Password</label>
+          <label className='modal-labels required'>Repeat Password</label>
           <input
             type='password'
             name='repeat_password'
@@ -125,7 +128,7 @@ const SignUpForm = ({setShowModal}) => {
             required={true}
             ></input>
         </div>
-      <button id='signup-form-button' type='submit'>Sign Up</button>
+      <button className='modal-form-submit-buttons' id='signup-form-button' type='submit' onClick={() => setShowErrors(true)}>Sign Up</button>
       </div>
     </form>
   </>

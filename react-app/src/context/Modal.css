@@ -26,14 +26,14 @@
   width: 600px;
 }
 
-#signup-form{
+.modal-forms{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
 
-#form-header-input-container{
+.form-header-input-containers{
   height: 75%;
   width: 80%;
   display: flex;
@@ -44,11 +44,11 @@
   margin-bottom: 10px;
 }
 
-#form-header-input-container div{
+.form-header-input-containers div{
   width: 100%;
 }
 
-#form-header-input-container input{
+.form-header-input-containers input{
   height: 40px;
   width: 60%;
   margin-left: 15px;
@@ -59,15 +59,15 @@
   font-size: 16px;
 }
 
-#form-header-input-container input:focus{
+.form-header-input-containers input:focus{
   background-color: #8ecdf7;
 }
 
-#signup-form-header{
+.modal-form-headers{
   text-align: center;
 }
 
-#signup-form-errors{
+.modal-errors{
   color: red;
 }
 
@@ -76,19 +76,20 @@
   color: red;
   }
 
-#signup-form-button{
+.modal-form-submit-buttons{
   height: 34px;
   border-radius: 20px;
   background-color: #269ff0;
   color: white;
   font-weight: bold;
+  width: 100%;
 }
 
-#signup-form-button:hover{
+.modal-form-submit-buttons:hover{
   background-color: #1A8CD8;
 }
 
-#signup-cancel-button{
+.modal-cancel-buttons{
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -97,7 +98,14 @@
   background-color: white;
 }
 
-#signup-cancel-button:hover{
+.modal-cancel-buttons:hover{
   background-color: #eeeeee;
   color: red;
+}
+
+#login-modal-signup-button{
+  height: 34px;
+  border-radius: 20px;
+  background-color: #E8F5FD;
+  font-weight: bold;
 }
