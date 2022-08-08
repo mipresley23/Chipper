@@ -1,22 +1,23 @@
-#each-chirp-main-content{
-  width: 33%;
-}
-
 #chirp-and-comments-container{
-  display: flex;
-  flex-direction: column;
-  width: 39.5%;
-  height: 100%;
   position: absolute;
-  top: 29%;
   left: 26.5%;
-  overflow-wrap: normal;
-  border-left: 1px solid #f1f4f5;
-  border-right: 1px solid #f1f4f5;
+  top: 28%;
+  width: 39.5%;
+  overflow-wrap: break-word;
+  border-left: 1px solid #181b1b;
+  border-right: 1px solid #0d0d0e;
 }
 
-#each-chirp-user-container{
-  display: flex;
+#chirp-container{
+  width: 100%;
+  height: fit-content;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f4f5;
+  padding: 20px;
+  padding-top: 5px;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 #each-chirp-body{
@@ -24,6 +25,10 @@
   margin-left: 55px;
   margin-top: 1%;
   margin-bottom: 3%;
+}
+
+#each-chirp-user-container{
+  display: flex;
 }
 
 #each-chirp-go-back-button{
@@ -47,33 +52,6 @@
   border-radius: 50%;
 }
 
-
-#chirp-container{
-  width: 100%;
-  height: fit-content;
-  font-size: 14px;
-  border-bottom: 1px solid #f1f4f5;
-  padding: 20px;
-  padding-top: 5px;
-  overflow-wrap: break-word;
-  box-sizing: border-box;
-}
-
-#chirp-container:hover{
-  background-color: #f1f4f5;
-}
-
-#all-comments-container{
-  width: 33%;
-  padding: 10px;
-  position: absolute;
-  top: 500px;
-  left: 33%;
-  overflow-wrap: normal;
-  border-left: 1px solid #f1f4f5;
-  border-right: 1px solid #f1f4f5;
-  border-bottom: 1px solid #f1f4f5;
-}
 
 #edit-chirp-form{
   display: flex;
@@ -118,17 +96,28 @@
   margin-left: 20px;
 }
 
-#chirp-reply{
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top: 214px;
-  left: 33%;
-  width: 33%;
+#each-chirp-user{
+  font-weight: bold;
 }
 
-#chirp-user{
-  font-weight: bold;
+#chirp-reply-form{
+  margin-top: 50px;
+  height: 200px;
+}
+
+#chirp-reply-input{
+  align-self: flex-start;
+  display: block;
+  width: 90%;
+  font-family: Arial, Helvetica, sans-serif;
+  resize: none;
+  padding: 0%;
+  border: none;
+  margin-bottom: 10px;
+  margin-left: 3%;
+  margin-top: 1%;
+  height: 65%;
+  overflow-y:auto;
 }
 
 a{
@@ -147,10 +136,10 @@ a{
   margin-bottom: 10px;
   margin-left: 3%;
   margin-top: 1%;
-  margin-right: 6%;
   height: 65%;
   overflow-y:auto;
 }
+
 
 #edit-chirp-input:focus{
   outline: none;
@@ -175,6 +164,14 @@ a{
   bottom: 5px;
   right:100px;
   margin-bottom: 0;
+}
+
+#edit-chirp-counter-zero{
+  position: absolute;
+  bottom: 5px;
+  right:100px;
+  margin-bottom: 0;
+  color: red;
 }
 
 #edit-chirp-counter-close-to-limit{
@@ -232,32 +229,54 @@ a{
   bottom: 5px;
 }
 
-#chirp-reply-input{
-  align-self: flex-start;
-  display: block;
-  width: 90%;
-  font-family: Arial, Helvetica, sans-serif;
-  resize: none;
-  padding: 0%;
-  border: none;
-  margin-bottom: 10px;
-  margin-left: 3%;
-  margin-top: 1%;
-  margin-right: 6%;
-  height: 65%;
-  overflow-y:auto;
+
+#comment-counter{
+  position: absolute;
+  bottom: 5px;
+  right:100px;
+  margin-bottom: 0;
 }
 
-#chirp-reply-form{
-  display: flex;
-  justify-content: space-between;
+#comment-counter-zero{
   position: absolute;
-  top: 25%;
-  width:100%;
-  height: 22%;
-  border-left: 1px solid #f1f4f5;
-  border-right: 1px solid #f1f4f5;
-  border-bottom: 1px solid #f1f4f5;
-  padding: 10px;
-  box-sizing: border-box;
+  bottom: 5px;
+  right:100px;
+  margin-bottom: 0;
+  color: red;
+}
+
+#comment-counter-close-to-limit{
+  position: absolute;
+  bottom: 5px;
+  right:100px;
+  margin-bottom: 0;
+  color: orange;
+}
+
+#comment-over-limit{
+  position: absolute;
+  bottom: 5px;
+  right:100px;
+  margin-bottom: 0;
+  color: red;
+}
+
+#chirp-reply-button{
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+}
+
+#chirp-reply-button-disabled{
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+  background-color: #8ecdf7;
+}
+
+
+#comment-user-pic{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }
