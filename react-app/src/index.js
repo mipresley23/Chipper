@@ -5,15 +5,18 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import { ModalProvider } from './context/Modal';
+import { EditModalProvider } from './context/EditModal';
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ModalProvider>
-        <App />
-      </ModalProvider>
+      <EditModalProvider>
+        <ModalProvider>
+          <App />
+        </ModalProvider>
+      </EditModalProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
