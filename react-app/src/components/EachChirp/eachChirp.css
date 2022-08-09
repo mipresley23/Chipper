@@ -6,8 +6,8 @@
   top: 28%;
   width: 39.5%;
   overflow-wrap: break-word;
-  border-left: 1px solid #181b1b;
-  border-right: 1px solid #0d0d0e;
+  border-left: 1px solid #f1f4f5;
+  border-right: 1px solid #f1f4f5;
 }
 
 #chirp-container{
@@ -292,6 +292,10 @@ a{
   border-radius: 50%;
 }
 
+#comment-username{
+  font-weight: bold;
+}
+
 #all-comments{
   position: absolute;
   bottom: 0px;
@@ -301,8 +305,8 @@ a{
   list-style: none;
   padding: 10%;
   padding-left: 5%;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  border-left: 1px solid #f1f4f5;
+  border-right: 1px solid #f1f4f5;
 }
 
 #comment-user-container{

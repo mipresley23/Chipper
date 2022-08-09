@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import { thunkEditComment, thunkGetComments } from "../../store/comment";
 import './eachComment.css';
+
+
 export default function EachComment() {
   const dispatch = useDispatch()
 

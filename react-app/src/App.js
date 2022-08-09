@@ -11,6 +11,7 @@ import Splash from './components/Splash';
 import { authenticate } from './store/session';
 import EachChirp from './components/EachChirp';
 import EachComment from './components/EachComment';
+import TrendingTopics from './components/trendingTopics';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,11 +30,13 @@ function App() {
 
   return (
     <BrowserRouter>
+      <TrendingTopics />
+
 
       <Switch>
-        <Route path='/login' exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
-        </Route>
+        </Route> */}
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
