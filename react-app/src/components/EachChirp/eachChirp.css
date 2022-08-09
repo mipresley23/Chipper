@@ -1,5 +1,7 @@
 #chirp-and-comments-container{
   position: absolute;
+  min-height: fit-content;
+  height: 50%;
   left: 26.5%;
   top: 28%;
   width: 39.5%;
@@ -102,8 +104,10 @@
 
 #chirp-reply-form{
   margin-top: 50px;
-  height: 200px;
+  height: 180px;
+  max-height: 180px;
 }
+
 
 #chirp-reply-input{
   align-self: flex-start;
@@ -118,6 +122,13 @@
   margin-top: 1%;
   height: 65%;
   overflow-y:auto;
+  position: relative;
+  left: 6%;
+  bottom: 25%;
+}
+
+#chirp-reply-input:focus{
+  outline: none;
 }
 
 a{
@@ -279,4 +290,40 @@ a{
   height: 50px;
   width: 50px;
   border-radius: 50%;
+}
+
+#all-comments{
+  position: absolute;
+  bottom: 0px;
+}
+
+#comment-list{
+  list-style: none;
+  padding: 10%;
+  padding-left: 5%;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+#comment-user-container{
+  display: flex;
+}
+
+#each-comment{
+  margin-bottom: 10%;
+}
+
+#comment-body{
+  padding-left: 10%;
+  padding-bottom: 5%;
+}
+
+#comment-delete-button{
+  width: 72px;
+  height: 34px;
+  border: none;
+  border-radius: 20px;
+  background-color: #1d9bf0;
+  color: white;
+  font-weight: bold;
 }

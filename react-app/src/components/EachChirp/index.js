@@ -52,8 +52,6 @@ useEffect(() => {
 
 
 
-
-
   useEffect(() => {
     dispatch(thunkGetChirps())
   }, [dispatch])
@@ -79,6 +77,7 @@ useEffect(() => {
       chirpId: +chirpId
     }
     await dispatch(thunkAddComment(comment))
+    await setCommentBody('')
   }
 
   const editChirp = async (e) => {
@@ -95,7 +94,9 @@ useEffect(() => {
 
   const handleDeleteComment = async (e) => {
     e.preventDefault();
+    console.log(e.target.value)
     await dispatch(thunkDeleteComment(e.target.value))
+    // await setComments(Object.values(commentSelector))
   }
 
   const handleGoBackToSplash = (e) => {
@@ -160,22 +161,38 @@ useEffect(() => {
           <button className='chirp-submit-buttons' id="chirp-reply-button-disabled" type="button">Reply</button>}
         </form>
         {/* <div id="all-comments">
-        {
-          reverseComments && reverseComments.map(comment => (
-            <div id='each-comment-container'>
-              <NavLink to={`/comments/${comment.id}`}>
-                <h6 id="replying-to">Replying to: {thisChirp.user.username}</h6>
-                <div id="comment-user-info">
-                  <img id='comment-user-pic' src={comment.user.profile_pic} alt='' />
-                  <p id="comment-user">{comment.user.username}</p>
+          {
+            reverseComments && reverseComments.map(comment => (
+              <div id='each-comment-container'>
+                <NavLink to={`/comments/${comment.id}`}>
+                  <h6 id="replying-to">Replying to: {thisChirp.user.username}</h6>
+                  <div id="comment-user-info">
+                    <img id='comment-user-pic' src={comment.user.profile_pic} alt='' />
+                    <p id="comment-user">{comment.user.username}</p>
+                  </div>
+                  <p id="comment-body">{comment.body}</p>
+                  <button className='chirp-submit-buttons' type="button" value={comment.id} onClick={handleDeleteComment}>Delete Comment</button>
+                </NavLink>
+              </div>
+            ))
+          }
+         </div> */}
+         <div id="comment-container">
+          <ul id="comment-list">
+            {
+              reverseComments && reverseComments.map(comment => (
+                <div id="each-comment">
+                  <div id="comment-user-container">
+                    <img id="comment-user-pic" src={comment.user.profile_pic} alt=''/>
+                    <li id="comment-username">{comment.user.username}</li>
+                  </div>
+                  <li id='comment-body' key={comment.id}>{comment.body}</li>
+                  {sessionUser.id === comment.user.id ? <button id='comment-delete-button' value={comment.id} onClick={handleDeleteComment} type="button">Delete</button> : null}
                 </div>
-                <p id="comment-body">{comment.body}</p>
-                <button className='chirp-submit-buttons' type="button" value={comment.id} onClick={handleDeleteComment}>Delete Comment</button>
-              </NavLink>
-            </div>
-          ))
-        }
-        {/* </div> */}
+              ))
+            }
+          </ul>
+         </div>
       </div>
     </div>
   </>
