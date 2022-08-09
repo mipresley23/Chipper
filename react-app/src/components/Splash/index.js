@@ -10,6 +10,7 @@ import birdLogoWhite from '../assets/birdLogo-white.png';
 import birdLogoBlue from '../assets/birdLogo.png';
 import splashGraffiti from '../assets/graffiti-background-vertical.jpg';
 import "./splash.css"
+import TrendingTopics from "../trendingTopics";
 
 export default function Splash() {
 
@@ -19,8 +20,7 @@ export default function Splash() {
   const [chirps, setChirps] = useState([])
   const [body, setBody] = useState('');
   const [media, setMedia] = useState('');
-  const [news, setNews] = useState([]);
-  const [showMore, setShowMore] = useState(false)
+
 
   const reverseChirps = []
   if(chirps){
@@ -33,27 +33,27 @@ export default function Splash() {
   const chirpSelector = useSelector(state => state.chirps)
   const sessionUser = useSelector(state => state.session.user)
 
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-BingApis-SDK': 'true',
-      'X-RapidAPI-Key': '063bad3f64msh1af9bb8147faf8dp1e0680jsn9d6abba6e550',
-      'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
-    }
-  };
+//   const options = {
+//     method: 'GET',
+//     headers: {
+//       'X-BingApis-SDK': 'true',
+//       'X-RapidAPI-Key': '063bad3f64msh1af9bb8147faf8dp1e0680jsn9d6abba6e550',
+//       'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
+//     }
+//   };
 
-//   const getNews = async() => {
-//     const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
-//       .then(response => response.json())
-//       .then(response => setNews(response));
-//   }
+// //   const getNews = async() => {
+// //     const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
+// //       .then(response => response.json())
+// //       .then(response => setNews(response));
+// //   }
 
-// useEffect(() => {
-//   getNews()
-// }, [])
+// // useEffect(() => {
+// //   getNews()
+// // }, [])
 
-const newsArray = news.value;
-const firstFiveNews = newsArray && newsArray.slice(0, 5);
+// const newsArray = news.value;
+// const firstFiveNews = newsArray && newsArray.slice(0, 5);
 
 
 
@@ -130,7 +130,8 @@ const firstFiveNews = newsArray && newsArray.slice(0, 5);
               onChange={(e) => setBody(e.target.value)}
               />
             </div>
-              {body.length <= 290 ? <p id="chirp-counter">{body.length}/300</p> :
+              {body.length === 0 ? <p id="chirp-counter-zero">Chirps must be at least 1 character. {body.length}/300</p> :
+              body.length > 0 & body.length <= 290 ? <p id="chirp-counter">{body.length}/300</p> :
               body.length <= 300 ? <p id="chirp-counter-close-to-limit">{body.length}/300</p> :
               <p id="chirp-counter-over-limit">Chirp Must Be 300 Characters Or Less. {body.length}/300</p>}
               {body.length <= 300 & body.length > 0 ? <button id='add-chirp-button' type="submit">Chirp</button> :
@@ -156,39 +157,7 @@ const firstFiveNews = newsArray && newsArray.slice(0, 5);
 
           }
         </div>
-        <div id="all-news-container">
-          <h2>Trending Topics</h2>
-        {
-          !showMore && firstFiveNews && firstFiveNews.map(article => (
-            <div id="each-news-container">
-              <Link to={article.webSearchUrl.slice(article.webSearchUrl.indexOf('/'))} target="_blank" rel="noopener noreferrer">
-                <div id="news-text">
-                  <h4 id="news-headline">{article.name}</h4>
-                  <div id="news-image-info">
-                    <img id='news-image' src={article.image.url} alt={article.name}/>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          ))
-        }
-        {!showMore && <button className='news-buttons' type="button" onClick={() => setShowMore(true)}>Show More</button>}
-        {
-          showMore && newsArray && newsArray.map(article => (
-            <div id="each-news-container">
-              <Link to={article.webSearchUrl.slice(article.webSearchUrl.indexOf('/'))} target="_blank" rel="noopener noreferrer">
-                <div id="news-text">
-                  <h4 id="news-headline">{article.name}</h4>
-                  <div id="news-image-info">
-                    <img id='news-image' src={article.image.url} alt={article.name}/>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          ))
-        }
-        {showMore && <button className='news-buttons' type="button" onClick={() => setShowMore(false)}>Show Less</button>}
-        </div>
+          {/* <TrendingTopics /> */}
     </div>
     )
   }

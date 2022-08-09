@@ -4,6 +4,7 @@ import { useParams, NavLink, useHistory } from "react-router-dom";
 import { thunkGetChirps, thunkEditChirp } from "../../store/chirp";
 import { thunkAddComment, thunkDeleteComment, thunkGetComments } from "../../store/comment";
 import NavBar from "../NavBar";
+import TrendingTopics from "../trendingTopics";
 import './eachChirp.css';
 
 export default function EachChirp() {
@@ -130,7 +131,8 @@ useEffect(() => {
                     value={chirpBody}
                     onChange={(e) => setChirpBody(e.target.value)}
                     />
-                  {chirpBody.length === 0 ? <p id="edit-chirp-counter-zero">Chirps must be at least 1 character. {chirpBody.length}/300</p> : chirpBody.length <= 290 ? <p id="edit-chirp-counter">{chirpBody.length}/300</p> :
+                  {chirpBody.length === 0 ? <p id="edit-chirp-counter-zero">Chirps must be at least 1 character. {chirpBody.length}/300</p> :
+                  chirpBody.length > 0 & chirpBody.length <= 290 ? <p id="edit-chirp-counter">{chirpBody.length}/300</p> :
                   chirpBody.length <= 300 ? <p id="edit-chirp-counter-close-to-limit">{chirpBody.length}/300</p> : <p id="edit-chirp-over-limit">Chirp Must Be 300 Characters Or Less. {chirpBody.length}/300</p>}
                   {chirpBody.length <= 300 & chirpBody.length > 0 ? <button className='chirp-submit-buttons' id="edit-chirp-submit-button">Confirm</button> : <button id='edit-chirp-button-disabled' type="button">Confirm</button>}
                   <button id='edit-chirp-cancel-button' type="button" onClick={handleCancelForm}>Cancel</button>
@@ -181,20 +183,21 @@ useEffect(() => {
           <ul id="comment-list">
             {
               reverseComments && reverseComments.map(comment => (
-                <div id="each-comment">
-                  <div id="comment-user-container">
-                    <img id="comment-user-pic" src={comment.user.profile_pic} alt=''/>
-                    <li id="comment-username">{comment.user.username}</li>
+                  <div id="each-comment">
+                    <div id="comment-user-container">
+                      <img id="comment-user-pic" src={comment.user.profile_pic} alt=''/>
+                      <li id="comment-username">{comment.user.username}</li>
+                    </div>
+                    <li id='comment-body' key={comment.id}>{comment.body}</li>
+                    {sessionUser.id === comment.user.id ? <button id='comment-delete-button' value={comment.id} onClick={handleDeleteComment} type="button">Delete</button> : null}
                   </div>
-                  <li id='comment-body' key={comment.id}>{comment.body}</li>
-                  {sessionUser.id === comment.user.id ? <button id='comment-delete-button' value={comment.id} onClick={handleDeleteComment} type="button">Delete</button> : null}
-                </div>
               ))
             }
           </ul>
          </div>
       </div>
     </div>
+    {/* <TrendingTopics /> */}
   </>
   )
 }
