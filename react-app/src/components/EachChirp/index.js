@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { thunkGetChirps, thunkEditChirp } from "../../store/chirp";
 import { thunkAddComment, thunkDeleteComment, thunkGetComments } from "../../store/comment";
+import EditChirpModal from "../editChirp/editChirpModal";
 import NavBar from "../NavBar";
 import TrendingTopics from "../trendingTopics";
 import './eachChirp.css';
@@ -15,8 +16,6 @@ export default function EachChirp() {
 
   const [chirps, setChirps] = useState([])
   const [comments, setComments] = useState([])
-  const [chirpTitle, setChirpTitle] = useState('')
-  const [commentTitle, setCommentTitle] = useState('')
   const [chirpBody, setChirpBody] = useState('');
   const [commentBody, setCommentBody] = useState('');
   const [media, setMedia] = useState('');
@@ -81,17 +80,7 @@ useEffect(() => {
     await setCommentBody('')
   }
 
-  const editChirp = async (e) => {
-    e.preventDefault();
-    const chirp = {
-      id: +chirpId,
-      body: chirpBody,
-      media,
-      userId: sessionUser.id
-    }
-    await dispatch(thunkEditChirp(chirp))
-    setShowForm(false)
-  }
+
 
   const handleDeleteComment = async (e) => {
     e.preventDefault();
@@ -105,11 +94,7 @@ useEffect(() => {
     history.push('/')
   }
 
-  const handleCancelForm = (e) => {
-    e.preventDefault();
-    setShowForm(false)
-    setChirpBody(thisChirp.body)
-  }
+
 
   if(!thisChirp) return null;
   return(
@@ -122,8 +107,10 @@ useEffect(() => {
           <img id="each-chirp-go-back-button-image" src={require('../assets/back-arrow.png')} alt='Back'/>
         </button>
       </div>
-      {correctUser && <div id="edit-chirp-container">
-      { !showForm && <button id='edit-chirp-button' type="button" onClick={() => setShowForm(true)}>Edit Chirp</button>}
+       {correctUser && <div id="edit-chirp-container">
+        <EditChirpModal />
+        </div>}
+      {/*{ !showForm && <button id='edit-chirp-button' type="button" onClick={() => setShowForm(true)}>Edit Chirp</button>}
                 {showForm && <form id="edit-chirp-form" onSubmit={editChirp}>
                   <img id="edit-chirp-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic} alt='' />
                   <textarea id='edit-chirp-input'
@@ -137,7 +124,7 @@ useEffect(() => {
                   {chirpBody.length <= 300 & chirpBody.length > 0 ? <button className='chirp-submit-buttons' id="edit-chirp-submit-button">Confirm</button> : <button id='edit-chirp-button-disabled' type="button">Confirm</button>}
                   <button id='edit-chirp-cancel-button' type="button" onClick={handleCancelForm}>Cancel</button>
                 </form>}
-      </div>}
+      </div>} */}
       <div id="chirp-and-comments-container">
         <div id="chirp-container">
           <div id="each-chirp-user-container">

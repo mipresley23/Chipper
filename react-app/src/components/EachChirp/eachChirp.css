@@ -6,8 +6,8 @@
   top: 28%;
   width: 39.5%;
   overflow-wrap: break-word;
-  border-left: 1px solid #f1f4f5;
-  border-right: 1px solid #f1f4f5;
+  border-left: 1px solid #181b1b;
+  border-right: 1px solid #0d0d0e;
 }
 
 #chirp-container{
@@ -55,20 +55,7 @@
 }
 
 
-#edit-chirp-form{
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  top: 50px;
-  left: 26.5%;
-  width: 39.5%;
-  height: 22%;
-  border-left: 1px solid #f1f4f5;
-  border-right: 1px solid #f1f4f5;
-  border-bottom: 1px solid #f1f4f5;
-  padding: 10px;
-  box-sizing: border-box;
-}
+
 
 #edit-chirp-button{
   position: absolute;
@@ -292,10 +279,6 @@ a{
   border-radius: 50%;
 }
 
-#comment-username{
-  font-weight: bold;
-}
-
 #all-comments{
   position: absolute;
   bottom: 0px;
@@ -305,8 +288,8 @@ a{
   list-style: none;
   padding: 10%;
   padding-left: 5%;
-  border-left: 1px solid #f1f4f5;
-  border-right: 1px solid #f1f4f5;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 
 #comment-user-container{

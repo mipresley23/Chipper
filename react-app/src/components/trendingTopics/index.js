@@ -17,16 +17,17 @@ export default function TrendingTopics() {
     }
   };
 
-    const getNews = async() => {
-      const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
-        .then(response => response.json())
-        .then(response => setNews(response));
-    }
+  //   const getNews = async() => {
+  //     const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
+  //       .then(response => response.json())
+  //       .then(response => setNews(response));
+  //   }
 
-  useEffect(() => {
-    getNews()
-  }, [])
+  // useEffect(() => {
+  //   getNews()
+  // }, [])
 
+  console.log(news)
   const newsArray = news.value;
   const firstFiveNews = newsArray && newsArray.slice(0, 5);
 
