@@ -33,30 +33,6 @@ export default function Splash() {
   const chirpSelector = useSelector(state => state.chirps)
   const sessionUser = useSelector(state => state.session.user)
 
-//   const options = {
-//     method: 'GET',
-//     headers: {
-//       'X-BingApis-SDK': 'true',
-//       'X-RapidAPI-Key': '063bad3f64msh1af9bb8147faf8dp1e0680jsn9d6abba6e550',
-//       'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
-//     }
-//   };
-
-// //   const getNews = async() => {
-// //     const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
-// //       .then(response => response.json())
-// //       .then(response => setNews(response));
-// //   }
-
-// // useEffect(() => {
-// //   getNews()
-// // }, [])
-
-// const newsArray = news.value;
-// const firstFiveNews = newsArray && newsArray.slice(0, 5);
-
-
-
 
   useEffect(() => {
     dispatch(thunkGetChirps())
