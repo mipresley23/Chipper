@@ -58,3 +58,47 @@
   padding: 10px;
   box-sizing: border-box;
 }
+
+#edit-comment-cancel-button{
+  width: 72px;
+  height: 34px;
+  border: none;
+  border-radius: 20px;
+  background-color: #1d9bf0;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+#edit-comment-counter{
+  position: absolute;
+  bottom: 5px;
+  right:100px;
+  margin-bottom: 0;
+}
+
+#edit-comment-counter-zero{
+  position: absolute;
+  bottom: 5px;
+  right:100px;
+  margin-bottom: 0;
+  color: red;
+}
+
+#edit-comment-counter-close-to-limit{
+  position: absolute;
+ bottom: 5px;
+ right:100px;
+ margin-bottom: 0;
+ color: orange;
+}
+
+#edit-comment-over-limit{
+  position: absolute;
+ bottom: 5px;
+ right:100px;
+ margin-bottom: 0;
+ color: red;
+}
