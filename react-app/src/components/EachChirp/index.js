@@ -173,7 +173,7 @@ useEffect(() => {
          </div>
       </div>
     </div>
-    <TrendingTopics />
+    {/* <TrendingTopics /> */}
   </>
   )
 }

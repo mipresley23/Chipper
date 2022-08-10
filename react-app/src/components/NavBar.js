@@ -13,7 +13,7 @@ const NavBar = ({params}) => {
 
   console.log('params: ', params)
   const sessionUser = useSelector(state => state.session.user)
-
+  if (!sessionUser) return null
   return (
     <>
     <nav>

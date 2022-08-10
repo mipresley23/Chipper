@@ -12,6 +12,7 @@ import { authenticate } from './store/session';
 import EachChirp from './components/EachChirp';
 import EachComment from './components/EachComment';
 import TrendingTopics from './components/trendingTopics';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,16 +31,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <TrendingTopics /> */}
+      <TrendingTopics />
 
 
       <Switch>
-        {/* <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route> */}
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
@@ -52,9 +47,9 @@ function App() {
         <ProtectedRoute path= '/chirps/:chirpId' exact={true}>
           <EachChirp />
         </ProtectedRoute>
-        <ProtectedRoute path= '/comments/:commentId' exact={true}>
-          <EachComment />
-        </ProtectedRoute>
+        <Route>
+          <PageNotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
