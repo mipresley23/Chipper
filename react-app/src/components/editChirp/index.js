@@ -2,7 +2,6 @@ import React, { useState, useEffect }from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { thunkGetChirps, thunkEditChirp } from "../../store/chirp";
-import EditChirpModal from "./editChirpModal";
 import './editChirpModal.css'
 
 export default function EditChirp({setShowModal}) {
@@ -56,7 +55,7 @@ export default function EditChirp({setShowModal}) {
   return(
     <>
       <button className='modal-cancel-buttons' id='signup-cancel-button' onClick={() => setShowModal(false)}>x</button>
-      <h1>Edit Chirp</h1>
+      <h3 id="edit-chirp-header">Edit Chirp</h3>
       <form id="edit-chirp-form" onSubmit={editChirp}>
                   <img id="edit-chirp-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic} alt='' />
                   <textarea id='edit-chirp-input'

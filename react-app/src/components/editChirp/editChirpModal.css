@@ -38,3 +38,23 @@
   padding: 10px;
   box-sizing: border-box;
 }
+
+#edit-chirp-header{
+  text-align: center;
+}
+
+#edit-comment-header{
+  text-align: center;
+}
+
+#edit-comment-form{
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 30%;
+  left: 10%;
+  width: 80%;
+  height: 55%;
+  padding: 10px;
+  box-sizing: border-box;
+}
