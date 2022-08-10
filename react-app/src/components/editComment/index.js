@@ -74,9 +74,8 @@ export default function EditComment({comment, setShowModal}) {
                   {commentBody.length === 0 ? <p id="edit-comment-counter-zero">Comments must be at least 1 character. {commentBody.length}/300</p> :
                   commentBody.length > 0 & commentBody.length <= 290 ? <p id="edit-comment-counter">{commentBody.length}/300</p> :
                   commentBody.length <= 300 ? <p id="edit-comment-counter-close-to-limit">{commentBody.length}/300</p> : <p id="edit-comment-over-limit">Comments Must Be 300 Characters Or Less. {commentBody.length}/300</p>}
-                  {commentBody.length <= 300 & commentBody.length > 0 ? <button className='chirp-submit-buttons' id="edit-comment-submit-button">Confirm</button> : <button id='edit-comment-button-disabled' type="button">Confirm</button>}
+                  {commentBody.length <= 300 & commentBody.length > 0 ? <button className="chirp-submit-buttons">Edit Comment</button> : <button className='chirp-submit-buttons' id='edit-comment-button-disabled' type="button">Edit Comment</button>}
                   <button id='edit-comment-cancel-button' type="button" onClick={handleCancelForm}>Cancel</button>
-          <button className="chirp-submit-buttons">Edit Comment</button>
         </form>
     </>
   )

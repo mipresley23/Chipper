@@ -162,8 +162,10 @@ useEffect(() => {
                       <li id="comment-username">{comment.user.username}</li>
                     </div>
                     <li id='comment-body' key={comment.id}>{comment.body}</li>
+                    <li>
                     {sessionUser.id === comment.user.id ? <button id='comment-delete-button' value={comment.id} onClick={handleDeleteComment} type="button">Delete</button> : null}
                     {sessionUser.id === comment.user.id ? <EditCommentModal comment={comment}/> : null}
+                    </li>
                   </div>
               ))
             }
