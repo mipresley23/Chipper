@@ -1,14 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
 import birdLogo from './assets/birdLogo.png'
 import birdHouse from './assets/chipper-home.png'
+import birdHouseDark from './assets/chipper-home-dark.png'
 
-const NavBar = () => {
+const NavBar = ({params}) => {
   const dispatch = useDispatch();
 
+
+  console.log('params: ', params)
   const sessionUser = useSelector(state => state.session.user)
 
   return (
@@ -22,7 +25,7 @@ const NavBar = () => {
       <div id='side-bar-user-info-container'>
         <div className='navbar-containers' id='nav-home-birdhouse-container'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <img className='navbar-icons' id='nav-home-birdhouse' src={birdHouse} alt="Home"/>
+            <img className='navbar-icons' id='nav-home-birdhouse' src={params ? birdHouse : birdHouseDark} alt="Home"/>
             <span className='navbar-labels' id='nav-home-birdhouse-words'>Home</span>
           </NavLink>
         </div>

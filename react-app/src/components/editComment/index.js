@@ -66,7 +66,7 @@ export default function EditComment({comment, setShowModal}) {
       <button className="modal-cancel-buttons" onClick={() => setShowModal(false)}>x</button>
       <h3 id="edit-comment-header">Edit Comment</h3>
         <form id="edit-comment-form" onSubmit={editComment}>
-          <img id="edit-comment-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic} alt='' />
+          <img id="edit-comment-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic ? sessionUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt='' />
           <textarea id="edit-comment-input"
                   type="text"
                   value={commentBody}

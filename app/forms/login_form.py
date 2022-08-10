@@ -1,3 +1,4 @@
+from email import message
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
@@ -24,6 +25,6 @@ def password_matches(form, field):
 
 
 class LoginForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired(), user_exists])
+    email = StringField('email', validators=[DataRequired(message='Email address is required.'), user_exists])
     password = StringField('password', validators=[
-                           DataRequired(), password_matches])
+                           DataRequired(message='Password is required.'), password_matches])

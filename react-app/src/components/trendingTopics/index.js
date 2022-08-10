@@ -29,6 +29,7 @@ export default function TrendingTopics() {
 
   console.log(news)
   const newsArray = news.value;
+  console.log(newsArray)
   const firstFiveNews = newsArray && newsArray.slice(0, 5);
 
   return(

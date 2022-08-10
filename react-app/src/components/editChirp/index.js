@@ -57,7 +57,7 @@ export default function EditChirp({setShowModal}) {
       <button className='modal-cancel-buttons' id='signup-cancel-button' onClick={() => setShowModal(false)}>x</button>
       <h3 id="edit-chirp-header">Edit Chirp</h3>
       <form id="edit-chirp-form" onSubmit={editChirp}>
-                  <img id="edit-chirp-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic} alt='' />
+                  <img id="edit-chirp-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic ? sessionUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt='' />
                   <textarea id='edit-chirp-input'
                     type="text"
                     value={chirpBody}
