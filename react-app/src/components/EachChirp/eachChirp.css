@@ -1,22 +1,28 @@
 #chirp-and-comments-container{
   position: absolute;
   min-height: fit-content;
-  height: 50%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
   left: 26.5%;
-  top: 28%;
+  top: 10%;
   width: 39.5%;
   overflow-wrap: break-word;
-  border-left: 1px solid #181b1b;
-  border-right: 1px solid #0d0d0e;
+  border-left: 1px solid #f1f4f5;
+  border-right: 1px solid #f1f4f5;
+  border-bottom: 1px solid #f1f4f5;
 }
 
 #chirp-container{
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: fit-content;
   font-size: 14px;
   border-bottom: 1px solid #f1f4f5;
   padding: 20px;
   padding-top: 5px;
+  padding-bottom: 45px;
   overflow-wrap: break-word;
   box-sizing: border-box;
   margin-bottom: 20px;
@@ -56,11 +62,23 @@
 
 
 
+#edit-comment-button{
+  position: absolute;
+  top: 31%;
+  right: 5%;
+  width: 72px;
+  height: 34px;
+  border: none;
+  border-radius: 20px;
+  background-color: #1d9bf0;
+  color: white;
+  font-weight: bold;
 
+}
 #edit-chirp-button{
   position: absolute;
-  right: 34.5%;
-  top: 15%;
+  right: 5%;
+  top: 27%;
   width: 72px;
   height: 34px;
   border: none;
@@ -93,6 +111,8 @@
   margin-top: 50px;
   height: 180px;
   max-height: 180px;
+  flex-grow: 0;
+  padding-left: 3%;
 }
 
 
@@ -111,7 +131,7 @@
   overflow-y:auto;
   position: relative;
   left: 6%;
-  bottom: 25%;
+  bottom: 50%;
 }
 
 #chirp-reply-input:focus{
@@ -124,6 +144,21 @@ a{
 }
 
 #edit-chirp-input{
+  align-self: flex-start;
+  display: block;
+  width: 90%;
+  font-family: Arial, Helvetica, sans-serif;
+  resize: none;
+  padding: 0%;
+  border: none;
+  margin-bottom: 10px;
+  margin-left: 3%;
+  margin-top: 1%;
+  height: 65%;
+  overflow-y:auto;
+}
+
+#edit-comment-input{
   align-self: flex-start;
   display: block;
   width: 90%;
@@ -272,6 +307,11 @@ a{
   background-color: #8ecdf7;
 }
 
+#comment-container{
+  position: relative;
+  top: 15%;
+}
+
 
 #comment-user-pic{
   height: 50px;
@@ -287,9 +327,9 @@ a{
 #comment-list{
   list-style: none;
   padding: 10%;
-  padding-left: 5%;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  padding-left: 3%;
+  border-left: 1px solid #f1f4f5;
+  border-right: 1px solid #f1f4f5;
 }
 
 #comment-user-container{
@@ -298,6 +338,7 @@ a{
 
 #each-comment{
   margin-bottom: 10%;
+  border-bottom: 1px solid #f1f4f5;
 }
 
 #comment-body{

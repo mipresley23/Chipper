@@ -4,6 +4,7 @@ import { useParams, NavLink, useHistory } from "react-router-dom";
 import { thunkGetChirps, thunkEditChirp } from "../../store/chirp";
 import { thunkAddComment, thunkDeleteComment, thunkGetComments } from "../../store/comment";
 import EditChirpModal from "../editChirp/editChirpModal";
+import EditCommentModal from "../editComment/editCommentModal";
 import NavBar from "../NavBar";
 import TrendingTopics from "../trendingTopics";
 import './eachChirp.css';
@@ -107,26 +108,11 @@ useEffect(() => {
           <img id="each-chirp-go-back-button-image" src={require('../assets/back-arrow.png')} alt='Back'/>
         </button>
       </div>
+      <div id="chirp-and-comments-container">
+        <div id="chirp-container">
        {correctUser && <div id="edit-chirp-container">
         <EditChirpModal />
         </div>}
-      {/*{ !showForm && <button id='edit-chirp-button' type="button" onClick={() => setShowForm(true)}>Edit Chirp</button>}
-                {showForm && <form id="edit-chirp-form" onSubmit={editChirp}>
-                  <img id="edit-chirp-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic} alt='' />
-                  <textarea id='edit-chirp-input'
-                    type="text"
-                    value={chirpBody}
-                    onChange={(e) => setChirpBody(e.target.value)}
-                    />
-                  {chirpBody.length === 0 ? <p id="edit-chirp-counter-zero">Chirps must be at least 1 character. {chirpBody.length}/300</p> :
-                  chirpBody.length > 0 & chirpBody.length <= 290 ? <p id="edit-chirp-counter">{chirpBody.length}/300</p> :
-                  chirpBody.length <= 300 ? <p id="edit-chirp-counter-close-to-limit">{chirpBody.length}/300</p> : <p id="edit-chirp-over-limit">Chirp Must Be 300 Characters Or Less. {chirpBody.length}/300</p>}
-                  {chirpBody.length <= 300 & chirpBody.length > 0 ? <button className='chirp-submit-buttons' id="edit-chirp-submit-button">Confirm</button> : <button id='edit-chirp-button-disabled' type="button">Confirm</button>}
-                  <button id='edit-chirp-cancel-button' type="button" onClick={handleCancelForm}>Cancel</button>
-                </form>}
-      </div>} */}
-      <div id="chirp-and-comments-container">
-        <div id="chirp-container">
           <div id="each-chirp-user-container">
             <img id='chirp-profile-pic' src={thisChirp.user.profile_pic} alt={thisChirp.user.username}/>
             <p id="each-chirp-user">{thisChirp.user.username}</p>
@@ -177,6 +163,7 @@ useEffect(() => {
                     </div>
                     <li id='comment-body' key={comment.id}>{comment.body}</li>
                     {sessionUser.id === comment.user.id ? <button id='comment-delete-button' value={comment.id} onClick={handleDeleteComment} type="button">Delete</button> : null}
+                    {sessionUser.id === comment.user.id ? <EditCommentModal comment={comment}/> : null}
                   </div>
               ))
             }
