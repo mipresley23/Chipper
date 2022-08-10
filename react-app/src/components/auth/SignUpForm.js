@@ -30,7 +30,7 @@ const SignUpForm = ({setShowModal}) => {
     if(!username) errors.push('Username is required.')
     if(!email) errors.push('Email is required.')
     if(!password) errors.push('Password is required.')
-    if(profile_pic.length && !(validateProfileImg(profile_pic))) errors.push('Profile Image must be a jpg or a jpeg')
+    if(profile_pic.length && !(validateProfileImg(profile_pic))) errors.push('Profile Image must be a jpg/jpeg')
     if(password !== repeatPassword) errors.push("Repeat Password and Password must match")
 
     setErrors(errors);
@@ -40,7 +40,7 @@ const SignUpForm = ({setShowModal}) => {
     e.preventDefault();
 
     if (!errors.length) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, profile_pic));
       if (data) {
         setErrors(data)
       }
@@ -75,7 +75,7 @@ const SignUpForm = ({setShowModal}) => {
   <>
   <button className='modal-cancel-buttons' id='signup-cancel-button' onClick={() => setShowModal(false)}>x</button>
     <form className='modal-forms' id='signup-form' onSubmit={onSignUp}>
-      <div>
+      <div className='modal-error-container'>
         {showErrors && errors.map((error, ind) => (
           <div className='modal-errors' id='signup-form-errors' key={ind}>{error}</div>
           ))}

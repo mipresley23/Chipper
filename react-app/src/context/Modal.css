@@ -69,8 +69,12 @@
 
 .modal-errors{
   color: red;
-  position: relative;
-  bottom: 35px;
+  padding: 1px;
+}
+
+.modal-error-container{
+  position:absolute;
+  top: 5%;
 }
 
 .required:after {
@@ -119,4 +123,11 @@
 #splash-login-header{
   margin-bottom: 10px;
   text-align: center;
+}
+
+#login-modal-buttons{
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-evenly;
 }

@@ -21,6 +21,8 @@ const LoginForm = ({setShowModal}) => {
     }
   };
 
+  console.log('login errors: ', errors)
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -41,9 +43,9 @@ const LoginForm = ({setShowModal}) => {
   <>
     <button className='modal-cancel-buttons' id='login-cancel-button' onClick={() => setShowModal(false)}>x</button>
     <form className='modal-forms' onSubmit={onLogin}>
-      <div>
+      <div className='modal-error-container'>
         {errors.map((error, ind) => (
-          <div className='modal-errors' key={ind}>{error}</div>
+          <div className='modal-errors' key={ind}>{error.slice(error.indexOf(':')+ 2)}</div>
           ))}
       </div>
         <div className='form-header-input-containers'>
@@ -68,7 +70,7 @@ const LoginForm = ({setShowModal}) => {
               onChange={updatePassword}
               />
           </div>
-          <div>
+          <div id='login-modal-buttons'>
             <button className='modal-form-submit-buttons' type='submit'>Login</button>
             <p id='login-form-button-sep'>------------or------------</p>
             <button className='modal-form-submit-buttons' type='button' onClick={handleDemo}>Demo</button>

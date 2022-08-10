@@ -100,7 +100,7 @@ useEffect(() => {
   if(!thisChirp) return null;
   return(
   <>
-    <NavBar />
+    <NavBar params={chirpId}/>
     <div id="each-chirp-main-content">
       <div id="title-back-button-container">
         <h3 id="each-main-title">Chirp</h3>
@@ -114,13 +114,13 @@ useEffect(() => {
         <EditChirpModal />
         </div>}
           <div id="each-chirp-user-container">
-            <img id='chirp-profile-pic' src={thisChirp.user.profile_pic} alt={thisChirp.user.username}/>
+            <img id='chirp-profile-pic' src={thisChirp.user.profile_pic ? thisChirp.user.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt={thisChirp.user.username}/>
             <p id="each-chirp-user">{thisChirp.user.username}</p>
           </div>
           <p id="each-chirp-body">{thisChirp.body}</p>
         </div>
         <form id='chirp-reply-form' onSubmit={addComment}>
-          <img id="chirp-reply-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic} alt='' />
+          <img id="chirp-reply-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic ? sessionUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt='' />
           <textarea id='chirp-reply-input'
           cols={60}
           type="text"
@@ -158,7 +158,7 @@ useEffect(() => {
               reverseComments && reverseComments.map(comment => (
                   <div id="each-comment">
                     <div id="comment-user-container">
-                      <img id="comment-user-pic" src={comment.user.profile_pic} alt=''/>
+                      <img id="comment-user-pic" src={comment.user.profile_pic ? comment.user.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt=''/>
                       <li id="comment-username">{comment.user.username}</li>
                     </div>
                     <li id='comment-body' key={comment.id}>{comment.body}</li>
