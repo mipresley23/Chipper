@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 
@@ -7,6 +8,8 @@ export default function TrendingTopics() {
 
   const [news, setNews] = useState([]);
   const [showMore, setShowMore] = useState(false)
+
+  const sessionUser = useSelector(state => state.session.user)
 
   const options = {
     method: 'GET',
@@ -32,8 +35,9 @@ export default function TrendingTopics() {
   console.log(newsArray)
   const firstFiveNews = newsArray && newsArray.slice(0, 5);
 
-  return(
-    <div id="all-news-container">
+  if(!sessionUser) return null
+    return(
+      <div id="all-news-container">
     <h2>Trending Topics</h2>
   {
     !showMore && firstFiveNews && firstFiveNews.map(article => (
@@ -67,6 +71,4 @@ export default function TrendingTopics() {
   {showMore && <button className='news-buttons' type="button" onClick={() => setShowMore(false)}>Show Less</button>}
   </div>
   )
-
-
 }

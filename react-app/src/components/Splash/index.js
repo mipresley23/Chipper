@@ -177,7 +177,7 @@ export default function Splash() {
 
           }
         </div>
-          <TrendingTopics />
+          {/* <TrendingTopics /> */}
     </div>
     )
   }
