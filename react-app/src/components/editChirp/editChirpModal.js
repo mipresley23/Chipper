@@ -7,9 +7,9 @@ export default function EditChirpModal() {
 
   return(
     <>
-      <button id="edit-chirp-button" onClick={() => setShowModal(true)}>
+      {!showModal && <button id="edit-chirp-button" onClick={() => setShowModal(true)}>
                   Edit Chirp
-              </button>
+              </button>}
 
       {showModal && (
         <EditModal onClose={() => setShowModal(false)}>
