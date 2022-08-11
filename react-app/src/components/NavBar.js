@@ -11,7 +11,7 @@ const NavBar = ({params}) => {
   const dispatch = useDispatch();
 
 
-  console.log('params: ', params)
+
   const sessionUser = useSelector(state => state.session.user)
   if (!sessionUser) return null
   return (
