@@ -77,7 +77,7 @@ const SignUpForm = ({setShowModal}) => {
     <form className='modal-forms' id='signup-form' onSubmit={onSignUp}>
       <div className='modal-error-container'>
         {showErrors && errors.map((error, ind) => (
-          <div className='modal-errors' id='signup-form-errors' key={ind}>{error}</div>
+          <div className='modal-errors' id='signup-form-errors' key={ind}>{error.slice(error.indexOf(':')+ 1)}</div>
           ))}
       </div>
       <div className='form-header-input-containers'>
