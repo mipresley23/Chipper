@@ -9,6 +9,14 @@
 
 [User Stories](https://github.com/mipresley23/ChipperCapstoneProject1/wiki/User-Stories)
 
+## Checkout My Github
+
+[![image](https://user-images.githubusercontent.com/59783664/184163426-8fb911d5-7ff6-4ba3-8061-43f7c1cd88a3.png#github)](https://github.com/mipresley23)
+
+## Add Me On LinkedIn
+
+[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" height=50px width=50px />](https://www.linkedin.com/in/michael-presley-96729b235/)
+
 ## Live Link    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original-wordmark.svg" height=50px width=50px />
           
 [Chipper](https://mpchipper.herokuapp.com/)
