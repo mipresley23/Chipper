@@ -122,9 +122,14 @@ export default function Splash() {
             <div id="user-auth-section-headers">
               <h1 id="chipper-main-logo">Welcome to Chipper</h1>
             </div>
+            <div id="whats-chirpin-container">
+              <p id="what-chirpin">What's Chirpin'?</p>
+              <p id="tell-the-world">Tell The World!</p>
+            </div>
             <div id="sign-up-demo-container">
               <h2>Join Chipper Today!</h2>
               <SignupModal />
+              <p id="signup-demo-sep">----------or----------</p>
               <button id='demo-button' type='button' onClick={handleDemo}>Demo</button>
             </div>
             <div id="login-section">
