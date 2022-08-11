@@ -1,7 +1,12 @@
 # Chipper
 
+## Try Out Chipper    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original-wordmark.svg" height=50px width=50px />
+
+[Chipper](https://mpchipper.herokuapp.com/)
+
+
 ## Index
-[Repo Home Page](https://github.com/mipresley23/ChipperCapstoneProject1)
+[Chipper Repo](https://github.com/mipresley23/ChipperCapstoneProject1)
 
 [Feature List Documentation](https://github.com/mipresley23/ChipperCapstoneProject1/wiki/Chipper-MVP-Feature-List)
 
@@ -9,17 +14,9 @@
 
 [User Stories](https://github.com/mipresley23/ChipperCapstoneProject1/wiki/User-Stories)
 
-## Checkout My Github
+[Wireframe Guides](https://github.com/mipresley23/ChipperCapstoneProject1/wiki/Wireframes)
 
-[![image](https://user-images.githubusercontent.com/59783664/184163426-8fb911d5-7ff6-4ba3-8061-43f7c1cd88a3.png#github)](https://github.com/mipresley23)
 
-## Add Me On LinkedIn
-
-[<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" height=50px width=50px />](https://www.linkedin.com/in/michael-presley-96729b235/)
-
-## Live Link    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original-wordmark.svg" height=50px width=50px />
-          
-[Chipper](https://mpchipper.herokuapp.com/)
 
 ## Chipper Uses The Following Technologies
 > [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" height=50px width=50px/>](https://reactjs.org/)   [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=50px width=50px />](https://redux.js.org/)   [
@@ -86,5 +83,18 @@ To install and run Chipper locally follow these steps:
 ## Edit Comment
 ![image](https://user-images.githubusercontent.com/59783664/184042933-d00ba33d-9086-41e2-a9cf-91ec487d5b1b.png)
 
+  ## Checkout My Github
+
+  [<img id='md-github' src='https://user-images.githubusercontent.com/59783664/184163426-8fb911d5-7ff6-4ba3-8061-43f7c1cd88a3.png' height=50px width=50px border-radius=12px />](https://github.com/mipresley23)
+
+  ## Add Me On LinkedIn
+
+  [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" height=50px width=50px />](https://www.linkedin.com/in/michael-presley-96729b235/)
 
 
+
+<style>
+  #md-github{
+    border-radius: 12px;
+  }
+</style>
