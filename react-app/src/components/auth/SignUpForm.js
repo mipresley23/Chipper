@@ -21,7 +21,7 @@ const SignUpForm = ({setShowModal}) => {
     return res.test(url)
   }
 
-  useEffect(() => {
+  useEffect(async() => {
     const errors = []
     if(username.length > 40) errors.push('Username must be 40 characters or less.')
     if(email.length > 255) errors.push('Email length must be 255 characters or less.')
@@ -30,7 +30,7 @@ const SignUpForm = ({setShowModal}) => {
     if(!username) errors.push('Username is required.')
     if(!email) errors.push('Email is required.')
     if(!password) errors.push('Password is required.')
-    if(profile_pic.length && !(validateProfileImg(profile_pic))) errors.push('Profile Image must be a jpg/jpeg')
+    // if(profile_pic.length && !(validateProfileImg(profile_pic))) errors.push('Profile Image must be a jpg/jpeg')
     if(password !== repeatPassword) errors.push("Repeat Password and Password must match")
 
     setErrors(errors);

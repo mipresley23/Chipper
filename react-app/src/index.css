@@ -194,3 +194,7 @@ button:hover{
   top: 5%;
   left: 36%;
 }
+
+img[src$="#github"]{
+  border-radius: 50%;
+}
