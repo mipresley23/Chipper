@@ -177,7 +177,7 @@
 
 #splash-graffiti-logo{
   width: 55%;
-  max-height: 950px;
+  height: 100vh;
   margin: 0;
   padding: 0;
 }
@@ -198,7 +198,7 @@
   top:0;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: flex-start;
 
 }
@@ -211,9 +211,24 @@
 #sign-up-demo-container{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 40%;
+  justify-content: space-evenly;
+  height: 30%;
   width: 50%;
+}
+
+#whats-chirpin-container{
+  margin-top: 15px;
+}
+
+#what-chirpin{
+  font-size: x-large;
+  font-family: 'Lobster', cursive;
+}
+
+#tell-the-world{
+  font-size:x-large;
+  font-family: 'Lobster', cursive;
+  margin-bottom: 10px;
 }
 
 #user-auth-section-headers{
@@ -240,6 +255,12 @@
 #signup-button:hover{
   background-color: #eeeeee;
   border: 2px solid #dcdcdc;
+}
+
+#signup-demo-sep{
+  text-align: center;
+  font-family: 'Lobster', cursive;
+  font-size: larger;
 }
 
 #demo-button{

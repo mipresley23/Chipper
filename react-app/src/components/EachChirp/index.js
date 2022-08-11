@@ -132,7 +132,7 @@ useEffect(() => {
           commentBody.length > 0 & commentBody.length <= 290 ? <p id="comment-counter">{commentBody.length}/300</p> :
           commentBody.length <= 300 ? <p id="comment-counter-close-to-limit">{commentBody.length}/300</p> :
           <p id="comment-over-limit">Comments Must Be 300 Characters Or Less. {commentBody.length}/300</p>}
-          {commentBody.length > 0 & commentBody.length <= 300 ? <button className='chirp-submit-buttons' id='chirp-reply-button' onCLick={() => setCommentBody('')} type="submit">Reply</button> :
+          {commentBody.length > 0 & commentBody.length <= 300 ? <button className='chirp-submit-buttons' id='chirp-reply-button'  type="submit">Reply</button> :
           <button className='chirp-submit-buttons' id="chirp-reply-button-disabled" type="button">Reply</button>}
         </form>
         {/* <div id="all-comments">

@@ -22,8 +22,9 @@ def username_exists(form, field):
 
 def checkProfilePic(form, field):
     profile_pic = field.data
-    if profile_pic.endswith('.jpeg') or profile_pic.endswith('.jpg') == False:
-        raise ValidationError('Profile Picture must be a jpg or jpeg image.')
+    if profile_pic != '':
+        if profile_pic.endswith('.jpeg') or profile_pic.endswith('.jpg') or profile_pic.endswith('.png') == False:
+            raise ValidationError('Profile Picture must be a jpg, jpeg, or png image.')
 
 
 

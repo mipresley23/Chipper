@@ -32,8 +32,6 @@ function App() {
   return (
     <BrowserRouter>
       <TrendingTopics />
-
-
       <Switch>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
