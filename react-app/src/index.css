@@ -138,8 +138,6 @@ button:hover{
 }
 
 #each-news-container{
-  display: inline;
-  height: 80px;
   width: 90%;
 }
 
@@ -149,6 +147,7 @@ button:hover{
 
 #news-headline{
   margin: 0;
+  margin-top: 10px;
 }
 
 #news-image-provider{
@@ -167,12 +166,15 @@ button:hover{
   border-bottom-left-radius: 12px;
 }
 
-.news-buttons:hover{
+
+.news-links:hover{
   background-color: #eeeeee;
   cursor: pointer;
 }
 
 #news-image{
+  position: relative;
+  bottom: 20px;
   height: 60px;
   width: 60px;
   border-radius: 12px;
@@ -188,13 +190,16 @@ button:hover{
   width: 100%;
 }
 
+#news-sub-header{
+  padding-top: 15px;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: small;
+}
+
 .pagenotfound-container{
   text-align: center;
   position: absolute;
   top: 5%;
   left: 36%;
-}
-
-img[src$="#github"]{
-  border-radius: 50%;
 }
