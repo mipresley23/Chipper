@@ -85,9 +85,8 @@ To install and run Chipper locally follow these steps:
 
   ## Checkout My Github
 
-  [<img id='md-github' src='https://user-images.githubusercontent.com/59783664/184163426-8fb911d5-7ff6-4ba3-8061-43f7c1cd88a3.png' height=50px width=50px  style="border-radius:12px" />](https://github.com/mipresley23)
+  [<img id='md-github' src='https://user-images.githubusercontent.com/59783664/184163426-8fb911d5-7ff6-4ba3-8061-43f7c1cd88a3.png' height=50px width=50px  style="border-radius:5px" />](https://github.com/mipresley23)
 
   ## Add Me On LinkedIn
 
   [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" height=50px width=50px />](https://www.linkedin.com/in/michael-presley-96729b235/)
-
