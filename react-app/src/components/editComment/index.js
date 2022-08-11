@@ -9,7 +9,7 @@ export default function EditComment({comment, setShowModal}) {
   const dispatch = useDispatch()
 
   const {chirpId} = useParams()
-  console.log('modal chirpId: ', chirpId)
+
 
   const [comments, setComments] = useState([])
   const [commentId, setCommentId] = useState(comment?.id)

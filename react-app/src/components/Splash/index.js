@@ -22,48 +22,48 @@ export default function Splash() {
   const [media, setMedia] = useState('');
   const [ip, setIp] = useState('');
 
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '063bad3f64msh1af9bb8147faf8dp1e0680jsn9d6abba6e550',
-      'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-    }
-  };
+  // const options = {
+  //   method: 'GET',
+  //   headers: {
+  //     'X-RapidAPI-Key': '063bad3f64msh1af9bb8147faf8dp1e0680jsn9d6abba6e550',
+  //     'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+  //   }
+  // };
 
-  const getWeather = async() => {
-    const res = await fetch('https://weatherapi-com.p.rapidapi.com/current.json?q=49460', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-  }
+  // const getWeather = async() => {
+  //   const res = await fetch('https://weatherapi-com.p.rapidapi.com/current.json?q=49460', options)
+  //   .then(response => response.json())
+  //   .then(response => console.log(response))
+  //   .catch(err => console.error(err));
+  // }
 
-  useEffect(() => {
-    getWeather()
-  }, [])
+  // useEffect(() => {
+  //   getWeather()
+  // }, [])
 
-  const getIp = async() => {
-    const res = await fetch('https://geolocation-db.com/json/')
-    .then(res => res.json())
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-  }
+  // const getIp = async() => {
+  //   const res = await fetch('https://geolocation-db.com/json/')
+  //   .then(res => res.json())
+  //   .then(res => console.log(res))
+  //   .catch(err => console.log(err))
+  // }
 
 
 
-  useEffect(() => {
-    getIp()
-  }, [])
+  // useEffect(() => {
+  //   getIp()
+  // }, [])
 
-  const geoOptions = {
-    method: 'GET',
-    headers: {
-      'access_key': '5bfdcece30892624b69a2f20e7689819'
-    }
-  };
+  // const geoOptions = {
+  //   method: 'GET',
+  //   headers: {
+  //     'access_key': '5bfdcece30892624b69a2f20e7689819'
+  //   }
+  // };
 
-  const getLocation = async() => {
-    const res = await fetch('')
-  }
+  // const getLocation = async() => {
+  //   const res = await fetch('')
+  // }
 
 
   const reverseChirps = []

@@ -35,7 +35,6 @@ const actionDeleteComment = (commentId) => {
 export const thunkGetComments = (comments) => async(dispatch) => {
   const res = await fetch("/api/comments/");
   const comments = await res.json();
-  console.log('thunkComments:', comments)
   dispatch(actionGetComments(comments))
   return res;
 }
@@ -75,7 +74,6 @@ const commentReducer = (state = {}, action) => {
 	const newState = { ...state };
 	switch (action.type) {
 		case GET_COMMENTS:
-      console.log(action)
 			action.comments.forEach((comment) => {
 				newState[comment.id] = comment;
 			});

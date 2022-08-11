@@ -21,7 +21,6 @@ const LoginForm = ({setShowModal}) => {
     }
   };
 
-  console.log('login errors: ', errors)
 
   const updateEmail = (e) => {
     setEmail(e.target.value);

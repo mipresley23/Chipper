@@ -62,7 +62,6 @@ export const thunkEditChirp = (chirp) => async (dispatch) => {
 }
 
 export const thunkDeleteChirp = (chirpId) => async(dispatch) => {
-  console.log('deleteThunk ChirpId: ', chirpId)
   const res = await fetch(`/api/chirps/${chirpId}`, {
     method: "DELETE",
   })
@@ -74,7 +73,6 @@ const chirpReducer = (state = {}, action) => {
 	const newState = { ...state };
 	switch (action.type) {
 		case GET_CHIRPS:
-      console.log(action)
 			action.chirps.forEach((chirp) => {
 				newState[chirp.id] = chirp;
 			});

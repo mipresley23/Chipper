@@ -99,10 +99,10 @@ export const signUp = (username, email, password, profile_pic) => async (dispatc
       profile_pic
     }),
   });
-  console.log('signup response: ', response)
+
   if (response.ok) {
     const data = await response.json();
-    console.log('response data: ', data)
+
     dispatch(setUser(data))
     return null;
   } else if (response.status < 500) {

@@ -38,7 +38,7 @@ export default function EachChirp() {
   }
 
   const thisChirp = chirps && chirps.find(chirp => chirp.id === +chirpId)
-  console.log('thsChirp: ', thisChirp)
+
 
   let correctUser;
   if(thisChirp){
@@ -85,7 +85,7 @@ useEffect(() => {
 
   const handleDeleteComment = async (e) => {
     e.preventDefault();
-    console.log(e.target.value)
+
     await dispatch(thunkDeleteComment(e.target.value))
     // await setComments(Object.values(commentSelector))
   }
