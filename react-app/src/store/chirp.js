@@ -73,6 +73,7 @@ const chirpReducer = (state = {}, action) => {
 	const newState = { ...state };
 	switch (action.type) {
 		case GET_CHIRPS:
+      console.log('action chirps: ', action)
 			action.chirps.forEach((chirp) => {
 				newState[chirp.id] = chirp;
 			});

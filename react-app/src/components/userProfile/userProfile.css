@@ -1,0 +1,75 @@
+#profile-page-main-content{
+  display: flex;
+  flex-direction: column;
+  width: 39.5%;
+  position: absolute;
+  top: 2%;
+  left: 26.5%;
+  overflow-wrap: normal;
+  border-left: 1px solid #f1f4f5;
+  border-right: 1px solid #f1f4f5;
+}
+
+#profile-header-content{
+  display: flex;
+  flex-direction: row-reverse;
+  height: 20px;
+  position: absolute;
+  margin-top: 0;
+}
+
+#profile-go-back-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: white;
+}
+
+#profile-go-back-button:hover{
+  background-color: #eeeeee;
+}
+
+#profile-go-back-button-image{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+#header-chirps-container{
+  display: flex;
+  flex-direction: column;
+}
+
+#profile-header-image{
+  width: 100%;
+  position: relative;
+  top: 50px;
+  z-index: 1;
+}
+
+#profile-chirp-count{
+  font-size: small;
+  color: rgb(97, 97, 97);
+  text-align: center;
+}
+
+#user-profile-picture{
+  height: 150px;
+  width: 150px;
+  position: relative;
+  left: 30px;
+  bottom: 30px;
+  z-index: 2;
+  border-radius: 100%;
+  border: 5px solid white;
+}
+
+#user-profile-name{
+  position: relative;
+  left: 50px;
+  bottom: 30px;
+}
