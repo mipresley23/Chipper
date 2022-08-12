@@ -47,9 +47,11 @@ const NavBar = ({params}) => {
               </NavLink>
             </li> */}
             <div id='navbar-user-logout-container'>
-            <div id='navbar-current-user'>
-              <img className='navbar-icons' id='navbar-profile-pic' src={sessionUser.profile_pic ? sessionUser.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={sessionUser.username}/>
-              <span id='navbar-username-label' className='navbar-labels'>{sessionUser.username}</span>
+            <div className='navbar-containers' id='navbar-current-user'>
+              <NavLink to={`/users/${sessionUser.id}`} activeClassName='active'>
+                <img className='navbar-icons' id='navbar-profile-pic' src={sessionUser.profile_pic ? sessionUser.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={sessionUser.username}/>
+                <span id='navbar-username-label' className='navbar-labels'>{sessionUser.username}</span>
+              </NavLink>
             </div>
               <LogoutButton />
             </div>

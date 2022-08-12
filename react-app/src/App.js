@@ -13,6 +13,7 @@ import EachChirp from './components/EachChirp';
 import EachComment from './components/EachComment';
 import TrendingTopics from './components/trendingTopics';
 import PageNotFound from './components/PageNotFound';
+import UserProfile from './components/userProfile';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,7 +38,7 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
+          <UserProfile />
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <Splash />

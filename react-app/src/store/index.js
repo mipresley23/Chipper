@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import chirpReducer from './chirp';
 import commentReducer from './comment';
 import session from './session'
+import userReducer from './users';
 
 const rootReducer = combineReducers({
   session,
   chirps: chirpReducer,
-  comments: commentReducer
+  comments: commentReducer,
+  users: userReducer
 });
 
 

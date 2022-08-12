@@ -2,7 +2,7 @@ import { useState } from "react";
 import { EditModal } from "../../context/EditModal";
 import EditChirp from ".";
 
-export default function EditChirpModal() {
+export default function EditChirpModal({chirp}) {
   const [showModal, setShowModal] = useState(false);
 
   return(
@@ -13,7 +13,7 @@ export default function EditChirpModal() {
 
       {showModal && (
         <EditModal onClose={() => setShowModal(false)}>
-          <EditChirp setShowModal= {setShowModal}/>
+          <EditChirp chirp={chirp} setShowModal= {setShowModal}/>
         </EditModal>
       )}
     </>
