@@ -21,9 +21,12 @@
   margin-right: 5px;
 }
 
-#chirp-user-container:hover{
+
+
+#main-chirp-content:hover{
   background-color: #f1f4f5;
 }
+
 #each-chirp-container{
   width: 100%;
   height: fit-content;
@@ -35,9 +38,9 @@
   box-sizing: border-box;
 }
 
-#each-chirp-container:hover{
+/* #each-chirp-container:hover{
   background-color: #f1f4f5;
-}
+} */
 
 #all-chirps-container{
   display: flex;
@@ -71,6 +74,8 @@
 }
 
 #chirp-body{
+  position: relative;
+  bottom: 15px;
   width: 80%;
   margin-left: 55px;
   margin-top: 1%;

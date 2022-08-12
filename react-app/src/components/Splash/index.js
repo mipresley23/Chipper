@@ -168,7 +168,7 @@ export default function Splash() {
             reverseChirps && reverseChirps.map(chirp => (
               <div id="each-chirp-container">
                 <NavLink to={`/chirps/${chirp.id}`}>
-                  <div>
+                  <div id="main-chirp-content">
                     <div id="chirp-user-container">
                       <img id='chirp-user-image' src={chirp.user.profile_pic ? chirp.user.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={chirp.user.username}></img>
                       <p id="chirp-user">{chirp.user.username}</p>
@@ -177,7 +177,7 @@ export default function Splash() {
                   </div>
                   {sessionUser.id === chirp.user.id ? <button id='delete-chirp-button' type="button" value={chirp.id} onClick={handleDeleteChirp}>Delete</button> : null}
                 </NavLink>
-            </div>
+              </div>
             ))
 
           }
