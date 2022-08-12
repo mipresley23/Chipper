@@ -111,7 +111,7 @@ useEffect(() => {
       <div id="chirp-and-comments-container">
         <div id="chirp-container">
        {correctUser && <div id="edit-chirp-container">
-        <EditChirpModal />
+        <EditChirpModal chirp={thisChirp}/>
         </div>}
           <div id="each-chirp-user-container">
             <img id='chirp-profile-pic' src={thisChirp.user.profile_pic ? thisChirp.user.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt={thisChirp.user.username}/>

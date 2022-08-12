@@ -73,3 +73,9 @@
   left: 50px;
   bottom: 30px;
 }
+
+#profile-edit-chirp-container{
+  position: relative;
+  left: 5%;
+  bottom: 30px;
+}

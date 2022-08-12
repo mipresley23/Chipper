@@ -4,26 +4,27 @@ import { useHistory, useParams } from "react-router-dom";
 import { thunkGetChirps, thunkEditChirp } from "../../store/chirp";
 import './editChirpModal.css'
 
-export default function EditChirp({setShowModal}) {
+export default function EditChirp({chirp, setShowModal}) {
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const {chirpId} = useParams();
+  console.log(chirp)
+  // const {chirpId} = useParams();
 
   const [chirps, setChirps] = useState([])
-  const [chirpBody, setChirpBody] = useState('');
+  const [chirpId, setChirpId] = useState(chirp?.id)
+  const [chirpBody, setChirpBody] = useState(chirp?.body);
   const [media, setMedia] = useState('');
 
   const sessionUser = useSelector(state => state.session.user)
   const chirpSelector = useSelector(state => state.chirps)
 
-  const thisChirp = chirps && chirps.find(chirp => chirp.id === +chirpId)
+  // const thisChirp = chirps && chirps.find(chirp => chirp.id === +chirpId)
 
-  useEffect(() => {
-    if(thisChirp){
-      setChirpBody(thisChirp.body)
-    }
-  }, [thisChirp])
+  // useEffect(() => {
+  //   if(thisChirp){
+  //     setChirpBody(thisChirp.body)
+  //   }
+  // }, [thisChirp])
 
   useEffect(() => {
     dispatch(thunkGetChirps())
@@ -37,7 +38,7 @@ export default function EditChirp({setShowModal}) {
   const editChirp = async (e) => {
     e.preventDefault();
     const chirp = {
-      id: +chirpId,
+      id: chirpId,
       body: chirpBody,
       media,
       userId: sessionUser.id
@@ -49,7 +50,7 @@ export default function EditChirp({setShowModal}) {
   const handleCancelForm = (e) => {
     e.preventDefault();
     setShowModal(false)
-    setChirpBody(thisChirp.body)
+    setChirpBody(chirp.body)
   }
 
   return(
