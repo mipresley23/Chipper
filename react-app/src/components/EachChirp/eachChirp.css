@@ -365,3 +365,21 @@ a{
   color: white;
   font-weight: bold;
 }
+
+.like-heart-icons{
+  height: 20px;
+  width: 20px;
+}
+
+.like-buttons{
+  height: 30px;
+  width: 30px;
+  background-color: transparent;
+  border: none;
+}
+
+.like-button-containers{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}

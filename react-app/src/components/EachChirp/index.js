@@ -6,6 +6,8 @@ import { thunkAddComment, thunkDeleteComment, thunkGetComments } from "../../sto
 import EditChirpModal from "../editChirp/editChirpModal";
 import EditCommentModal from "../editComment/editCommentModal";
 import NavBar from "../NavBar";
+import EmptyLikeHeart from '../assets/chipper_like_empty.png'
+import FilledLikeHeart from '../assets/chipper_like_filled.png'
 import TrendingTopics from "../trendingTopics";
 import './eachChirp.css';
 
@@ -140,9 +142,15 @@ useEffect(() => {
             <p id="each-chirp-user">{thisChirp.user.username}</p>
           </div>
           <p id="each-chirp-body">{thisChirp.body}</p>
-          {!liked && <button type="button" onClick={handleLikeChirp}>Like</button>}
-          {liked && <button type="button" onClick={handleUnlikeChirp}>Unlike</button>}
+          <div className='like-button-containers'>
+          {!liked && <button className='like-buttons' type="button" onClick={handleLikeChirp}>
+              <img className="like-heart-icons" src={EmptyLikeHeart}/>
+            </button>}
+          {liked && <button className='like-buttons' type="button" onClick={handleUnlikeChirp}>
+              <img className="like-heart-icons" src={FilledLikeHeart}/>
+            </button>}
           <p>{thisChirp.likes.length}</p>
+          </div>
         </div>
         <form id='chirp-reply-form' onSubmit={addComment}>
           <img id="chirp-reply-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic ? sessionUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt='' />
