@@ -3,7 +3,7 @@ import { NavLink, Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { demoLogin } from "../../store/session";
-import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp } from "../../store/chirp";
+import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp, thunkAddLike } from "../../store/chirp";
 import SignupModal from "../auth/SignupModal";
 import LoginModal from "../auth/LoginModal";
 import birdLogoWhite from '../assets/birdLogo-white.png';
@@ -100,6 +100,8 @@ export default function Splash() {
   const handleDemo = () => {
     dispatch(demoLogin())
   }
+
+
 
 
 
