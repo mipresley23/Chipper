@@ -20,7 +20,6 @@ export default function EachChirp() {
   const [chirpBody, setChirpBody] = useState('');
   const [commentBody, setCommentBody] = useState('');
   const [media, setMedia] = useState('');
-  const [showForm, setShowForm] = useState(false);
 
 
   const chirpSelector = useSelector(state => state.chirps)
