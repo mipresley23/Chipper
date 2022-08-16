@@ -52,6 +52,7 @@ export default function AllChirps() {
 
   const handleDeleteChirp = async (e) => {
     e.preventDefault();
+      await dispatch(thunkDeleteLike(e.target.value))
       await dispatch(thunkDeleteChirp(e.target.value))
   }
 
