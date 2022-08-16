@@ -19,7 +19,7 @@ export default function AllChirps() {
   const [media, setMedia] = useState('');
 
 
-//   const [liked, setLiked] = useState(false)
+  const [liked, setLiked] = useState(false)
 
 
 
