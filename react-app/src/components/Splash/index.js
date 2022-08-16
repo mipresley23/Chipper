@@ -3,14 +3,18 @@ import { NavLink, Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { demoLogin } from "../../store/session";
+
 import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp, thunkAddLike } from "../../store/chirp";
+
 import SignupModal from "../auth/SignupModal";
 import LoginModal from "../auth/LoginModal";
 import birdLogoWhite from '../assets/birdLogo-white.png';
 import birdLogoBlue from '../assets/birdLogo.png';
 import splashGraffiti from '../assets/graffiti-background-vertical.jpg';
 import "./splash.css"
+
 import TrendingTopics from "../trendingTopics";
+
 import AllChirps from "../allChirps";
 
 export default function Splash() {
@@ -21,50 +25,7 @@ export default function Splash() {
   const [chirps, setChirps] = useState([])
   const [body, setBody] = useState('');
   const [media, setMedia] = useState('');
-  const [ip, setIp] = useState('');
 
-  // const options = {
-  //   method: 'GET',
-  //   headers: {
-  //     'X-RapidAPI-Key': '063bad3f64msh1af9bb8147faf8dp1e0680jsn9d6abba6e550',
-  //     'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-  //   }
-  // };
-
-  // const getWeather = async() => {
-  //   const res = await fetch('https://weatherapi-com.p.rapidapi.com/current.json?q=49460', options)
-  //   .then(response => response.json())
-  //   .then(response => console.log(response))
-  //   .catch(err => console.error(err));
-  // }
-
-  // useEffect(() => {
-  //   getWeather()
-  // }, [])
-
-  // const getIp = async() => {
-  //   const res = await fetch('https://geolocation-db.com/json/')
-  //   .then(res => res.json())
-  //   .then(res => console.log(res))
-  //   .catch(err => console.log(err))
-  // }
-
-
-
-  // useEffect(() => {
-  //   getIp()
-  // }, [])
-
-  // const geoOptions = {
-  //   method: 'GET',
-  //   headers: {
-  //     'access_key': '5bfdcece30892624b69a2f20e7689819'
-  //   }
-  // };
-
-  // const getLocation = async() => {
-  //   const res = await fetch('')
-  // }
 
 
   const reverseChirps = []

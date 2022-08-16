@@ -7,7 +7,7 @@ import './editChirpModal.css'
 export default function EditChirp({chirp, setShowModal}) {
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log(chirp)
+  // console.log(chirp)
   // const {chirpId} = useParams();
 
   const [chirps, setChirps] = useState([])
