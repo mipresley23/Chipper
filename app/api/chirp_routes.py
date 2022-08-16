@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.forms.chirp_form import ChirpForm
 from app.models import db
 from app.models.db import Chirp
@@ -55,3 +55,22 @@ def delete_chirp(chirpId):
     db.session.delete(chirp)
     db.session.commit()
     return "Delete Successful"
+
+
+#like routes
+
+@chirp_routes.route('/likes/<int:chirpId>', methods=['PUT'])
+@login_required
+def likeChirp(chirpId):
+    chirp = Chirp.query.get(chirpId)
+    chirp.addLikeChirp(current_user)
+    db.session.commit()
+    return chirp.to_dict()
+
+@chirp_routes.route('/unlikes/<int:chirpId>', methods=['PUT'])
+@login_required
+def unlikeChirp(chirpId):
+    chirp = Chirp.query.get(chirpId)
+    chirp.unlikeChirp(current_user)
+    db.session.commit()
+    return chirp.to_dict()

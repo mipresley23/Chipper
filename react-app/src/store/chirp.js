@@ -69,6 +69,34 @@ export const thunkDeleteChirp = (chirpId) => async(dispatch) => {
   return res;
 }
 
+export const thunkAddLike = (chirpId) => async(dispatch) => {
+  const res = await fetch(`/api/chirps/likes/${chirpId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  if (res.ok) {
+    const chirp = await res.json();
+    dispatch(actionEditChirp(chirp))
+    return res;
+  }
+}
+
+export const thunkDeleteLike = (chirpId) => async(dispatch) => {
+  const res = await fetch(`/api/chirps/unlikes/${chirpId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  if(res.ok) {
+    const chirp = await res.json();
+    dispatch(actionEditChirp(chirp))
+    return res;
+  }
+}
+
 const chirpReducer = (state = {}, action) => {
 	const newState = { ...state };
 	switch (action.type) {

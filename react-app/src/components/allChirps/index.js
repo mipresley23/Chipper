@@ -3,8 +3,10 @@ import { NavLink, Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp, thunkAddLike, thunkDeleteLike } from "../../store/chirp";
-// import EmptyLikeHeart from '../assets/chipper_like_empty.png'
-// import FilledLikeHeart from '../assets/chipper_like_filled.png'
+
+import EmptyLikeHeart from '../assets/chipper_like_empty.png'
+import FilledLikeHeart from '../assets/chipper_like_filled.png'
+
 import "../Splash/splash.css";
 
 
@@ -15,7 +17,10 @@ export default function AllChirps() {
   const [chirps, setChirps] = useState([])
   const [body, setBody] = useState('');
   const [media, setMedia] = useState('');
+
+
 //   const [liked, setLiked] = useState(false)
+
 
 
   const reverseChirps = []
@@ -51,21 +56,24 @@ export default function AllChirps() {
 
   const handleDeleteChirp = async (e) => {
     e.preventDefault();
+
+      await dispatch(thunkDeleteLike(e.target.value))
       await dispatch(thunkDeleteChirp(e.target.value))
   }
 
-//   const handleLikeChirp = async(e) => {
-//     e.preventDefault();
-//     setLiked(true)
-//     await dispatch(thunkAddLike(e.target.value))
-//     // console.log('chirp like value: ', e.target.value)
-//   }
+  const handleLikeChirp = async(e) => {
+    e.preventDefault();
+    setLiked(true)
+    await dispatch(thunkAddLike(e.target.value))
+    // console.log('chirp like value: ', e.target.value)
+  }
 
-//   const handleUnlikeChirp = async(e) => {
-//     e.preventDefault();
-//     setLiked(false)
-//     await dispatch(thunkDeleteLike(e.target.value))
-//   }
+  const handleUnlikeChirp = async(e) => {
+    e.preventDefault();
+    setLiked(false)
+    await dispatch(thunkDeleteLike(e.target.value))
+  }
+
 
   if(!chirps) return null;
   return (
@@ -102,11 +110,13 @@ export default function AllChirps() {
                   <p id="chirp-user">{chirp.user.username}</p>
                 </div>
                 <p id="chirp-body">{chirp.body}</p>
-                {/* <div className="like-button-containers">
+
+                <div className="like-button-containers">
                   {!chirp.likes.find(user => user.id === sessionUser.id) ? <input className='like-buttons' type="image" src={EmptyLikeHeart} value={chirp.id} onClick={handleLikeChirp}/> :
                     <input className='like-buttons' type="image" src={FilledLikeHeart} value={chirp.id} onClick={handleUnlikeChirp}/>}
                     <p>{chirp.likes.length}</p>
-                </div> */}
+                </div>
+
               </div>
               {sessionUser.id === chirp.user.id ? <button id='delete-chirp-button' type="button" value={chirp.id} onClick={handleDeleteChirp}>Delete</button> : null}
             </NavLink>
@@ -115,6 +125,7 @@ export default function AllChirps() {
 
       }
     </div>
+
 </div>
   )
 }

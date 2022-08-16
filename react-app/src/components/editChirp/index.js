@@ -47,6 +47,8 @@ export default function EditChirp({chirp, setShowModal}) {
     setShowModal(false)
   }
 
+
+
   const handleCancelForm = (e) => {
     e.preventDefault();
     setShowModal(false)

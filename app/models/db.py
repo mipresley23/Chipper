@@ -4,6 +4,13 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
+likes = db.Table(
+  'likes',
+  db.Model.metadata,
+  db.Column('users', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+  db.Column('chirps', db.Integer, db.ForeignKey('chirps.id'), primary_key=True)
+)
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -16,6 +23,11 @@ class User(db.Model, UserMixin):
 
     chirps = db.relationship("Chirp", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
+    user_likes = db.relationship("Chirp",
+        secondary=likes,
+        back_populates="chirp_likes",
+        cascade='all, delete'
+      )
 
     @property
     def password(self):
@@ -47,6 +59,23 @@ class Chirp(db.Model):
 
   user = db.relationship("User", back_populates='chirps')
   comments = db.relationship("Comment", back_populates='chirps', cascade='all, delete')
+  chirp_likes = db.relationship("User",
+        secondary=likes,
+        back_populates="user_likes",
+        cascade='all, delete'
+    )
+
+  def addLikeChirp(self, user):
+    if not self.have_liked(user):
+      self.chirp_likes.append(user)
+
+  def unlikeChirp(self, user):
+    if self.have_liked(user):
+      self.chirp_likes.remove(user)
+
+  def have_liked(self, user):
+    chirp_like_userIds = [x.id for x in self.chirp_likes]
+    return user.id in chirp_like_userIds
 
 
   def to_dict(self):
@@ -54,8 +83,10 @@ class Chirp(db.Model):
       "id": self.id,
       "media": self.media,
       "body": self.body,
-      "user": self.user.to_dict()
+      "user": self.user.to_dict(),
+      "likes": [user.to_dict() for user in self.chirp_likes]
     }
+
 
 class Comment(db.Model):
   __tablename__ = 'comments'

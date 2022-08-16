@@ -1,11 +1,13 @@
 import React, { useState, useEffect }from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
-import { thunkGetChirps, thunkEditChirp } from "../../store/chirp";
+import { thunkGetChirps, thunkEditChirp, thunkAddLike, thunkDeleteLike } from "../../store/chirp";
 import { thunkAddComment, thunkDeleteComment, thunkGetComments } from "../../store/comment";
 import EditChirpModal from "../editChirp/editChirpModal";
 import EditCommentModal from "../editComment/editCommentModal";
 import NavBar from "../NavBar";
+import EmptyLikeHeart from '../assets/chipper_like_empty.png'
+import FilledLikeHeart from '../assets/chipper_like_filled.png'
 import TrendingTopics from "../trendingTopics";
 import './eachChirp.css';
 
@@ -20,6 +22,7 @@ export default function EachChirp() {
   const [chirpBody, setChirpBody] = useState('');
   const [commentBody, setCommentBody] = useState('');
   const [media, setMedia] = useState('');
+
 
 
   const chirpSelector = useSelector(state => state.chirps)
@@ -38,7 +41,6 @@ export default function EachChirp() {
 
   const thisChirp = chirps && chirps.find(chirp => chirp.id === +chirpId)
 
-
   let correctUser;
   if(thisChirp){
     correctUser = sessionUser && sessionUser.id === thisChirp.user.id;
@@ -49,6 +51,14 @@ useEffect(() => {
     setChirpBody(thisChirp.body)
   }
 }, [thisChirp])
+
+useEffect(() => {
+  if(thisChirp){
+    if(thisChirp.likes.find(like => like.id === sessionUser.id)){
+      setLiked(true)
+    }
+  }
+}, [thisChirp, sessionUser])
 
 
 
@@ -94,6 +104,20 @@ useEffect(() => {
     history.push('/')
   }
 
+  const handleLikeChirp = async(e) => {
+    e.preventDefault();
+    setLiked(true)
+    await dispatch(thunkAddLike(chirpId))
+  }
+
+  const handleUnlikeChirp = async(e) => {
+    e.preventDefault();
+    setLiked(false)
+    await dispatch(thunkDeleteLike(chirpId))
+  }
+
+  console.log('this chirp: ', thisChirp)
+
 
 
   if(!thisChirp) return null;
@@ -117,6 +141,15 @@ useEffect(() => {
             <p id="each-chirp-user">{thisChirp.user.username}</p>
           </div>
           <p id="each-chirp-body">{thisChirp.body}</p>
+          <div className='like-button-containers'>
+          {!liked && <button className='like-buttons' type="button" onClick={handleLikeChirp}>
+              <img className="like-heart-icons" src={EmptyLikeHeart}/>
+            </button>}
+          {liked && <button className='like-buttons' type="button" onClick={handleUnlikeChirp}>
+              <img className="like-heart-icons" src={FilledLikeHeart}/>
+            </button>}
+          <p>{thisChirp.likes.length}</p>
+          </div>
         </div>
         <form id='chirp-reply-form' onSubmit={addComment}>
           <img id="chirp-reply-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic ? sessionUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt='' />

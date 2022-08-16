@@ -3,13 +3,18 @@ import { NavLink, Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { demoLogin } from "../../store/session";
-import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp } from "../../store/chirp";
+
+import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp, thunkAddLike } from "../../store/chirp";
+
 import SignupModal from "../auth/SignupModal";
 import LoginModal from "../auth/LoginModal";
 import birdLogoWhite from '../assets/birdLogo-white.png';
 import birdLogoBlue from '../assets/birdLogo.png';
 import splashGraffiti from '../assets/graffiti-background-vertical.jpg';
 import "./splash.css"
+
+import TrendingTopics from "../trendingTopics";
+
 import AllChirps from "../allChirps";
 
 export default function Splash() {
