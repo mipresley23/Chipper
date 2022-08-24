@@ -108,3 +108,15 @@
 .profile-tabs-disabled:hover{
   cursor:default;
 }
+
+.comment-count-container{
+  right: 30%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.comment-count-image{
+  margin-right: 10px;
+}

@@ -8,7 +8,7 @@ import EditCommentModal from "../editComment/editCommentModal";
 import NavBar from "../NavBar";
 import EmptyLikeHeart from '../assets/chipper_like_empty.png'
 import FilledLikeHeart from '../assets/chipper_like_filled.png'
-import TrendingTopics from "../trendingTopics";
+import commentBubble from '../assets/comment-bubble.png';
 import './eachChirp.css';
 
 export default function EachChirp() {
@@ -151,6 +151,10 @@ useEffect(() => {
             </button>}
           <p>{thisChirp.likes.length}</p>
           </div>
+          <div className="each-comment-count-container">
+                  <img className="comment-count-image" src={commentBubble} alt='Comments:'/>
+                  {comments && <p>{comments.filter(comment => comment.chirpId === thisChirp.id).length}</p>}
+                </div>
         </div>
         <form id='chirp-reply-form' onSubmit={addComment}>
           <img id="chirp-reply-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic ? sessionUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt='' />
