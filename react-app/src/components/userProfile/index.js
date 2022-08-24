@@ -174,6 +174,10 @@ export default function UserProfile() {
                     <input className='like-buttons' type="image" src={FilledLikeHeart} value={chirp.id} onClick={handleUnlikeChirp}/>}
                     <p>{chirp.likes.length}</p>
                 </div>
+                <div className="comment-count-container">
+                  <img className="comment-count-image" src={commentBubble} alt='Comments:'/>
+                  {comments && <p>{comments.filter(comment => comment.chirpId === chirp.id).length}</p>}
+                </div>
             </div>
             ))
           }
