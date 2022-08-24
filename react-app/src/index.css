@@ -128,11 +128,15 @@ button:hover{
   flex-direction: column;
   width: 20%;
   overflow-wrap: normal;
-  top: 30px;
+  top: 60px;
   right:12%;
   background-color: #f1f4f5;
   border-radius: 12px;
   padding: 5px;
+}
+
+#news-header{
+  margin-bottom: 20px;
 }
 
 #each-news-container{
