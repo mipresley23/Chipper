@@ -40,7 +40,7 @@ export default function TrendingTopics() {
   if(!sessionUser) return null
     return(
       <div id="all-news-container">
-    <h2>Trending Topics</h2>
+    <h2 id="news-header">What's happening</h2>
   {
     !showMore && firstFiveNews && firstFiveNews.map(article => (
         <Link className="news-links" to={article.webSearchUrl.slice(article.webSearchUrl.indexOf('/'))} target="_blank" rel="noopener noreferrer">
