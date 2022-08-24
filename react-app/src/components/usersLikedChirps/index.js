@@ -29,27 +29,14 @@ export default function UserProfile() {
   const thisUser = users && users.find(user => user.id === +userId)
 
   const usersChirps = chirps && chirps.filter(chirp => chirp.user.id === +userId)
+  console.log('users chirps: ', usersChirps)
 
   const reverseUsersChirps = []
   for(let i = usersChirps.length - 1; i >= 0; i--){
     reverseUsersChirps.push(usersChirps[i])
   }
 
-  const chirpsWithLikes = chirps && chirps.filter(chirp => chirp.likes.length)
-  console.log('chirp with likes: ', chirpsWithLikes)
-
-  const thisUsersLikes = thisUser && (function findUsersLikes() {
-    const usersLikes = []
-    for(let i = 0; i < chirpsWithLikes.length; i++){
-      let chirp = chirpsWithLikes[i];
-      console.log('liked chirp: ', chirp)
-      let userschirp =  chirp.likes.find(user => user.id === thisUser.id)
-      if(userschirp) usersLikes.push(chirp)
-    }
-    return usersLikes
-  })()
-
-  console.log('thisUsersLikes: ', thisUsersLikes)
+  console.log('reverse user chirps: ', reverseUsersChirps)
 
   useEffect(() => {
     dispatch(thunkGetChirps())
@@ -94,12 +81,12 @@ export default function UserProfile() {
   if(!thisUser) return null;
   return(
     <>
-      <NavBar params={userId}/>
+      <NavBar />
       <div id="profile-page-main-content">
         <div id="profile-header-content">
           <div id="header-chirps-container">
             <h3>{thisUser.username}</h3>
-            {!showLiked ? <p id="profile-chirp-count">{usersChirps.length} chirps</p> : <p id="profile-chirp-count">{thisUsersLikes.length} likes</p>}
+            <p id="profile-chirp-count">{usersChirps.length} chirps</p>
           </div>
           <button id='profile-go-back-button' type="button" onClick={handleGoBackToSplash}>
             <img id="profile-go-back-button-image" src={require('../assets/back-arrow.png')} alt='Back'/>
@@ -110,13 +97,9 @@ export default function UserProfile() {
           <img id="user-profile-picture" src={thisUser.profile_pic ? thisUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} />
           <h3 id="user-profile-name">{thisUser.username}</h3>
         </div>
-        <div id="users-chirps-container">
-          <div id="profile-tabs-container">
-            {showLiked ? <button className='profile-tabs' type="button" onClick={() => setShowLiked(false)}>Chirps</button> : <button className='profile-tabs-disabled' type="button">Chirps</button>}
-            {!showLiked ? <button className='profile-tabs' type="button" onClick={() => setShowLiked(true)}>Likes</button> : <button className='profile-tabs-disabled' type="button">Likes</button>}
-          </div>
+        {!showLiked && <div id="users-chirps-container">
           {
-            !showLiked && reverseUsersChirps && reverseUsersChirps.map(chirp => (
+            reverseUsersChirps && reverseUsersChirps.map(chirp => (
               <div id="each-chirp-container">
                 <NavLink to={`/chirps/${chirp.id}`}>
                   <div id="main-chirp-content">
@@ -125,45 +108,21 @@ export default function UserProfile() {
                       <p id="chirp-user">{chirp.user.username}</p>
                     </div>
                     <p id="chirp-body">{chirp.body}</p>
+                    <div className="like-button-containers">
+                  {!chirp.likes.find(user => user.id === sessionUser.id) ? <input className='like-buttons' type="image" src={EmptyLikeHeart} value={chirp.id} onClick={handleLikeChirp}/> :
+                    <input className='like-buttons' type="image" src={FilledLikeHeart} value={chirp.id} onClick={handleUnlikeChirp}/>}
+                    <p>{chirp.likes.length}</p>
+                </div>
                   </div>
                   {sessionUser.id === chirp.user.id ? <button id='delete-chirp-button' type="button" value={chirp.id} onClick={handleDeleteChirp}>Delete</button> : null}
                 </NavLink>
                 {sessionUser.id === chirp.user.id ? <div id="profile-edit-chirp-container">
                   <EditChirpModal chirp={chirp} />
                   </div> : null}
-                    <div className="like-button-containers">
-                  {!chirp.likes.find(user => user.id === sessionUser.id) ? <input className='like-buttons' type="image" src={EmptyLikeHeart} value={chirp.id} onClick={handleLikeChirp}/> :
-                    <input className='like-buttons' type="image" src={FilledLikeHeart} value={chirp.id} onClick={handleUnlikeChirp}/>}
-                    <p>{chirp.likes.length}</p>
-                </div>
             </div>
             ))
           }
-          {
-            showLiked && thisUsersLikes && thisUsersLikes.map(chirp => (
-              <div id="each-chirp-container">
-                <NavLink to={`/chirps/${chirp.id}`}>
-                  <div id="main-chirp-content">
-                    <div id="chirp-user-container">
-                      <img id='chirp-user-image' src={chirp.user.profile_pic ? chirp.user.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={chirp.user.username}></img>
-                      <p id="chirp-user">{chirp.user.username}</p>
-                    </div>
-                    <p id="chirp-body">{chirp.body}</p>
-                  </div>
-                  {sessionUser.id === chirp.user.id ? <button id='delete-chirp-button' type="button" value={chirp.id} onClick={handleDeleteChirp}>Delete</button> : null}
-                </NavLink>
-                {sessionUser.id === chirp.user.id ? <div id="profile-edit-chirp-container">
-                  <EditChirpModal chirp={chirp} />
-                  </div> : null}
-                    <div className="like-button-containers">
-                  {!chirp.likes.find(user => user.id === sessionUser.id) ? <input className='like-buttons' type="image" src={EmptyLikeHeart} value={chirp.id} onClick={handleLikeChirp}/> :
-                    <input className='like-buttons' type="image" src={FilledLikeHeart} value={chirp.id} onClick={handleUnlikeChirp}/>}
-                    <p>{chirp.likes.length}</p>
-                </div>
-            </div>
-            ))
-          }
-        </div>
+        </div>}
       </div>
     </>
   )

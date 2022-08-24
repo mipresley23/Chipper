@@ -79,3 +79,32 @@
   left: 5%;
   bottom: 30px;
 }
+
+#profile-tabs-container{
+  border-bottom: 1px solid #f1f4f5;
+}
+
+.profile-tabs{
+  width: 50%;
+  background-color: transparent;
+  height: 50px;
+  border: none;
+  font-size: large;
+}
+
+.profile-tabs:hover{
+  background-color: #eeeeee;
+}
+
+.profile-tabs-disabled{
+  width: 50%;
+  background-color: transparent;
+  height: 50px;
+  border: none;
+  font-size: large;
+  color: #1d9bf0;
+}
+
+.profile-tabs-disabled:hover{
+  cursor:default;
+}

@@ -142,7 +142,7 @@ useEffect(() => {
             <p id="each-chirp-user">{thisChirp.user.username}</p>
           </div>
           <p id="each-chirp-body">{thisChirp.body}</p>
-          <div className='like-button-containers'>
+          <div className='each-like-button-containers'>
           {!liked && <button className='like-buttons' type="button" onClick={handleLikeChirp}>
               <img className="like-heart-icons" src={EmptyLikeHeart}/>
             </button>}
