@@ -3,9 +3,10 @@ import { NavLink, Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar";
 import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp, thunkAddLike, thunkDeleteLike } from "../../store/chirp";
-
+import { thunkGetComments } from "../../store/comment";
 import EmptyLikeHeart from '../assets/chipper_like_empty.png'
 import FilledLikeHeart from '../assets/chipper_like_filled.png'
+import commentBubble from '../assets/comment-bubble.png';
 
 import "../Splash/splash.css";
 
@@ -15,6 +16,7 @@ export default function AllChirps() {
   const history = useHistory();
 
   const [chirps, setChirps] = useState([])
+  const [comments, setComments] = useState([])
   const [body, setBody] = useState('');
   const [media, setMedia] = useState('');
 
@@ -33,6 +35,7 @@ export default function AllChirps() {
 
   const chirpSelector = useSelector(state => state.chirps)
   const sessionUser = useSelector(state => state.session.user)
+  const commentSelector = useSelector(state => state.comments)
 
 
   useEffect(() => {
@@ -42,6 +45,14 @@ export default function AllChirps() {
   useEffect(() => {
     setChirps(Object.values(chirpSelector))
   }, [chirpSelector])
+
+  useEffect(() => {
+    dispatch(thunkGetComments())
+  }, [dispatch])
+
+  useEffect(() => {
+    setComments(Object.values(commentSelector))
+  }, [commentSelector])
 
   const addChirp = async (e) => {
     e.preventDefault();
@@ -117,6 +128,10 @@ export default function AllChirps() {
                   {!chirp.likes.find(user => user.id === sessionUser.id) ? <input className='like-buttons' type="image" src={EmptyLikeHeart} value={chirp.id} onClick={handleLikeChirp}/> :
                     <input className='like-buttons' type="image" src={FilledLikeHeart} value={chirp.id} onClick={handleUnlikeChirp}/>}
                     <p>{chirp.likes.length}</p>
+                </div>
+                <div className="comment-count-container">
+                  <img className="comment-count-image" src={commentBubble} alt='Comments:'/>
+                  {comments && <p>{comments.filter(comment => comment.chirpId === chirp.id).length}</p>}
                 </div>
           </div>
         ))

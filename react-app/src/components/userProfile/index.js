@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import NavBar from "../NavBar";
-import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp, thunkAddLike, thunkDeleteLike } from "../../store/chirp";
+import { thunkGetChirps, thunkDeleteChirp, thunkAddLike, thunkDeleteLike } from "../../store/chirp";
+import { thunkGetComments } from "../../store/comment";
 import { thunkGetUsers } from "../../store/users";
 import EditChirpModal from "../editChirp/editChirpModal";
 import blueHeader from '../assets/blue-gradient-header.jpg';
 import EmptyLikeHeart from '../assets/chipper_like_empty.png'
 import FilledLikeHeart from '../assets/chipper_like_filled.png'
+import commentBubble from '../assets/comment-bubble.png';
 import './userProfile.css';
 
 export default function UserProfile() {
@@ -18,6 +20,7 @@ export default function UserProfile() {
   const {userId} = useParams();
 
   const [chirps, setChirps] = useState([])
+  const [comments, setComments] = useState([])
   const [users, setUsers] = useState([])
   const [liked, setLiked] = useState(false)
   const [showLiked, setShowLiked] = useState(false);
@@ -25,6 +28,7 @@ export default function UserProfile() {
   const usersSelector = useSelector(state => state.users)
   const sessionUser = useSelector(state => state.session.user)
   const chirpSelector = useSelector(state => state.chirps)
+  const commentSelector = useSelector(state => state.comments)
 
   const thisUser = users && users.find(user => user.id === +userId)
 
@@ -36,20 +40,18 @@ export default function UserProfile() {
   }
 
   const chirpsWithLikes = chirps && chirps.filter(chirp => chirp.likes.length)
-  console.log('chirp with likes: ', chirpsWithLikes)
 
   const thisUsersLikes = thisUser && (function findUsersLikes() {
     const usersLikes = []
     for(let i = 0; i < chirpsWithLikes.length; i++){
       let chirp = chirpsWithLikes[i];
-      console.log('liked chirp: ', chirp)
       let userschirp =  chirp.likes.find(user => user.id === thisUser.id)
       if(userschirp) usersLikes.push(chirp)
     }
     return usersLikes
   })()
 
-  console.log('thisUsersLikes: ', thisUsersLikes)
+
 
   useEffect(() => {
     dispatch(thunkGetChirps())
@@ -58,6 +60,14 @@ export default function UserProfile() {
   useEffect(() => {
     setChirps(Object.values(chirpSelector))
   }, [chirpSelector])
+
+  useEffect(() => {
+    dispatch(thunkGetComments())
+  }, [dispatch])
+
+  useEffect(() => {
+    setComments(Object.values(commentSelector))
+  }, [commentSelector])
 
   useEffect(() => {
     dispatch(thunkGetUsers())
@@ -135,6 +145,10 @@ export default function UserProfile() {
                   {!chirp.likes.find(user => user.id === sessionUser.id) ? <input className='like-buttons' type="image" src={EmptyLikeHeart} value={chirp.id} onClick={handleLikeChirp}/> :
                     <input className='like-buttons' type="image" src={FilledLikeHeart} value={chirp.id} onClick={handleUnlikeChirp}/>}
                     <p>{chirp.likes.length}</p>
+                </div>
+                <div className="comment-count-container">
+                  <img className="comment-count-image" src={commentBubble} alt='Comments:'/>
+                  {comments && <p>{comments.filter(comment => comment.chirpId === chirp.id).length}</p>}
                 </div>
             </div>
             ))
