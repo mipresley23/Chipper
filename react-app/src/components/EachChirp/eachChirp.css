@@ -381,6 +381,17 @@ a{
 }
 
 .like-button-containers{
+  left: 30%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.each-like-button-containers{
+  position: absolute;
+  top: 39%;
+  left: 30%;
   display: flex;
   align-items: center;
   font-weight: bold;

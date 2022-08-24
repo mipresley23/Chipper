@@ -13,6 +13,10 @@
   font-weight: bold;
 }
 
+#chirp-user:hover{
+  text-decoration: underline;
+}
+
 
 #chirp-user-image{
   height: 50px;
