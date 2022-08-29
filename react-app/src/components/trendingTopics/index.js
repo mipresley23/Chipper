@@ -11,26 +11,26 @@ export default function TrendingTopics() {
 
   const sessionUser = useSelector(state => state.session.user)
 
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-BingApis-SDK': 'true',
-      'X-RapidAPI-Key': '063bad3f64msh1af9bb8147faf8dp1e0680jsn9d6abba6e550',
-      'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
-    }
-  };
+  // const options = {
+  //   method: 'GET',
+  //   headers: {
+  //     'X-BingApis-SDK': 'true',
+  //     'X-RapidAPI-Key': '063bad3f64msh1af9bb8147faf8dp1e0680jsn9d6abba6e550',
+  //     'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
+  //   }
+  // };
 
-    const getNews = async() => {
-      const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
-        .then(response => response.json())
-        .then(response => setNews(response));
-        // .catch(err => console.log(err));
-    }
+  //   const getNews = async() => {
+  //     const response = await fetch('https://bing-news-search1.p.rapidapi.com/news/trendingtopics?textFormat=Raw&safeSearch=Off', options)
+  //       .then(response => response.json())
+  //       .then(response => setNews(response));
+  //       // .catch(err => console.log(err));
+  //   }
 
 
-    useEffect(() => {
-      getNews()
-    }, [])
+  //   useEffect(() => {
+  //     getNews()
+  //   }, [])
 
 
   const newsArray = news.value;
