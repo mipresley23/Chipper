@@ -135,6 +135,7 @@ export default function UserProfile() {
                       <p id="chirp-user">{chirp.user.username}</p>
                     </div>
                     <p id="chirp-body">{chirp.body}</p>
+                    <img id="chirp-media" src={chirp.media} alt="" />
                   </div>
                   {sessionUser.id === chirp.user.id ? <button id='delete-chirp-button' type="button" value={chirp.id} onClick={handleDeleteChirp}>Delete</button> : null}
                 </NavLink>
@@ -163,6 +164,7 @@ export default function UserProfile() {
                       <p id="chirp-user">{chirp.user.username}</p>
                     </div>
                     <p id="chirp-body">{chirp.body}</p>
+                    <img id="chirp-media" src={chirp.media} alt="" />
                   </div>
                   {sessionUser.id === chirp.user.id ? <button id='delete-chirp-button' type="button" value={chirp.id} onClick={handleDeleteChirp}>Delete</button> : null}
                 </NavLink>

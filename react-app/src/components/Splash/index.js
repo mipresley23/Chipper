@@ -16,6 +16,7 @@ import "./splash.css"
 import TrendingTopics from "../trendingTopics";
 
 import AllChirps from "../allChirps";
+import AddChirp from "../addChirp";
 
 export default function Splash() {
 
@@ -105,7 +106,10 @@ export default function Splash() {
     )
   } else {
     return (
-      <AllChirps />
+      <>
+        <AddChirp />
+        <AllChirps />
+      </>
     )
   }
 }

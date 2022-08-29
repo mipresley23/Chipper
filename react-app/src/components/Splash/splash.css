@@ -86,6 +86,14 @@
   margin-bottom: 3%;
 }
 
+#chirp-media{
+  max-height: 300px;
+  max-width: 80%;
+  margin-bottom: 3%;
+  margin-left: 55px;
+  border-radius: 12px;
+}
+
 #chirp-counter{
  position: absolute;
  bottom: 5px;
@@ -307,4 +315,26 @@
 
 #login-button:hover{
   background-color: #E8F5FD;
+}
+
+#add-chirp-media-button{
+  height: 20px;
+  width: 20px;
+  border-radius: 15%;
+}
+
+#add-media-button-container{
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+
+#add-media-button-container:hover{
+  background-color:#eeeeee;
 }

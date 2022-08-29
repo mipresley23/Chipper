@@ -40,6 +40,7 @@ export const thunkGetChirps = (chirps) => async(dispatch) => {
 }
 
 export const thunkAddChirp = (chirp) => async(dispatch) => {
+  console.log('thunk chirp: ', chirp)
   const res = await fetch('/api/chirps/', {
     method: "POST",
     headers: { "Content-Type": "application/json" },
