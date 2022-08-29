@@ -60,16 +60,7 @@ export default function AllChirps() {
 
 
 
-  // const addChirp = async (e) => {
-  //   e.preventDefault();
-  //   const chirp = {
-  //     body,
-  //     media,
-  //     userId: sessionUser.id
-  //   }
-  //   await dispatch(thunkAddChirp(chirp))
-  //   await setBody('')
-  // }
+
 
   const handleDeleteChirp = async (e) => {
     e.preventDefault();
@@ -93,12 +84,13 @@ export default function AllChirps() {
 
 
   if(!chirps) return null;
+  if(!reverseChirps) return null;
   return (
     <div id="splash-main-content">
     <NavBar />
     <div id="splash-header-form-conatiner">
       <h3 id="splash-logged-in-header">Home</h3>
-      <AddChirp />
+      {/* <AddChirp /> */}
     </div>
     <div id="all-chirps-container">
       {
@@ -110,8 +102,8 @@ export default function AllChirps() {
                   <img id='chirp-user-image' src={chirp.user.profile_pic ? chirp.user.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={chirp.user.username}></img>
                   <NavLink to={`/users/${chirp.user.id}`} id="chirp-user">{chirp.user.username}</NavLink>
                 </div>
-                <img id="chirp-media" src={chirp.media} alt="" />
                 <p id="chirp-body">{chirp.body}</p>
+                <img id="chirp-media" src={chirp.media} alt="" />
               </div>
               {sessionUser.id === chirp.user.id ? <button id='delete-chirp-button' type="button" value={chirp.id} onClick={handleDeleteChirp}>Delete</button> : null}
             </NavLink>

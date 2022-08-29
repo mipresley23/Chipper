@@ -22,7 +22,7 @@ def get_chirps():
   chirps = Chirp.query.all()
   return jsonify([chirp.to_dict() for chirp in chirps])
 
-@chirp_routes.route('/', methods=['POST'])
+@chirp_routes.route('/new', methods=['POST'])
 def add_chirp():
 
     if "media" not in request.files:
@@ -53,18 +53,19 @@ def add_chirp():
 
     return new_chirp.to_dict()
 
-    # form = ChirpForm()
-    # print('form data: ', form.data)
-    # chirp = Chirp(
-    #     body=form.data['body'],
-    #     media=form.data['media'],
-    #     userId=form.data['userId']
-    # )
-    # print('chirp: ', chirp)
-    # db.session.add(chirp)
-    # db.session.commit()
+@chirp_routes.route('/', methods=["POST"])
+def add_chirp_noimg():
+    form = ChirpForm()
+    print('form data: ', form.data)
+    chirp = Chirp(
+        body=form.data['body'],
+        media=form.data['media'],
+        userId=form.data['userId']
+    )
+    db.session.add(chirp)
+    db.session.commit()
 
-    # return chirp.to_dict()
+    return chirp.to_dict()
 
 
 @chirp_routes.route('/<int:chirpId>', methods=['PUT'])

@@ -86,6 +86,14 @@
   margin-bottom: 3%;
 }
 
+#chirp-media{
+  max-height: 300px;
+  max-width: 80%;
+  margin-bottom: 3%;
+  margin-left: 55px;
+  border-radius: 12px;
+}
+
 #chirp-counter{
  position: absolute;
  bottom: 5px;

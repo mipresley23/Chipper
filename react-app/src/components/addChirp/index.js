@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { thunkAddChirp } from "../../store/chirp";
+import { thunkAddChirp, thunkGetChirps } from "../../store/chirp";
 import AddPhotoIcon from '../assets/add_image.png';
 
 export default function AddChirp() {
@@ -32,36 +32,52 @@ export default function AddChirp() {
     formData.append('userId', sessionUser.id)
 
     setMediaLoading(true);
-    const res = await fetch('/api/chirps/', {
-      method: "POST",
-      body: formData,
-    });
+    if(media){
+      const res = await fetch('/api/chirps/new', {
+        method: "POST",
+        body: formData,
+      });
 
-    if(res.ok){
-      const jsonRes = await res.json();
 
-      const chirp = {
-        media,
-        body,
-        userId:sessionUser.id
+      if(res.ok){
+        const jsonRes = await res.json();
+        console.log('jsonRes: ', jsonRes)
+
+        const chirp = {
+          media: jsonRes.media,
+          body,
+          userId:jsonRes.user.id
+        }
+
+        await dispatch(thunkAddChirp(chirp));
+        await dispatch(thunkGetChirps())
+        setBody('')
+        setMedia('')
+        history.push('/')
       }
 
-      await dispatch(thunkAddChirp(chirp));
-      await setBody('')
-      await setMedia('')
-      history.push('/')
-    }
+      if (res && res.errors === undefined) setMediaLoading(false)
+      else{
+        errorsArr.push(res.errors)
+        setMediaLoading(false)
+      }
 
-    if (res && res.errors === undefined) setMediaLoading(false)
-    else{
-      errorsArr.push(res.errors)
-      setMediaLoading(false)
+      if(errorsArr.length) {
+        setErrors(errorsArr)
+      }
+      return res
+    }else{
+        // const addChirp = async (e) => {
+  //   e.preventDefault();
+    const chirp = {
+      body,
+      media,
+      userId: sessionUser.id
     }
-
-    if(errorsArr.length) {
-      setErrors(errorsArr)
+    await dispatch(thunkAddChirp(chirp))
+    await setBody('')
+  // }
     }
-    return res
 
   }
 
@@ -78,6 +94,11 @@ export default function AddChirp() {
   return(
     <>
       <form id='add-chirp-form' onSubmit={addChirp}>
+      {errors.length > 0 && <div className='chirp_form_errors'>
+                    {errors.map((error, ind) => (
+                        <div key={ind} className='chirp_form_error'>{error}</div>
+                    ))}
+                </div> }
         <img id="add-chirp-profile-pic" src={sessionUser.profile_pic ? sessionUser.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt=''/>
         <div id="chirp-input-button-contatiner">
           <textarea id="splash-chirp-input"
@@ -97,6 +118,7 @@ export default function AddChirp() {
                 onChange={updateImage}
                 />
               </div>
+              <p id="image-to-upload">{media.name}</p>
         </div>
           {body.length === 0 ? <p id="chirp-counter-zero">Chirps must be at least 1 character. {body.length}/300</p> :
           body.length > 0 & body.length <= 290 ? <p id="chirp-counter">{body.length}/300</p> :
