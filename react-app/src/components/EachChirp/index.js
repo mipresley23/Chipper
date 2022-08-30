@@ -117,9 +117,6 @@ useEffect(() => {
     await dispatch(thunkDeleteLike(chirpId))
   }
 
-  console.log('this chirp: ', thisChirp)
-
-
 
   if(!thisChirp) return null;
   return(
@@ -143,36 +140,41 @@ useEffect(() => {
           </div>
           <p id="each-chirp-body">{thisChirp.body}</p>
           <img id="chirp-media" src={thisChirp.media} alt="" />
-          <div className='each-like-button-containers'>
-          {!liked && <button className='like-buttons' type="button" onClick={handleLikeChirp}>
-              <img className="like-heart-icons" src={EmptyLikeHeart}/>
-            </button>}
-          {liked && <button className='like-buttons' type="button" onClick={handleUnlikeChirp}>
-              <img className="like-heart-icons" src={FilledLikeHeart}/>
-            </button>}
-          <p>{thisChirp.likes.length}</p>
+          <div id="like-comment-outer-container">
+            <div className='each-like-button-containers'>
+            {!liked && <div className="like-buttons-divs"><button className='like-buttons' type="button" onClick={handleLikeChirp}>
+                <img className="like-heart-icons" src={EmptyLikeHeart}/>
+              </button></div>}
+            {liked && <div className="like-buttons-divs"><button className='like-buttons' type="button" onClick={handleUnlikeChirp}>
+                <img className="like-heart-icons" src={FilledLikeHeart}/>
+              </button></div>}
+            {!liked && <p id="like-count-not-liked">{thisChirp.likes.length}</p>}
+            {liked && <p id="like-count-liked">{thisChirp.likes.length}</p>}
+            </div>
+            <div className="each-comment-count-container">
+                <img className="comment-count-image" src={commentBubble} alt='Comments:'/>
+                {comments && <p>{comments.filter(comment => comment.chirpId === thisChirp.id).length}</p>}
+            </div>
           </div>
-          <div className="each-comment-count-container">
-                  <img className="comment-count-image" src={commentBubble} alt='Comments:'/>
-                  {comments && <p>{comments.filter(comment => comment.chirpId === thisChirp.id).length}</p>}
-                </div>
         </div>
-        <form id='chirp-reply-form' onSubmit={addComment}>
-          <img id="chirp-reply-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic ? sessionUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt='' />
-          <textarea id='chirp-reply-input'
-          cols={60}
-          type="text"
-          placeholder='Chirp Your Reply'
-          value={commentBody}
-          onChange={(e) => setCommentBody(e.target.value)}
-          />
-          {commentBody.length === 0 ? <p id="comment-counter-zero">Comments must be at least 1 character. {commentBody.length}/300</p> :
-          commentBody.length > 0 & commentBody.length <= 290 ? <p id="comment-counter">{commentBody.length}/300</p> :
-          commentBody.length <= 300 ? <p id="comment-counter-close-to-limit">{commentBody.length}/300</p> :
-          <p id="comment-over-limit">Comments Must Be 300 Characters Or Less. {commentBody.length}/300</p>}
-          {commentBody.length > 0 & commentBody.length <= 300 ? <button className='chirp-submit-buttons' id='chirp-reply-button'  type="submit">Reply</button> :
-          <button className='chirp-submit-buttons' id="chirp-reply-button-disabled" type="button">Reply</button>}
-        </form>
+        <div id="chirp-reply-form-container">
+          <form id='chirp-reply-form' onSubmit={addComment}>
+            <img id="chirp-reply-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic ? sessionUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt='' />
+            <textarea id='chirp-reply-input'
+            cols={60}
+            type="text"
+            placeholder='Chirp Your Reply'
+            value={commentBody}
+            onChange={(e) => setCommentBody(e.target.value)}
+            />
+            {commentBody.length === 0 ? <p id="comment-counter-zero">Comments must be at least 1 character. {commentBody.length}/300</p> :
+            commentBody.length > 0 & commentBody.length <= 290 ? <p id="comment-counter">{commentBody.length}/300</p> :
+            commentBody.length <= 300 ? <p id="comment-counter-close-to-limit">{commentBody.length}/300</p> :
+            <p id="comment-over-limit">Comments Must Be 300 Characters Or Less. {commentBody.length}/300</p>}
+            {commentBody.length > 0 & commentBody.length <= 300 ? <button className='chirp-submit-buttons' id='chirp-reply-button'  type="submit">Reply</button> :
+            <button className='chirp-submit-buttons' id="chirp-reply-button-disabled" type="button">Reply</button>}
+          </form>
+        </div>
         {/* <div id="all-comments">
           {
             reverseComments && reverseComments.map(comment => (
@@ -197,7 +199,10 @@ useEffect(() => {
                   <div id="each-comment">
                     <div id="comment-user-container">
                       <img id="comment-user-pic" src={comment.user.profile_pic ? comment.user.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt=''/>
-                      <li id="comment-username">{comment.user.username}</li>
+                      <ul id="comment-users-list">
+                        <li id="comment-username">{comment.user.username}</li>
+                        <li id="comment-replying-to">Replying to {thisChirp.user.username}</li>
+                      </ul>
                     </div>
                     <li id='comment-body' key={comment.id}>{comment.body}</li>
                     <li>
