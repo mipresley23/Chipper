@@ -88,6 +88,7 @@
 
 #chirp-media{
   max-height: 300px;
+  width: auto;
   max-width: 70%;
   margin-bottom: 3%;
   margin-left: 16%;
