@@ -28,4 +28,5 @@ sqlalchemy==1.4.19
 werkzeug==2.0.1
 wtforms==2.3.3
 email_validator
-boto3
+boto3==1.24.36
+botocore==1.27.36; python_version >= '3.7'
