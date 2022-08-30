@@ -108,9 +108,10 @@ export default function AllChirps() {
               {sessionUser.id === chirp.user.id ? <button id='delete-chirp-button' type="button" value={chirp.id} onClick={handleDeleteChirp}>Delete</button> : null}
             </NavLink>
                 <div className="like-button-containers">
-                  {!chirp.likes.find(user => user.id === sessionUser.id) ? <input className='like-buttons' type="image" src={EmptyLikeHeart} value={chirp.id} onClick={handleLikeChirp}/> :
-                    <input className='like-buttons' type="image" src={FilledLikeHeart} value={chirp.id} onClick={handleUnlikeChirp}/>}
-                    <p>{chirp.likes.length}</p>
+                  {!chirp.likes.find(user => user.id === sessionUser.id) ? <div className="like-buttons-divs"><input className='like-buttons' type="image" src={EmptyLikeHeart} value={chirp.id} onClick={handleLikeChirp}/></div> :
+                    <div className="like-buttons-divs"><input className='like-buttons' type="image" src={FilledLikeHeart} value={chirp.id} onClick={handleUnlikeChirp}/></div>}
+                    {!chirp.likes.find(user => user.id === sessionUser.id) ? <p id="like-count-not-liked">{chirp.likes.length}</p> :
+                    <p id="like-count-liked">{chirp.likes.length}</p>}
                 </div>
                 <div className="comment-count-container">
                   <img className="comment-count-image" src={commentBubble} alt='Comments:'/>
