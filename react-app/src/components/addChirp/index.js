@@ -46,14 +46,17 @@ export default function AddChirp() {
         const chirp = {
           media: jsonRes.media,
           body,
-          userId:jsonRes.user.id
+          userId: sessionUser.id
         }
 
-        await dispatch(thunkAddChirp(chirp));
+        const response = await dispatch(thunkAddChirp(chirp));
+        if (response === "Success"){
+          window.alert("Chirp Posted Successfully!")
+          setBody('')
+          setMedia('')
+          history.push('/')
+        }
         await dispatch(thunkGetChirps())
-        setBody('')
-        setMedia('')
-        history.push('/')
       }
 
       if (res && res.errors === undefined) setMediaLoading(false)
@@ -65,7 +68,7 @@ export default function AddChirp() {
       if(errorsArr.length) {
         setErrors(errorsArr)
       }
-      return res
+      // return res
     }else{
         // const addChirp = async (e) => {
   //   e.preventDefault();
@@ -74,6 +77,7 @@ export default function AddChirp() {
       media,
       userId: sessionUser.id
     }
+    setMediaLoading(false)
     await dispatch(thunkAddChirp(chirp))
     await setBody('')
   // }
@@ -119,6 +123,7 @@ export default function AddChirp() {
                 />
               </div>
               <p id="image-to-upload">{media.name}</p>
+              {(mediaLoading) &&<img id="img-upload-spinner"src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img>}
         </div>
           {body.length === 0 ? <p id="chirp-counter-zero">Chirps must be at least 1 character. {body.length}/300</p> :
           body.length > 0 & body.length <= 290 ? <p id="chirp-counter">{body.length}/300</p> :

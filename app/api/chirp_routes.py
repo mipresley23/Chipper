@@ -43,15 +43,15 @@ def add_chirp():
 
     url = upload["url"]
 
-    new_chirp = Chirp(
-        body=request.form.get('body'),
-        media=url,
-        userId=request.form.get('userId')
-    )
-    db.session.add(new_chirp)
-    db.session.commit()
+    # new_chirp = Chirp(
+    #     body=request.form.get('body'),
+    #     media=url,
+    #     userId=request.form.get('userId')
+    # )
+    # db.session.add(new_chirp)
+    # db.session.commit()
 
-    return new_chirp.to_dict()
+    return { "media": url, "user" : request.form.get("userId")}
 
 @chirp_routes.route('/', methods=["POST"])
 def add_chirp_noimg():

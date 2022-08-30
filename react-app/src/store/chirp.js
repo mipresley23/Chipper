@@ -48,7 +48,25 @@ export const thunkAddChirp = (chirp) => async(dispatch) => {
   })
   const data = await res.json()
   dispatch(actionAddChirp(data));
-  return data;
+  return "Success";
+}
+
+export const thunkAddChirpImage = (formData) => async (dispatch) => {
+  console.log('thunk form data: ', formData)
+  const res = await fetch('/api/chirps/new/', {
+    method: 'POST',
+    body: formData
+  })
+
+  if (res.ok) {
+    const chirp = await res.json();
+    dispatch(actionAddChirp(chirp))
+    return chirp
+  }
+  else {
+    const error = await res.json();
+    return error
+  }
 }
 
 export const thunkEditChirp = (chirp) => async (dispatch) => {
