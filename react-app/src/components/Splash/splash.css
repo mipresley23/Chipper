@@ -94,6 +94,7 @@
   border-radius: 12px;
 }
 
+
 #chirp-counter{
  position: absolute;
  bottom: 5px;
@@ -337,4 +338,20 @@
 
 #add-media-button-container:hover{
   background-color:#eeeeee;
+}
+
+#image-to-upload{
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+  font-size:x-small;
+  color:#1A8CD8
+}
+
+#img-upload-spinner{
+  height: 30px;
+  width:30px;
+  position: absolute;
+  bottom: 5px;
+  left: 80px;
 }
