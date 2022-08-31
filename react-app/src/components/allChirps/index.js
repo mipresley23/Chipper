@@ -100,7 +100,8 @@ export default function AllChirps() {
               <div id="main-chirp-content">
                 <div id="chirp-user-container">
                   <img id='chirp-user-image' src={chirp.user.profile_pic ? chirp.user.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={chirp.user.username}></img>
-                  <NavLink to={`/users/${chirp.user.id}`} id="chirp-user">{chirp.user.username}</NavLink>
+                  <NavLink to={`/users/${chirp.user.id}`} id="chirp-user">{chirp.user.name}</NavLink>
+                  <NavLink to={`/users/${chirp.user.id}`} id='chirp-user-username'>{chirp.user.username}</NavLink>
                 </div>
                 <p id="chirp-body">{chirp.body}</p>
                 <img id="chirp-media" src={chirp.media} alt="" />

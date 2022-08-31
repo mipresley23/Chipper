@@ -74,6 +74,15 @@
   position: relative;
 }
 
+#navbar-user-names{
+  display: flex;
+  flex-direction: column;
+}
+
+#navbar-user-username-label{
+  color: gray;
+}
+
 body{
   font-family: Arial, Helvetica, sans-serif
 }

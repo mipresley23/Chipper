@@ -17,6 +17,11 @@
   text-decoration: underline;
 }
 
+#chirp-user-username{
+  margin-left: 1%;
+  color: gray;
+}
+
 
 #chirp-user-image{
   height: 50px;

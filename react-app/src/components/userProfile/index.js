@@ -31,6 +31,7 @@ export default function UserProfile() {
   const commentSelector = useSelector(state => state.comments)
 
   const thisUser = users && users.find(user => user.id === +userId)
+  console.log('thisUser: ', thisUser)
 
   const usersChirps = chirps && chirps.filter(chirp => chirp.user.id === +userId)
 
@@ -108,7 +109,7 @@ export default function UserProfile() {
       <div id="profile-page-main-content">
         <div id="profile-header-content">
           <div id="header-chirps-container">
-            <h3>{thisUser.username}</h3>
+            <h3>{thisUser.name}</h3>
             {!showLiked ? <p id="profile-chirp-count">{usersChirps.length} chirps</p> : <p id="profile-chirp-count">{thisUsersLikes.length} likes</p>}
           </div>
           <button id='profile-go-back-button' type="button" onClick={handleGoBackToSplash}>
@@ -118,7 +119,10 @@ export default function UserProfile() {
         <div id="profile-images-container">
           <img id='profile-header-image' src={blueHeader} alt=''/>
           <img id="user-profile-picture" src={thisUser.profile_pic ? thisUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} />
-          <h3 id="user-profile-name">{thisUser.username}</h3>
+          <div id="user-profile-names">
+            <h3 id="user-profile-name">{thisUser.name}</h3>
+            <p id='user-profile-username'>{thisUser.username}</p>
+          </div>
         </div>
         <div id="users-chirps-container">
           <div id="profile-tabs-container">

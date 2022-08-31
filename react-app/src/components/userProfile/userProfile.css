@@ -68,10 +68,18 @@
   border: 5px solid white;
 }
 
-#user-profile-name{
+#user-profile-names{
+  display: flex;
+  flex-direction: column;
   position: relative;
-  left: 50px;
+  left:50px;
   bottom: 30px;
+}
+
+
+#user-profile-username{
+  font-weight: 300;
+  font-size: medium;
 }
 
 #profile-edit-chirp-container{

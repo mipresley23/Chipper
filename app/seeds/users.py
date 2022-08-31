@@ -4,25 +4,25 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password', profile_pic='https://4lpi.com/wp-content/uploads/2015/08/Buddy-Christ-300x237.jpg')
+        username='@Demo', name='Demo', email='demo@aa.io', password='password', profile_pic='https://mpchipper.s3.us-east-2.amazonaws.com/dcc4d465cb984a37b2c6bb49ae08e416.png', bio='')
     leo = User(
-        username='Leonardo', email='theblueone@tmnt.com', password='ImTheLeader', profile_pic='https://bbts1.azureedge.net/images/p/full/2021/10/2b882830-8c6f-4f6f-b272-8c919a9930ec.jpg')
+        username='@Leonardo', name='Leonardo', email='theblueone@tmnt.com', password='ImTheLeader', profile_pic='https://mpchipper.s3.us-east-2.amazonaws.com/ecdd348f02b541ffa340602395e8f74b.jpg', bio='')
     donnie = User(
-        username='Donatello', email='thepurpleone@tmnt.com', password='IDoMachines', profile_pic='https://bbts1.azureedge.net/images/p/full/2021/09/6c46237b-6896-44a0-a353-f929dfa874af.jpg')
+        username='@Donatello', name='Donatello', email='thepurpleone@tmnt.com', password='IDoMachines', profile_pic='https://mpchipper.s3.us-east-2.amazonaws.com/291d8b77c87f42ea91a3f743141f6279.jpg', bio='')
     raph = User(
-        username='Raphael', email='theredone@tmnt.com', password='CoolButRude', profile_pic='https://bbts1.azureedge.net/images/p/full/2021/08/ef4ba14a-c499-48d9-a47e-cdac854e4831.jpg')
+        username='@Raphael', name='Raphael', email='theredone@tmnt.com', password='CoolButRude', profile_pic='https://mpchipper.s3.us-east-2.amazonaws.com/ac31d89d01c946e3b998b61d8dc93a5c.jpg', bio='')
     mikey = User(
-        username='Michelangelo', email='theorangeone@tmnt.com', password='PartyDude', profile_pic='https://i.redd.it/kkeamknm5yl71.jpg')
+        username='@Michelangelo', name='Michalangelo', email='theorangeone@tmnt.com', password='PartyDude', profile_pic='https://mpchipper.s3.us-east-2.amazonaws.com/0d8f00962a0d426bbac9c97990e980a5.jpg', bio='')
     optimus = User(
-        username='Optimus Prime', email='autobotleader@cybertron.com', password='AutobotsRule', profile_pic='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Optimus_Prime_%28Transformers_-_The_Last_Knight%29.jpg/220px-Optimus_Prime_%28Transformers_-_The_Last_Knight%29.jpg')
+        username='@OptimusPrime', name='Optimus Prime', email='autobotleader@cybertron.com', password='AutobotsRule', profile_pic='https://mpchipper.s3.us-east-2.amazonaws.com/bd820d849b144176b98df3cace05756c.jpg', bio='')
     bee = User(
-        username='Bumble Bee', email='therealbestone@cybertron.com', password='Stinger', profile_pic='https://bbts1.azureedge.net/images/p/full/2018/11/dfa8f799-d5f1-44ce-bc7b-345821c59944.jpg')
+        username='@BumbleBee', name='Bumble Bee', email='therealbestone@cybertron.com', password='Stinger', profile_pic='https://mpchipper.s3.us-east-2.amazonaws.com/1ad6854caaca4806a959a8404ff3cd24.jpg', bio='')
     megatron = User(
-        username='Megatron', email='decepticonleader@cybertron.com', password='DecepticonsRule', profile_pic='https://bbts1.azureedge.net/images/p/full/2020/09/4b7cd59a-dc9a-45cf-8864-a8e111895586.jpg')
+        username='@Megatron', name='Megatron', email='decepticonleader@cybertron.com', password='DecepticonsRule', profile_pic='https://mpchipper.s3.amazonaws.com/3de757d4fe08461c8e50767b8aee14fd.jpg', bio='')
     rocket = User(
-        username='Rocket', email='whatsaracoon@guardians.com', password="ILikeBigGuns", profile_pic='https://wallpaperaccess.com/full/1075427.jpg')
+        username='@Rocket', name='Rocket', email='whatsaracoon@guardians.com', password="ILikeBigGuns", profile_pic='https://mpchipper.s3.amazonaws.com/607c153d2eb9427880c8bebe15ddccb4.jpg', bio='')
     groot = User(
-        username='Groot', email='iamgroot@iamgroot.iamgroot', password='IAmGroot', profile_pic='https://bbts1.azureedge.net/images/p/full/2020/09/bc96d092-63c8-4c46-a353-2b0670795794.jpg')
+        username='@Groot', name='Groot', email='iamgroot@iamgroot.iamgroot', password='IAmGroot', profile_pic='https://mpchipper.s3.amazonaws.com/fec6acbb38824856a6606c98967e7d3b.jpg', bio='')
 
 
     db.session.add(demo)
