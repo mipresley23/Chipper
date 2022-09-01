@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "../NavBar";
+import Footer from "../footer";
 import { demoLogin } from "../../store/session";
 
 import { thunkGetChirps, thunkAddChirp, thunkDeleteChirp, thunkEditChirp, thunkAddLike } from "../../store/chirp";
@@ -92,16 +92,21 @@ export default function Splash() {
               <p id="tell-the-world">Tell The World!</p>
             </div>
             <div id="sign-up-demo-container">
-              <h2>Join Chipper Today!</h2>
+              <h2 id="join-chipper-header">Join Chipper Today!</h2>
               <SignupModal />
               <p id="signup-demo-sep">----------or----------</p>
               <button id='demo-button' type='button' onClick={handleDemo}>Demo</button>
+              <p id="splash-terms-of-service">
+                By signing up, you agree to absolutely nothing because Chipper is not a real social media site.
+
+              </p>
             </div>
             <div id="login-section">
               <h4 id="splash-login-header">Already Have An Account?</h4>
               <LoginModal />
             </div>
           </div>
+          <Footer />
       </div>
     )
   } else {

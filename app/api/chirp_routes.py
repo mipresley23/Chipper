@@ -73,7 +73,6 @@ def update_chirp(chirpId):
     chirp = Chirp.query.get(chirpId)
     form = ChirpForm()
     chirp.body = form.data['body']
-    chirp.media = form.data['media']
     chirp.userId = form.data['userId']
     db.session.commit()
     return chirp.to_dict()

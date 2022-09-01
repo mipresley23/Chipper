@@ -54,12 +54,53 @@
   margin-left: 15px;
   position:absolute;
   right: 20px;
-  border-radius: 12px;
+  border-radius: 5px;
   background-color: #E8F5FD;
   font-size: 16px;
 }
 
+.form-header-input-containers textarea{
+  height:200px;
+  resize: none;
+  width: 60%;
+  margin-left: 15px;
+  position:absolute;
+  right: 20px;
+  border-radius: 5px;
+  background-color: #E8F5FD;
+  font-size: 16px;
+}
+
+#signup-profilepic-button{
+  height:40px;
+  resize: none;
+  width: 60%;
+  margin-left: 15px;
+  position:absolute;
+  right: 20px;
+  border-radius: 20px;
+  background-color: #E8F5FD;
+  font-size: 16px;
+  transition-duration: .2s;
+}
+
+#signup-profilepic-button:hover{
+  background-color: #269ff0;
+  color: white;
+}
+
+#profile-image-to-upload{
+  margin-left: 15px;
+  position:absolute;
+  right: 20px;
+  top: 135px;
+}
+
 .form-header-input-containers input:focus{
+  background-color: #8ecdf7;
+}
+
+.form-header-input-containers textarea:focus{
   background-color: #8ecdf7;
 }
 
@@ -75,6 +116,19 @@
 .modal-error-container{
   position:absolute;
   top: 5%;
+}
+
+#signup-step-header{
+  position: absolute;
+  top: 20px;
+  left: 20%;
+}
+
+#signup-step-one, #signup-step-two, #signup-step-three{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .required:after {
@@ -96,12 +150,35 @@
 }
 
 .modal-cancel-buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border:none;
+  background-color: white;
+}
+
+#signup-back-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px;
   width: 40px;
   border-radius: 50%;
   font-size: 20px;
   border:none;
   background-color: white;
+}
+
+#signup-back-button:hover{
+  background-color: #eeeeee;
+}
+
+#signup-back-button-image{
+  height: 20px;
+  width: 20px;
 }
 
 .modal-cancel-buttons:hover{
@@ -130,4 +207,66 @@
   flex-direction: column;
   height: 200px;
   justify-content: space-evenly;
+}
+
+.signup-label-inputs{
+  display: flex;
+  align-items: center;
+}
+
+#username-labels{
+  display: flex;
+  justify-content: flex-start;
+}
+
+#username-at-label{
+  font-size: 14px;
+  padding-left: 2%;
+  color:red;
+}
+
+#signup-bio-labels{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#username-at-label-div{
+  display: flex;
+  flex-direction: column;
+}
+
+#name-input-counter{
+  margin-left: 15px;
+  position:absolute;
+  right: 20px;
+  top: 135px;
+}
+
+#username-input-counter{
+  margin-left: 15px;
+  position:absolute;
+  right: 20px;
+  top: 225px;
+}
+
+#signup-bio-counter{
+  margin-left: 15px;
+  position:absolute;
+  right: 20px;
+  top: 280px;
+}
+
+#signup-email-counter{
+  margin-left: 15px;
+  position:absolute;
+  right: 20px;
+  top: 318px;
+}
+
+#signup-password-counter{
+  margin-left: 15px;
+  position:absolute;
+  right: 20px;
+  top: 155px;
 }
