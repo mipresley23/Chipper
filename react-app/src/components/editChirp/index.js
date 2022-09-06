@@ -2,6 +2,7 @@ import React, { useState, useEffect }from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { thunkGetChirps, thunkEditChirp } from "../../store/chirp";
+import xImage from '../assets/chipperXimage.png';
 import './editChirpModal.css'
 
 export default function EditChirp({chirp, setShowModal}) {
@@ -40,7 +41,6 @@ export default function EditChirp({chirp, setShowModal}) {
     const chirp = {
       id: chirpId,
       body: chirpBody,
-      media,
       userId: sessionUser.id
     }
     await dispatch(thunkEditChirp(chirp))
@@ -57,7 +57,7 @@ export default function EditChirp({chirp, setShowModal}) {
 
   return(
     <>
-      <button className='modal-cancel-buttons' id='signup-cancel-button' onClick={() => setShowModal(false)}>x</button>
+      <button className='modal-cancel-buttons' id='signup-cancel-button' onClick={() => setShowModal(false)}><img id='signup-back-button-image' src={xImage} alt='x'/></button>
       <h3 id="edit-chirp-header">Edit Chirp</h3>
       <form id="edit-chirp-form" onSubmit={editChirp}>
                   <img id="edit-chirp-profile-pic" className="chirp-form-profile-pics" src={sessionUser.profile_pic ? sessionUser.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt='' />

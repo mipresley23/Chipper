@@ -136,7 +136,10 @@ useEffect(() => {
         </div>}
           <div id="each-chirp-user-container">
             <img id='chirp-profile-pic' src={thisChirp.user.profile_pic ? thisChirp.user.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt={thisChirp.user.username}/>
-            <p id="each-chirp-user">{thisChirp.user.username}</p>
+            <div id="each-chirp-user-names">
+            <NavLink to={`/users/${thisChirp.user.id}`} id="each-chirp-user">{thisChirp.user.name}</NavLink>
+            <NavLink to={`/users/${thisChirp.user.id}`} id="each-chirp-user-name">{thisChirp.user.username}</NavLink>
+            </div>
           </div>
           <p id="each-chirp-body">{thisChirp.body}</p>
           <img id="chirp-media" src={thisChirp.media} alt="" />
@@ -200,7 +203,10 @@ useEffect(() => {
                     <div id="comment-user-container">
                       <img id="comment-user-pic" src={comment.user.profile_pic ? comment.user.profile_pic : 'https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'} alt=''/>
                       <ul id="comment-users-list">
-                        <li id="comment-username">{comment.user.username}</li>
+                        <div id="comment-user-names">
+                          <li id="comment-username">{comment.user.name}</li>
+                          <li id="comment-user-username">{comment.user.username}</li>
+                        </div>
                         <li id="comment-replying-to">Replying to {thisChirp.user.username}</li>
                       </ul>
                     </div>

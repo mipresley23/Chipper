@@ -1,8 +1,10 @@
+from crypt import methods
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.s3_funcs import allowed_file, get_unique_filename, upload_file_to_s3
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -14,7 +16,7 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{error}')
     return errorMessages
 
 
@@ -63,10 +65,12 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
+            name=form.data['name'],
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
-            profile_pic=form.data['profile_pic']
+            profile_pic=form.data['profile_pic'],
+            bio=form.data['bio']
         )
         db.session.add(user)
         db.session.commit()
@@ -81,3 +85,25 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
+
+@auth_routes.route('/profileimage', methods=["POST"])
+def add_profile_pic():
+    if "profile_pic" not in request.files:
+        return {"error": "image required"}, 400
+
+    image = request.files["profile_pic"]
+
+    if not allowed_file(image.filename):
+        return {"error": "file type must be png, jpg, jpeg, or gif"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+    print('image filename: ', image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        return upload, 400
+
+    url = upload["url"]
+
+    return {'profile_pic': url}

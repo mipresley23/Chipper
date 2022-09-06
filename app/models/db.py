@@ -11,15 +11,24 @@ likes = db.Table(
   db.Column('chirps', db.Integer, db.ForeignKey('chirps.id'), primary_key=True)
 )
 
+follows = db.Table(
+  'follows',
+  db.Model.metadata,
+  db.Column('user', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+  db.Column('follower', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+)
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    username = db.Column(db.String(50), nullable=False, unique=True)
+    name = db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String(2000), nullable=True)
+    bio = db.Column(db.String(500), nullable=True)
 
     chirps = db.relationship("Chirp", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
@@ -28,6 +37,12 @@ class User(db.Model, UserMixin):
         back_populates="chirp_likes",
         cascade='all, delete'
       )
+
+    followed = db.relationship("User",
+      secondary=follows,
+      primaryjoin=(follows.c.user == id),
+      secondaryjoin=(follows.c.follower == id),
+      backref=db.backref('follows', lazy='dynamic'), lazy='dynamic')
 
     @property
     def password(self):
@@ -40,12 +55,27 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def following(self, user):
+      return self.followed.filter(follows.c.follower == user.id).count() > 0
+
+    def follow(self, user):
+      if not self.following(user):
+        self.followed.append(user)
+
+    def unfollow(self, user):
+      if self.following(user):
+        self.followed.remove(user)
+
     def to_dict(self):
         return {
             'id': self.id,
             'username': self.username,
+            'name': self.name,
             'email': self.email,
-            'profile_pic': self.profile_pic
+            'profile_pic': self.profile_pic,
+            'bio': self.bio,
+            'followings': [user.to_dict() for user in self.followed],
+            'followers': [user.to_dict() for user in self.follows]
         }
 
 
@@ -53,7 +83,7 @@ class Chirp(db.Model):
   __tablename__ = 'chirps'
 
   id = db.Column(db.Integer, primary_key=True)
-  media = db.Column(db.String(2000), nullable=True)
+  media = db.Column(db.String(300), nullable=True)
   body = db.Column(db.String(300), nullable=True)
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 

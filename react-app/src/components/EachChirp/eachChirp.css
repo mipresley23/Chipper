@@ -34,10 +34,6 @@
   font-size: large;
 }
 
-#each-chirp-user-container{
-  display: flex;
-}
-
 #each-chirp-go-back-button{
   display: flex;
   align-items: center;
@@ -106,10 +102,6 @@
 #each-main-title{
   margin-top: 10px;
   margin-left: 20px;
-}
-
-#each-chirp-user{
-  font-weight: bold;
 }
 
 #chirp-reply-form{
@@ -469,4 +461,34 @@ a{
   justify-content: space-around;
   position:sticky;
   bottom: 5px;
+}
+
+#comment-user-names{
+  display: flex;
+}
+
+#comment-user-username{
+  margin-left: 1%;
+  color:gray;
+}
+
+#each-chirp-user-container{
+  display: flex;
+}
+
+#each-chirp-user{
+  font-weight: bold;
+}
+
+#each-chirp-user:hover{
+  text-decoration: underline;
+}
+
+#each-chirp-user-name{
+  color: gray;
+}
+
+#each-chirp-user-names{
+  display: flex;
+  flex-direction: column;
 }

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { demoLogin } from '../../store/session';
-import SignupModal from './SignupModal';
+import xImage from '../assets/chipperXimage.png';
 
 const LoginForm = ({setShowModal}) => {
   const [errors, setErrors] = useState([]);
@@ -40,7 +40,7 @@ const LoginForm = ({setShowModal}) => {
 
   return (
   <>
-    <button className='modal-cancel-buttons' id='login-cancel-button' onClick={() => setShowModal(false)}>x</button>
+    <button className='modal-cancel-buttons' id='login-cancel-button' onClick={() => setShowModal(false)}><img id='signup-back-button-image' src={xImage} alt='x'/></button>
     <form className='modal-forms' onSubmit={onLogin}>
       <div className='modal-error-container'>
         {errors.map((error, ind) => (
