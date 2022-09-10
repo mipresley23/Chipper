@@ -128,3 +128,39 @@
 .comment-count-image{
   margin-right: 10px;
 }
+
+#follow-user-button{
+  height: 30px;
+  width: 70px;
+  position: absolute;
+  right: 3%;
+  top: 24%;
+  border-radius: 20px;
+  border: none;
+  background-color: black;
+  color:white;
+  font-weight: bold;
+}
+
+#follow-user-button:hover{
+  background-color: rgb(32, 32, 32);
+}
+
+#unfollow-user-button{
+  height: 30px;
+  width: 70px;
+  position: absolute;
+  right: 3%;
+  top: 24%;
+  border-radius: 20px;
+  border: 2px solid #eeeeee;
+  background-color: white;
+  color:black;
+  font-weight: bold;
+}
+
+#unfollow-user-button:hover{
+  background-color: #ffe0e0;
+  border: 2px solid rgb(255, 164, 164);
+  color: red;
+}
