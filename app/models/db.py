@@ -74,9 +74,17 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_pic': self.profile_pic,
             'bio': self.bio,
-            'followings': [user.to_dict() for user in self.followed],
-            'followers': [user.to_dict() for user in self.follows]
+            'followings': [x.to_dict_follow() for x in self.followed],
+            'followers': [x.to_dict_follow() for x in self.follows]
         }
+
+    def to_dict_follow(self):
+      return {
+        'id': self.id,
+        'username': self.username,
+        'name': self.name,
+        'profile_pic': self.profile_pic,
+      }
 
 
 class Chirp(db.Model):

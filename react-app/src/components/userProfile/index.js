@@ -5,6 +5,7 @@ import NavBar from "../NavBar";
 import { thunkGetChirps, thunkDeleteChirp, thunkAddLike, thunkDeleteLike } from "../../store/chirp";
 import { thunkGetComments } from "../../store/comment";
 import { thunkGetUsers } from "../../store/users";
+import { thunkAddFollow, thunkRemoveFollow } from "../../store/users";
 import EditChirpModal from "../editChirp/editChirpModal";
 import blueHeader from '../assets/blue-gradient-header.jpg';
 import EmptyLikeHeart from '../assets/chipper_like_empty.png'
@@ -24,6 +25,7 @@ export default function UserProfile() {
   const [users, setUsers] = useState([])
   const [liked, setLiked] = useState(false)
   const [showLiked, setShowLiked] = useState(false);
+  const [followed, setFollowed] = useState(false);
 
   const usersSelector = useSelector(state => state.users)
   const sessionUser = useSelector(state => state.session.user)
@@ -32,6 +34,22 @@ export default function UserProfile() {
 
   const thisUser = users && users.find(user => user.id === +userId)
   console.log('thisUser: ', thisUser)
+  console.log('sessionUser: ', sessionUser)
+
+  const followingIds = []
+
+  if(sessionUser){
+    sessionUser.followings.forEach(following => {
+      followingIds.push(following.id)
+    })
+  }
+  console.log('following ids: ', followingIds)
+
+  useEffect(() => {
+    if(thisUser){
+      if(followingIds.includes(thisUser.id)) setFollowed(true)
+    }
+  }, [thisUser])
 
   const usersChirps = chirps && chirps.filter(chirp => chirp.user.id === +userId)
 
@@ -102,6 +120,18 @@ export default function UserProfile() {
     await dispatch(thunkDeleteLike(e.target.value))
   }
 
+  const handleFollowUser = async(e) => {
+    e.preventDefault()
+    await dispatch(thunkAddFollow(thisUser))
+    setFollowed(true);
+  }
+
+  const handleUnfollowUser = async(e) => {
+    e.preventDefault()
+    await dispatch(thunkRemoveFollow(thisUser))
+    setFollowed(false)
+  }
+
   if(!thisUser) return null;
   return(
     <>
@@ -122,6 +152,8 @@ export default function UserProfile() {
           <div id="user-profile-names">
             <h3 id="user-profile-name">{thisUser.name}</h3>
             <p id='user-profile-username'>{thisUser.username}</p>
+            {sessionUser.id !== thisUser.id && !followed ? <button id="follow-user-button" type="button" onClick={handleFollowUser}>Follow</button> :
+            sessionUser.id !== thisUser.id && followed ? <button id="unfollow-user-button" type="button" onClick={handleUnfollowUser}>Unfollow</button> : null}
           </div>
         </div>
         <div id="users-chirps-container">
