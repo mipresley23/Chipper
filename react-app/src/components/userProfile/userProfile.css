@@ -176,6 +176,10 @@
   overflow-wrap: break-word;
 }
 
+#profile-follow-container:hover{
+  background-color: #eeeeee;
+}
+
 #profile-follower-image{
   height: 50px;
   width: 50px;

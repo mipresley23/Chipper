@@ -38,6 +38,9 @@ export default function UserProfile() {
   const commentSelector = useSelector(state => state.comments)
   const followingSelector = useSelector(state => state.session.user.followings)
 
+  console.log('following selector: ', followingSelector)
+  console.log('users followed: ', usersFollowed)
+
 
   const thisUser = users && users.find(user => user.id === +userId)
 
@@ -68,15 +71,26 @@ export default function UserProfile() {
     return usersLikes
   })()
 
+  useEffect(() => {
+    setShowChirps(true);
+    setShowFollowers(false);
+    setShowFollowing(false);
+    setShowLiked(false)
+  }, [thisUser])
+
 
   useEffect(() => {
-    if(thisUser?.id === sessionUser?.id) setUsersFollowed(sessionUser?.followings)
+    if(thisUser?.id === sessionUser?.id) setUsersFollowed(followingSelector)
     else setUsersFollowed(thisUser?.followings)
-  }, [sessionUser, thisUser])
+  }, [sessionUser, thisUser, followingSelector])
 
   useEffect(() => {
     setFollowers(thisUser?.followers)
-  }, [thisUser])
+  }, [thisUser?.followers])
+
+  // useEffect(() => {
+  //   setUsersFollowed(followingSelector)
+  // }, [thisUser, followingSelector])
 
   useEffect(() => {
     dispatch(thunkGetChirps())
@@ -127,16 +141,16 @@ export default function UserProfile() {
   }
 
   const handleFollowUser = async(e) => {
-    e.preventDefault()
     await dispatch(thunkAddFollow(thisUser))
     await setUsersFollowed(sessionUser?.followings)
+    await setFollowers(thisUser?.followers)
     setFollowed(true);
   }
 
   const handleUnfollowUser = async(e) => {
-    e.preventDefault()
     await dispatch(thunkRemoveFollow(thisUser))
     await setUsersFollowed(sessionUser?.followings)
+    await setFollowers(thisUser?.followers)
     setFollowed(false)
   }
 
@@ -269,24 +283,28 @@ export default function UserProfile() {
           {
             showFollowers && followers && followers.map(follower => (
               <div id="profile-follow-container">
+              <NavLink to={`/users/${follower.id}`}>
                 <div id='profile-follower-names'>
                   <img id='profile-follower-image' src={follower.profile_pic} alt=''/>
                   <h4 id="profile-follower-user-name">{follower.name}</h4>
                   <p id="profile-follower-user-username">{follower.username}</p>
                 </div>
                 <p id="profile-follower-bio">{follower.bio}</p>
+              </NavLink>
               </div>
             ))
           }
           {
-            showFollowing && thisUser.followings && thisUser.followings.map(followed => (
+            showFollowing && usersFollowed && usersFollowed.map(followed => (
               <div id="profile-follow-container">
+              <NavLink to={`/users/${followed.id}`}>
               <div id='profile-follower-names'>
                 <img id='profile-follower-image' src={followed.profile_pic} alt=''/>
                 <h4 id="profile-follower-user-name">{followed.name}</h4>
                 <p id="profile-follower-user-username">{followed.username}</p>
               </div>
               <p id="profile-follower-bio">{followed.bio}</p>
+            </NavLink>
             </div>
             ))
           }
