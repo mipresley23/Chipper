@@ -90,14 +90,15 @@
 
 #profile-tabs-container{
   border-bottom: 1px solid #f1f4f5;
+  display: flex;
 }
 
 .profile-tabs{
-  width: 50%;
+  width: 25%;
   background-color: transparent;
   height: 50px;
   border: none;
-  font-size: large;
+  font-size: medium;
 }
 
 .profile-tabs:hover{
@@ -105,11 +106,11 @@
 }
 
 .profile-tabs-disabled{
-  width: 50%;
+  width: 25%;
   background-color: transparent;
   height: 50px;
   border: none;
-  font-size: large;
+  font-size: medium;
   color: #1d9bf0;
 }
 
@@ -163,4 +164,47 @@
   background-color: #ffe0e0;
   border: 2px solid rgb(255, 164, 164);
   color: red;
+}
+
+#profile-follow-container{
+  width: 100%;
+  height: fit-content;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f4f5;
+  padding: 20px;
+  padding-top: 5px;
+  overflow-wrap: break-word;
+}
+
+#profile-follow-container:hover{
+  background-color: #eeeeee;
+}
+
+#profile-follower-image{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+#profile-follower-names{
+  display: flex;
+}
+
+#profile-follower-user-name{
+
+}
+
+#profile-follower-user-username{
+  margin-left: 1%;
+  color: gray;
+}
+
+#profile-follower-bio{
+  position: relative;
+  bottom: 15px;
+  max-width: 80%;
+  margin-left: 10%;
+  margin-top: 1%;
+  margin-bottom: 3%;
 }

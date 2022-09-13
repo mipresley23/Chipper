@@ -1,6 +1,8 @@
+import { actionAddFollower, actionRemoveFollower } from "./session";
+
 const GET_USERS = 'users/GET_USERS';
-const ADD_FOLLOWER = 'users/ADD_FOLLOWER';
-const REMOVE_FOLLOWER = 'users/REMOVE_FOLLOWER';
+const EDIT_USER = 'users/EDIT_USER';
+
 
 const actionGetUsers = (users) => {
   return {
@@ -9,31 +11,22 @@ const actionGetUsers = (users) => {
   }
 }
 
-const actionAddFollower = (user) => {
+const actionEditUser = (user) => {
   return {
-    type: ADD_FOLLOWER,
+    type: EDIT_USER,
     user
   }
 }
 
-const actionRemoveFollower = (user) => {
-  return {
-    type: REMOVE_FOLLOWER,
-    user
-  }
-}
 
 export const thunkAddFollow = (user) => async(dispatch) => {
   const {id} = user
-  console.log('thunk user: ', user)
   const res = await fetch(`/api/users/follows/${id}`, {
     method: "PUT",
     headers: {"Content-Type": "application/json"}
   })
-  console.log('thunk res: ', res)
   if(res.ok){
     const user = await res.json()
-    console.log('thunk user: ', user)
     dispatch(actionAddFollower(user))
     return user;
   }
@@ -41,7 +34,7 @@ export const thunkAddFollow = (user) => async(dispatch) => {
 
 export const thunkRemoveFollow = (user) => async(dispatch) => {
   const {id} = user;
-  const res = await fetch(`/api/users/follows/${id}`, {
+  const res = await fetch(`/api/users/unfollow/${id}`, {
     method: "PUT",
     headers: {"Content-Type": "application/json"}
   })
@@ -67,9 +60,6 @@ const userReducer = (state = {}, action) => {
         newState[user.id] = user;
       });
       return newState;
-
-    case ADD_FOLLOWER:
-      console.log('add follow action', action)
 
     default:
       return state;

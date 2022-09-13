@@ -14,6 +14,7 @@ import EachComment from './components/EachComment';
 import TrendingTopics from './components/trendingTopics';
 import PageNotFound from './components/PageNotFound';
 import UserProfile from './components/userProfile';
+import Following from './components/FollowsDisplay';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
