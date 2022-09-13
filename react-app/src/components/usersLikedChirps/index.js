@@ -29,14 +29,11 @@ export default function UserProfile() {
   const thisUser = users && users.find(user => user.id === +userId)
 
   const usersChirps = chirps && chirps.filter(chirp => chirp.user.id === +userId)
-  console.log('users chirps: ', usersChirps)
 
   const reverseUsersChirps = []
   for(let i = usersChirps.length - 1; i >= 0; i--){
     reverseUsersChirps.push(usersChirps[i])
   }
-
-  console.log('reverse user chirps: ', reverseUsersChirps)
 
   useEffect(() => {
     dispatch(thunkGetChirps())

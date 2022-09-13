@@ -73,7 +73,6 @@ export default function AllChirps() {
     e.preventDefault();
     setLiked(true)
     await dispatch(thunkAddLike(e.target.value))
-    // console.log('chirp like value: ', e.target.value)
   }
 
   const handleUnlikeChirp = async(e) => {

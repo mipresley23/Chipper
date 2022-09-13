@@ -36,29 +36,16 @@ export default function UserProfile() {
   const sessionUser = useSelector(state => state.session.user)
   const chirpSelector = useSelector(state => state.chirps)
   const commentSelector = useSelector(state => state.comments)
+  const followingSelector = useSelector(state => state.session.user.followings)
+
 
   const thisUser = users && users.find(user => user.id === +userId)
-  console.log('thisUser: ', thisUser)
-  console.log('sessionUser: ', sessionUser)
 
-  console.log('session user followings: ', sessionUser.followings)
-  //Follow Button
-  let followingIds = sessionUser.followings && sessionUser.followings.map(user => user.id)
-
-
-
-  // useEffect(() => {
-  //   if(thisUser){
-  //     thisUser.followings.forEach(following => {
-  //       followingIds.push(following.id)
-  //     })
-  //   }
-  // }, [thisUser])
-  console.log('following ids: ', followingIds)
 
   useEffect(() => {
     if(thisUser){
-      if(followingIds && followingIds.includes(thisUser.id)) setFollowed(true)
+      const followingFilter = sessionUser && sessionUser.followings.find(user => user.id === thisUser.id)
+      if (followingFilter) setFollowed(true)
     }
   }, [thisUser])
 
@@ -83,16 +70,13 @@ export default function UserProfile() {
 
 
   useEffect(() => {
-    setUsersFollowed(thisUser?.followings)
-  }, [thisUser])
+    if(thisUser?.id === sessionUser?.id) setUsersFollowed(sessionUser?.followings)
+    else setUsersFollowed(thisUser?.followings)
+  }, [sessionUser, thisUser])
 
   useEffect(() => {
     setFollowers(thisUser?.followers)
   }, [thisUser])
-
-  console.log('users followed: ', usersFollowed)
-  console.log('followers: ', followers)
-
 
   useEffect(() => {
     dispatch(thunkGetChirps())

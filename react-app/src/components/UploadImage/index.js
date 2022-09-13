@@ -5,7 +5,7 @@ import { thunkAddImage, thunkGetImages } from "../../store/image";
 
 
 const UploadPicture = () => {
-    const history = useHistory(); // so that we can redirect after the image upload is successful
+    const history = useHistory();
     const dispatch = useDispatch();
 
     const hiddenFileInput = useRef(null);
@@ -15,8 +15,6 @@ const UploadPicture = () => {
 
     const imageSelector = useSelector(state => state.images)
     const sessionUser = useSelector(state => state.session.user)
-
-    console.log('images: ', images)
 
     useEffect(() => {
         dispatch(thunkGetImages())
@@ -31,16 +29,13 @@ const UploadPicture = () => {
     const handleClick = e => {
         e.preventDefault();
         hiddenFileInput.current.click();
-        console.log('hiddenFileInput: ', hiddenFileInput)
       };
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('uploaded image: ', uploadedImage)
         const formData = new FormData();
         formData.append("image", uploadedImage);
-        console.log('formData: ', formData.image)
 
         setImageLoading(true);
 
@@ -63,16 +58,12 @@ const UploadPicture = () => {
         }
         else {
             setImageLoading(false);
-            // a real app would probably use more advanced
-            // error handling
-            console.log("error");
         }
     }
 
     const updateImage = (e) => {
         e.preventDefault()
         const file = e.target.files[0];
-        console.log('file: ', file)
         setUploadedImage(file);
     }
 

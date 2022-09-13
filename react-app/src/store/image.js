@@ -24,7 +24,6 @@ export const thunkGetImages = (images) => async(dispatch) => {
 }
 
 export const thunkAddImage = (image) => async(dispatch) => {
-  console.log('thunkImage: ', image)
   const res = await fetch('/api/images/', {
     method: "POST",
     headers: {
@@ -32,7 +31,6 @@ export const thunkAddImage = (image) => async(dispatch) => {
     },
     body: JSON.stringify(image)
   });
-  console.log('add image thunk res: ', res)
   if(res.ok) {
     const image = await res.json();
     dispatch(actionAddImage(image));

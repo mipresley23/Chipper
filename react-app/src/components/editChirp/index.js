@@ -8,8 +8,6 @@ import './editChirpModal.css'
 export default function EditChirp({chirp, setShowModal}) {
   const dispatch = useDispatch();
   const history = useHistory();
-  // console.log(chirp)
-  // const {chirpId} = useParams();
 
   const [chirps, setChirps] = useState([])
   const [chirpId, setChirpId] = useState(chirp?.id)
@@ -19,13 +17,6 @@ export default function EditChirp({chirp, setShowModal}) {
   const sessionUser = useSelector(state => state.session.user)
   const chirpSelector = useSelector(state => state.chirps)
 
-  // const thisChirp = chirps && chirps.find(chirp => chirp.id === +chirpId)
-
-  // useEffect(() => {
-  //   if(thisChirp){
-  //     setChirpBody(thisChirp.body)
-  //   }
-  // }, [thisChirp])
 
   useEffect(() => {
     dispatch(thunkGetChirps())

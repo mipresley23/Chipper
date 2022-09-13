@@ -41,7 +41,6 @@ export default function AddChirp() {
 
       if(res.ok){
         const jsonRes = await res.json();
-        console.log('jsonRes: ', jsonRes)
 
         const chirp = {
           media: jsonRes.media,
