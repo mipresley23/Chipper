@@ -55,8 +55,8 @@ export default function TrendingTopics() {
           <div id="news-text">
             <h4 id="news-headline">{article.name}</h4>
             <div id="news-image-info">
-            <p id="news-sub-header">Courtesy of {article.provider[0].name}</p>
               <img id='news-image' src={article.image ? article.image.thumbnail.contentUrl : NoImage} alt=''/>
+            <p id="news-sub-header">Courtesy of {article.provider[0].name}</p>
             </div>
           </div>
       </div>

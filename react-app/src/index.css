@@ -182,6 +182,7 @@ button:hover{
 
 #news-image{
   position: relative;
+  margin-top: 15px;
   bottom: 20px;
   height: 60px;
   width: 60px;
