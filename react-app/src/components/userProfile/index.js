@@ -194,7 +194,7 @@ export default function UserProfile() {
         <div id="profile-header-content">
           <div id="header-chirps-container">
             <h3>{thisUser.name}</h3>
-            {showChirps ? <p id="profile-chirp-count">{usersChirps.length} chirps</p> : showLiked ? <p id="profile-chirp-count">{thisUsersLikes.length} likes</p> : followers && showFollowers ? <p id="profile-chirp-count">{followers.length} followers</p> : thisUser.followings && showFollowing ? <p id="profile-chirp-count">{thisUser.followings.length} following</p> : null}
+            {showChirps ? <p id="profile-chirp-count">{usersChirps.length} chirps</p> : showLiked ? <p id="profile-chirp-count">{thisUsersLikes.length} likes</p> : followers && showFollowers ? <p id="profile-chirp-count">{followers.length} followers</p> : thisUser.followings && showFollowing ? <p id="profile-chirp-count">{usersFollowed.length} following</p> : null}
           </div>
           <button id='profile-go-back-button' type="button" onClick={handleGoBackToSplash}>
             <img id="profile-go-back-button-image" src={require('../assets/back-arrow.png')} alt='Back'/>
