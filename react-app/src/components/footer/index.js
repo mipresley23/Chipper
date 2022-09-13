@@ -5,7 +5,6 @@ export default function Footer() {
     <>
       <div id='footer-container'>
         <div id="footer-links">
-          <p>About</p>
           <p>Javascript</p>
           <p>React</p>
           <p>Redux</p>

@@ -29,10 +29,11 @@ def add_follow(userId):
     return user.to_dict()
 
 
-@user_routes.route('/follows/<int:userId>', methods=["PUT"])
+@user_routes.route('/unfollow/<int:userId>', methods=["PUT"])
 @login_required
 def remove_follow(userId):
     user = User.query.get(userId)
+    print('unfollow user: ', user)
     current_user.unfollow(user)
     db.session.commit()
     return user.to_dict()

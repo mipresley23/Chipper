@@ -56,9 +56,11 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def following(self, user):
+
       return self.followed.filter(follows.c.follower == user.id).count() > 0
 
     def follow(self, user):
+      print('db following: ', follows.c.follower)
       if not self.following(user):
         self.followed.append(user)
 
@@ -83,6 +85,7 @@ class User(db.Model, UserMixin):
         'id': self.id,
         'username': self.username,
         'name': self.name,
+        'bio': self.bio,
         'profile_pic': self.profile_pic,
       }
 

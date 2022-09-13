@@ -24,8 +24,13 @@ export default function UserProfile() {
   const [comments, setComments] = useState([])
   const [users, setUsers] = useState([])
   const [liked, setLiked] = useState(false)
+  const [showChirps, setShowChirps] = useState(true);
   const [showLiked, setShowLiked] = useState(false);
+  const [showFollowing, setShowFollowing] = useState(false);
+  const [showFollowers, setShowFollowers] = useState(false);
   const [followed, setFollowed] = useState(false);
+  const [usersFollowed, setUsersFollowed] = useState([])
+  const [followers, setFollowers] = useState([]);
 
   const usersSelector = useSelector(state => state.users)
   const sessionUser = useSelector(state => state.session.user)
@@ -36,18 +41,24 @@ export default function UserProfile() {
   console.log('thisUser: ', thisUser)
   console.log('sessionUser: ', sessionUser)
 
-  const followingIds = []
+  console.log('session user followings: ', sessionUser.followings)
+  //Follow Button
+  let followingIds = sessionUser.followings && sessionUser.followings.map(user => user.id)
 
-  if(sessionUser){
-    sessionUser.followings.forEach(following => {
-      followingIds.push(following.id)
-    })
-  }
+
+
+  // useEffect(() => {
+  //   if(thisUser){
+  //     thisUser.followings.forEach(following => {
+  //       followingIds.push(following.id)
+  //     })
+  //   }
+  // }, [thisUser])
   console.log('following ids: ', followingIds)
 
   useEffect(() => {
     if(thisUser){
-      if(followingIds.includes(thisUser.id)) setFollowed(true)
+      if(followingIds && followingIds.includes(thisUser.id)) setFollowed(true)
     }
   }, [thisUser])
 
@@ -70,6 +81,17 @@ export default function UserProfile() {
     return usersLikes
   })()
 
+
+  useEffect(() => {
+    setUsersFollowed(thisUser?.followings)
+  }, [thisUser])
+
+  useEffect(() => {
+    setFollowers(thisUser?.followers)
+  }, [thisUser])
+
+  console.log('users followed: ', usersFollowed)
+  console.log('followers: ', followers)
 
 
   useEffect(() => {
@@ -123,13 +145,47 @@ export default function UserProfile() {
   const handleFollowUser = async(e) => {
     e.preventDefault()
     await dispatch(thunkAddFollow(thisUser))
+    await setUsersFollowed(sessionUser?.followings)
     setFollowed(true);
   }
 
   const handleUnfollowUser = async(e) => {
     e.preventDefault()
     await dispatch(thunkRemoveFollow(thisUser))
+    await setUsersFollowed(sessionUser?.followings)
     setFollowed(false)
+  }
+
+  const handleShowChirps = (e) => {
+    e.preventDefault()
+    setShowChirps(true);
+    setShowLiked(false)
+    setShowFollowers(false)
+    setShowFollowing(false);
+  }
+
+  const handleShowLikes = (e) => {
+    e.preventDefault()
+    setShowLiked(true);
+    setShowChirps(false);
+    setShowFollowers(false);
+    setShowFollowing(false);
+  }
+
+  const handleShowFollowers = (e) => {
+    e.preventDefault()
+    setShowFollowers(true);
+    setShowChirps(false);
+    setShowLiked(false);
+    setShowFollowing(false);
+  }
+
+  const handleShowFollowing = (e) => {
+    e.preventDefault();
+    setShowFollowing(true);
+    setShowChirps(false);
+    setShowFollowers(false);
+    setShowLiked(false);
   }
 
   if(!thisUser) return null;
@@ -140,7 +196,7 @@ export default function UserProfile() {
         <div id="profile-header-content">
           <div id="header-chirps-container">
             <h3>{thisUser.name}</h3>
-            {!showLiked ? <p id="profile-chirp-count">{usersChirps.length} chirps</p> : <p id="profile-chirp-count">{thisUsersLikes.length} likes</p>}
+            {showChirps ? <p id="profile-chirp-count">{usersChirps.length} chirps</p> : showLiked ? <p id="profile-chirp-count">{thisUsersLikes.length} likes</p> : followers && showFollowers ? <p id="profile-chirp-count">{followers.length} followers</p> : thisUser.followings && showFollowing ? <p id="profile-chirp-count">{thisUser.followings.length} following</p> : null}
           </div>
           <button id='profile-go-back-button' type="button" onClick={handleGoBackToSplash}>
             <img id="profile-go-back-button-image" src={require('../assets/back-arrow.png')} alt='Back'/>
@@ -158,17 +214,21 @@ export default function UserProfile() {
         </div>
         <div id="users-chirps-container">
           <div id="profile-tabs-container">
-            {showLiked ? <button className='profile-tabs' type="button" onClick={() => setShowLiked(false)}>Chirps</button> : <button className='profile-tabs-disabled' type="button">Chirps</button>}
-            {!showLiked ? <button className='profile-tabs' type="button" onClick={() => setShowLiked(true)}>Likes</button> : <button className='profile-tabs-disabled' type="button">Likes</button>}
+            {!showChirps ? <button className='profile-tabs' type="button" onClick={handleShowChirps}>Chirps</button> : <button className='profile-tabs-disabled' type="button">Chirps</button>}
+            {!showLiked ? <button className='profile-tabs' type="button" onClick={handleShowLikes}>Likes</button> : <button className='profile-tabs-disabled' type="button">Likes</button>}
+            {!showFollowers ? <button className='profile-tabs' type="button" onClick={handleShowFollowers}>Followers</button> : <button className='profile-tabs-disabled' type="button">Followers</button>}
+            {!showFollowing ? <button className='profile-tabs' type="button" onClick={handleShowFollowing}>Following</button> : <button className='profile-tabs-disabled' type="button">Following</button>}
+
           </div>
           {
-            !showLiked && reverseUsersChirps && reverseUsersChirps.map(chirp => (
+            showChirps && reverseUsersChirps && reverseUsersChirps.map(chirp => (
               <div id="each-chirp-container">
                 <NavLink to={`/chirps/${chirp.id}`}>
                   <div id="main-chirp-content">
                     <div id="chirp-user-container">
                       <img id='chirp-user-image' src={chirp.user.profile_pic ? chirp.user.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={chirp.user.username}></img>
-                      <p id="chirp-user">{chirp.user.username}</p>
+                      <h4 id="chirp-user-name">{chirp.user.name}</h4>
+                      <p id="chirp-user-username">{chirp.user.username}</p>
                     </div>
                     <p id="chirp-body">{chirp.body}</p>
                     <img id="chirp-media" src={chirp.media} alt="" />
@@ -198,7 +258,8 @@ export default function UserProfile() {
                   <div id="main-chirp-content">
                     <div id="chirp-user-container">
                       <img id='chirp-user-image' src={chirp.user.profile_pic ? chirp.user.profile_pic : "https://as1.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={chirp.user.username}></img>
-                      <p id="chirp-user">{chirp.user.username}</p>
+                      <h4 id="chirp-user-name">{chirp.user.name}</h4>
+                      <p id="chirp-user-username">{chirp.user.username}</p>
                     </div>
                     <p id="chirp-body">{chirp.body}</p>
                     <img id="chirp-media" src={chirp.media} alt="" />
@@ -218,6 +279,30 @@ export default function UserProfile() {
                   <img className="comment-count-image" src={commentBubble} alt='Comments:'/>
                   {comments && <p>{comments.filter(comment => comment.chirpId === chirp.id).length}</p>}
                 </div>
+            </div>
+            ))
+          }
+          {
+            showFollowers && followers && followers.map(follower => (
+              <div id="profile-follow-container">
+                <div id='profile-follower-names'>
+                  <img id='profile-follower-image' src={follower.profile_pic} alt=''/>
+                  <h4 id="profile-follower-user-name">{follower.name}</h4>
+                  <p id="profile-follower-user-username">{follower.username}</p>
+                </div>
+                <p id="profile-follower-bio">{follower.bio}</p>
+              </div>
+            ))
+          }
+          {
+            showFollowing && thisUser.followings && thisUser.followings.map(followed => (
+              <div id="profile-follow-container">
+              <div id='profile-follower-names'>
+                <img id='profile-follower-image' src={followed.profile_pic} alt=''/>
+                <h4 id="profile-follower-user-name">{followed.name}</h4>
+                <p id="profile-follower-user-username">{followed.username}</p>
+              </div>
+              <p id="profile-follower-bio">{followed.bio}</p>
             </div>
             ))
           }
