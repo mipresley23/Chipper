@@ -206,6 +206,7 @@ export default function UserProfile() {
           <div id="user-profile-names">
             <h3 id="user-profile-name">{thisUser.name}</h3>
             <p id='user-profile-username'>{thisUser.username}</p>
+            <p id="user-profile-bio">{thisUser.bio}</p>
           </div>
             {sessionUser.id !== thisUser.id && !followed ? <button id="follow-user-button" type="button" onClick={handleFollowUser}>Follow</button> :
             sessionUser.id !== thisUser.id && followed ? <button id="unfollow-user-button" type="button" onClick={handleUnfollowUser}>Unfollow</button> : null}
