@@ -3,7 +3,6 @@ import { actionAddFollower, actionRemoveFollower } from "./session";
 const GET_USERS = 'users/GET_USERS';
 const EDIT_USER = 'users/EDIT_USER';
 
-
 const actionGetUsers = (users) => {
   return {
     type: GET_USERS,
