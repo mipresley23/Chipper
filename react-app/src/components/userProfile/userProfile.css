@@ -173,11 +173,11 @@
 }
 
 #profile-follow-container{
-  width: 100%;
+  width: 90%;
   height: fit-content;
   font-size: 14px;
   border-bottom: 1px solid #f1f4f5;
-  padding: 20px;
+  padding: 5%;
   padding-top: 5px;
   overflow-wrap: break-word;
 }

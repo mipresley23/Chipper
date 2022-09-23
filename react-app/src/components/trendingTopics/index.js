@@ -33,14 +33,11 @@ export default function TrendingTopics() {
       getNews()
     }, [])
 
-    console.log('news: ', news)
 
 
   const newsArray = news && news.value;
-  console.log('news array: ', newsArray)
 
   const firstFiveNews = newsArray && newsArray.slice(0, 5);
-  console.log('first five news: ', firstFiveNews)
 
   if(!sessionUser) return null
   if(!newsArray) return null;

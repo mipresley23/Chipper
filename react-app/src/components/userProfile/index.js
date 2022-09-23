@@ -38,17 +38,17 @@ export default function UserProfile() {
   const commentSelector = useSelector(state => state.comments)
   const followingSelector = useSelector(state => state.session.user.followings)
 
-  console.log('following selector: ', followingSelector)
-  console.log('users followed: ', usersFollowed)
-
-
   const thisUser = users && users.find(user => user.id === +userId)
+
+
 
 
   useEffect(() => {
     if(thisUser){
       const followingFilter = sessionUser && sessionUser.followings.find(user => user.id === thisUser.id)
-      if (followingFilter) setFollowed(true)
+      if (followingFilter){
+        setFollowed(true)
+      }
     }
   }, [thisUser])
 
@@ -143,14 +143,14 @@ export default function UserProfile() {
   const handleFollowUser = async(e) => {
     await dispatch(thunkAddFollow(thisUser))
     await setUsersFollowed(sessionUser?.followings)
-    await setFollowers(thisUser?.followers)
+    await setFollowers([...followers, sessionUser])
     setFollowed(true);
   }
 
   const handleUnfollowUser = async(e) => {
     await dispatch(thunkRemoveFollow(thisUser))
     await setUsersFollowed(sessionUser?.followings)
-    await setFollowers(thisUser?.followers)
+    followers.splice(followers.indexOf(sessionUser), 1)
     setFollowed(false)
   }
 
