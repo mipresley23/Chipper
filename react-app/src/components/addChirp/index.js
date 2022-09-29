@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkAddChirp, thunkGetChirps } from "../../store/chirp";
 import AddPhotoIcon from '../assets/add_image.png';
+import AddGiphyGif from "../giphyModal";
+import GiphyModal from "../giphyModal/giphyModal";
+
 
 export default function AddChirp() {
 
@@ -94,6 +97,11 @@ export default function AddChirp() {
     }
   }
 
+  //giphy search
+
+
+
+
   return(
     <>
       <form id='add-chirp-form' onSubmit={addChirp}>
@@ -123,6 +131,7 @@ export default function AddChirp() {
               </div>
               <p id="image-to-upload">{media.name}</p>
               {(mediaLoading) &&<img id="img-upload-spinner"src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img>}
+              <GiphyModal />
         </div>
           {body.length === 0 ? <p id="chirp-counter-zero">Chirps must be at least 1 character. {body.length}/300</p> :
           body.length > 0 & body.length <= 290 ? <p id="chirp-counter">{body.length}/300</p> :

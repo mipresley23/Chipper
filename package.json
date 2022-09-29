@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@giphy/js-fetch-api": "^4.4.0",
+    "@giphy/react-components": "^6.2.0",
     "aws-sdk": "^2.1203.0"
   }
 }
