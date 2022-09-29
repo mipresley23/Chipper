@@ -18,9 +18,19 @@ export default function AddGiphyGif({setShowModal}) {
 
   const gf = new GiphyFetch('OaLIybGsjwTZxeR15yEqMpAAIUQQmkg2');
 
+  useEffect(async() => {
+    const { data: gifs } = await gf.trending({ limit: 16, offset: 25, rating: 'g' })
+      setGifs(gifs)
+  }, [])
+
   const getGifs = async () => {
-    const { data: gifs } = await gf.search(searchTerm, { sort: 'relevant', lang: 'es', limit: 16, type: 'gifs' })
-    setGifs(gifs)
+    if(searchTerm){
+      const { data: gifs } = await gf.search(searchTerm, { sort: 'relevant', lang: 'es', limit: 16, type: 'gifs' })
+      setGifs(gifs)
+    }else{
+      const { data: gifs } = await gf.trending({ limit: 16, offset: 25, rating: 'g' })
+      setGifs(gifs)
+    }
   }
   console.log('modal gifs: ', gifs)
 
@@ -35,18 +45,20 @@ export default function AddGiphyGif({setShowModal}) {
     setShowModal(false)
   }
 
-  const handleSearchGifs = (e) => {
+  const handleSearchGifs = async(e) => {
     e.preventDefault();
     setSearchTerm(e.target.value)
-    getGifs()
+    await getGifs()
   }
 
 
 return (
   <>
-    <h3>Add Gif</h3>
+  <button className='modal-cancel-buttons' id='signup-cancel-button' onClick={() => setShowModal(false)}><img id='signup-back-button-image' src={xImage}/></button>
+    <h3 id='add-gif-header'>Add Gif</h3>
       <input id='gif-search-field'
              type='text'
+             placeholder='Search'
              onChange={handleSearchGifs}
       />
     <div id='gif-container'>
