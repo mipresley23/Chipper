@@ -1,0 +1,18 @@
+#each-gif-image{
+  width: 20%;
+  height: 20%;
+  margin: 1%;
+  border-radius: 5px;
+}
+
+#gif-container{
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  bottom: 5%;
+  width: 80%;
+  margin-left: 10%;
+  height: 80%;
+  justify-content: space-evenly;
+  align-items: center;
+}
