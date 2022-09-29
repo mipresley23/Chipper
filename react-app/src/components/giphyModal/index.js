@@ -19,7 +19,7 @@ export default function AddGiphyGif({setShowModal}) {
   const gf = new GiphyFetch('OaLIybGsjwTZxeR15yEqMpAAIUQQmkg2');
 
   const getGifs = async () => {
-    const { data: gifs } = await gf.search(searchTerm, { sort: 'relevant', lang: 'es', limit: 10, type: 'gifs' })
+    const { data: gifs } = await gf.search(searchTerm, { sort: 'relevant', lang: 'es', limit: 16, type: 'gifs' })
     setGifs(gifs)
   }
   console.log('modal gifs: ', gifs)
@@ -28,29 +28,32 @@ export default function AddGiphyGif({setShowModal}) {
     e.preventDefault();
 
     const chirp = {
-      media,
+      media: e.target.value,
       userId: sessionUser.id
     }
     await dispatch(thunkAddChirp(chirp))
     setShowModal(false)
   }
 
+  const handleSearchGifs = (e) => {
+    e.preventDefault();
+    setSearchTerm(e.target.value)
+    getGifs()
+  }
+
 
 return (
   <>
-    <h3>Gifs</h3>
-    <form id='search-gif-form' onSubmit={getGifs}>
+    <h3>Add Gif</h3>
       <input id='gif-search-field'
              type='text'
-             onChange={(e) => setSearchTerm(e.target.value)}
+             onChange={handleSearchGifs}
       />
-      <button id='gif-form-button'>Get Gifs</button>
-    </form>
     <div id='gif-container'>
     {
       gifs && gifs.map(gif => (
         <>
-          <input type='image' id='each-gif-image' onClick={addGifChirp} src={gif.images.original.url ? gif.images.original.url : noImage} alt=''/>
+          <input type='image' id='each-gif-image' onClick={addGifChirp} value={gif.images.original.url ? gif.images.original.url : null} src={gif.images.original.url ? gif.images.original.url : noImage} alt=''/>
         </>
       ))
     }
