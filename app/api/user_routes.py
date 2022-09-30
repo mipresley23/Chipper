@@ -4,7 +4,7 @@ from app.models import db, User
 
 user_routes = Blueprint('users', __name__)
 
-
+#get all users
 @user_routes.route('/')
 @login_required
 def users():
@@ -12,6 +12,7 @@ def users():
     return jsonify([user.to_dict() for user in users])
 
 
+#get one user by id
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
@@ -19,6 +20,7 @@ def user(id):
     return user.to_dict()
 
 
+#route for adding follower
 @user_routes.route('/follows/<int:userId>', methods=["PUT"])
 @login_required
 def add_follow(userId):
@@ -29,6 +31,7 @@ def add_follow(userId):
     return user.to_dict()
 
 
+#route for removing follower
 @user_routes.route('/unfollow/<int:userId>', methods=["PUT"])
 @login_required
 def remove_follow(userId):

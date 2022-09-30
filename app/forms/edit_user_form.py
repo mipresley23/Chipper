@@ -4,6 +4,10 @@ from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import User
 
 
+#Edit user form and validators for future Edit User feature
+
+
+
 def username_exists(form, field):
     # Checking if username is already in use
     username = field.data
