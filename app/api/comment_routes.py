@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import db
+from app.models import db, Comment
 from app.forms.comment_form import CommentForm
-from app.models.db import Comment
 
 comment_routes = Blueprint('comments', __name__)
 
@@ -18,11 +17,14 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+#GET all comments
 @comment_routes.route('/')
 def get_comments():
     comments = Comment.query.all()
     return jsonify([comment.to_dict() for comment in comments])
 
+
+#POST a new comment
 @comment_routes.route('/', methods=['POST'])
 def add_comment():
     form = CommentForm()
@@ -38,6 +40,8 @@ def add_comment():
 
     return comment.to_dict()
 
+
+#Update an existing comment
 @comment_routes.route('/<int:commentId>', methods=['PUT'])
 def update_comment(commentId):
     comment = Comment.query.get(commentId)
@@ -50,7 +54,7 @@ def update_comment(commentId):
     return comment.to_dict()
 
 
-
+#delete an existing comment
 @comment_routes.route('/<int:commentId>', methods=['DELETE'])
 def delete_comment(commentId):
     comment = Comment.query.get(commentId)

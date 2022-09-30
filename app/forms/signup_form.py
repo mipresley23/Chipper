@@ -26,11 +26,6 @@ def name_exists(form, field):
     if user:
         raise ValidationError('Name is already in use.')
 
-# def checkProfilePic(form, field):
-#     profile_pic = field.data
-#     if profile_pic != '':
-#         if profile_pic.endswith('.jpeg') or profile_pic.endswith('.jpg') or profile_pic.endswith('.png') == False:
-#             raise ValidationError('Profile Picture must be a jpg, jpeg, or png image.')
 
 def check_username_for_at(form, field):
     username = field.data
@@ -38,7 +33,7 @@ def check_username_for_at(form, field):
         raise ValidationError('Username must begin with @.')
 
 
-
+#user signup form -- profile pic validation now happens with aws upload so no longer need form validators here
 class SignUpForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(), name_exists])
     username = StringField('username', validators=[DataRequired(), check_username_for_at, username_exists])
