@@ -24,7 +24,6 @@ export default function AddGiphyGif({setShowModal}) {
       setTrending(gifs)
   }, [])
 
-  console.log('trending: ', trending)
 
   const getGifs = async (search) => {
       if(search){
@@ -34,7 +33,6 @@ export default function AddGiphyGif({setShowModal}) {
         setGifs(trending)
       }
   }
-  console.log('modal gifs: ', gifs)
 
   const addGifChirp = async(e) => {
     e.preventDefault();
