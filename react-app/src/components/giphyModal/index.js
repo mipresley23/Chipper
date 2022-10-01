@@ -12,6 +12,7 @@ export default function AddGiphyGif({setShowModal}) {
 
   const [gifs, setGifs] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
+  const [trending, setTrending] = useState([])
   const [media, setMedia] = useState('');
 
   const sessionUser = useSelector(state => state.session.user)
@@ -19,20 +20,19 @@ export default function AddGiphyGif({setShowModal}) {
   const gf = new GiphyFetch('OaLIybGsjwTZxeR15yEqMpAAIUQQmkg2');
 
   useEffect(async() => {
-    const { data: gifs } = await gf.trending({ limit: 16, offset: 25, rating: 'g' })
-      setGifs(gifs)
+    const { data: gifs } = await gf.trending({ limit: 50, offset: 25, rating: 'g' })
+      setTrending(gifs)
   }, [])
 
-  const getGifs = async () => {
-    if(searchTerm){
-      const { data: gifs } = await gf.search(searchTerm, { sort: 'relevant', lang: 'es', limit: 16, type: 'gifs' })
-      setGifs(gifs)
-    }else{
-      const { data: gifs } = await gf.trending({ limit: 16, offset: 25, rating: 'g' })
-      setGifs(gifs)
-    }
+
+  const getGifs = async (search) => {
+      if(search){
+        const { data: gifs } = await gf.search(search, { sort: 'relevant', lang: 'es', limit: 50, type: 'gifs' })
+        setGifs(gifs)
+      }else{
+        setGifs(trending)
+      }
   }
-  console.log('modal gifs: ', gifs)
 
   const addGifChirp = async(e) => {
     e.preventDefault();
@@ -45,11 +45,9 @@ export default function AddGiphyGif({setShowModal}) {
     setShowModal(false)
   }
 
-  const handleSearchGifs = async(e) => {
-    e.preventDefault();
-    setSearchTerm(e.target.value)
-    await getGifs()
-  }
+  useEffect(() => {
+    getGifs(searchTerm ? searchTerm : '')
+  }, [searchTerm])
 
 
 return (
@@ -58,16 +56,20 @@ return (
     <h3 id='add-gif-header'>Add Gif</h3>
       <input id='gif-search-field'
              type='text'
-             placeholder='Search'
-             onChange={handleSearchGifs}
+             placeholder='Search Giphy'
+             onChange={(e) => setSearchTerm(e.target.value)}
       />
     <div id='gif-container'>
     {
-      gifs && gifs.map(gif => (
+      gifs.length ? gifs.map(gif => (
         <>
           <input type='image' id='each-gif-image' onClick={addGifChirp} value={gif.images.original.url ? gif.images.original.url : null} src={gif.images.original.url ? gif.images.original.url : noImage} alt=''/>
         </>
-      ))
+      )) :
+      trending.map(gif => (
+        <>
+          <input type='image' id='each-gif-image' onClick={addGifChirp} value={gif.images.original.url ? gif.images.original.url : null} src={gif.images.original.url ? gif.images.original.url : noImage} alt=''/>
+        </>))
     }
     </div>
   </>
