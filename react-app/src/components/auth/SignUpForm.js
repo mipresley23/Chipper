@@ -8,7 +8,8 @@ import xImage from '../assets/chipperXimage.png';
 const SignUpForm = ({setShowModal}) => {
   const dispatch = useDispatch();
 
-  const hiddenFileInput = useRef(null);
+  const hiddenFileInput1 = useRef(null);
+  const hiddenFileInput2 = useRef(null);
 
   const [errors, setErrors] = useState([]);
   const [name, setName] = useState('');
@@ -17,6 +18,7 @@ const SignUpForm = ({setShowModal}) => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [profile_pic, setprofile_Pic] = useState("")
+  const [cover_photo, setCover_Photo] = useState("");
   const [bio, setBio] = useState('');
   const [showErrors, setShowErrors] = useState(false);
   const [stepTwo, setStepTwo] = useState(false);
@@ -24,10 +26,15 @@ const SignUpForm = ({setShowModal}) => {
 
   const user = useSelector(state => state.session.user);
 
-  const handleClick = e => {
+  const handleClickProfile = (e) => {
     e.preventDefault();
-    hiddenFileInput.current.click();
+    hiddenFileInput1.current.click();
   };
+
+  const handleClickCover = (e) => {
+    e.preventDefault();
+    hiddenFileInput2.current.click();
+  }
 
   useEffect(async() => {
     const errors = []
@@ -37,6 +44,7 @@ const SignUpForm = ({setShowModal}) => {
     if(password.length < 6) errors.push('Password must be at least 6 characters.')
     if(password.length > 255) errors.push('Password must be 255 characters or less.')
     if(profile_pic.length > 2000) errors.push('Profile Picture must be 2000 characters or less.')
+    if(cover_photo.length > 2000) errors.push('Cover Photo must be 2000 characters or less.')
     if(bio.length > 500) errors.push('Bio must be 500 characters or less.')
     if(!name) errors.push('Name is required')
     if(!username) errors.push('Username is required.')
@@ -45,13 +53,15 @@ const SignUpForm = ({setShowModal}) => {
     if(password !== repeatPassword) errors.push("Repeat Password and Password must match")
 
     setErrors(errors);
-  }, [name, username, email, password, repeatPassword, profile_pic, bio])
+  }, [name, username, email, password, repeatPassword, profile_pic, cover_photo, bio])
 
   const onSignUp = async (e) => {
     e.preventDefault();
 
     const formData = new FormData()
     formData.append('profile_pic', profile_pic)
+    formData.append('cover_photo', cover_photo)
+    console.log('formData: ', formData)
     const res = await fetch('/api/auth/profileimage', {
       method: "POST",
       body: formData,
@@ -65,6 +75,7 @@ const SignUpForm = ({setShowModal}) => {
         email,
         password,
         profile_pic:jsonRes.profile_pic,
+        cover_photo:jsonRes.cover_photo,
         bio
       }
       if (!errors.length) {
@@ -83,6 +94,25 @@ const SignUpForm = ({setShowModal}) => {
       setErrors(error)
     }
   }
+
+  // formData.append('cover_photo', cover_photo)
+  // const res2 = await fetch('/api/auth/coverphoto', {
+  //   method: "POST",
+  //   body: formData,
+  // });
+
+  const updateCoverPhoto = (e) => {
+    const file = e.target.files[0];
+    const error = [];
+    if(file.name.includes('.png') || file.name.includes('.jpg') || file.name.includes('jpeg') || file.name.includes('.gif')){
+      setCover_Photo(file)
+    }else{
+      setErrors(error)
+    }
+  }
+
+  console.log('profile pic: ', profile_pic)
+  console.log('cover photo: ', cover_photo)
 
   const updateName = (e) => {
     setName(e.target.value);
@@ -103,10 +133,6 @@ const SignUpForm = ({setShowModal}) => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
-
-  const updateProfilePic = (e) => {
-    setprofile_Pic(e.target.value);
-  }
 
   const updateBio = (e) => {
     setBio(e.target.value);
@@ -203,9 +229,9 @@ const SignUpForm = ({setShowModal}) => {
         {stepThree && <div id='signup-step-three'>
             <div className='signup-label-inputs' id='signup-profilepic'>
             <label className='modal-labels'>Profile Picture</label>
-            <button id='signup-profilepic-button' type='button' onClick={(e) => handleClick(e)}>Choose Profile Picture</button>
+            <button id='signup-profilepic-button' type='button' onClick={(e) => handleClickProfile(e)}>Choose Profile Picture</button>
             <input
-              ref={hiddenFileInput}
+              ref={hiddenFileInput1}
               style={{display: 'none'}}
               id='signup-profile-pic-input'
               type='file'
@@ -214,6 +240,20 @@ const SignUpForm = ({setShowModal}) => {
               onChange={updateImage}
               ></input>
               <p id='profile-image-to-upload'>{profile_pic.name}</p>
+          </div>
+            <div className='signup-label-inputs' id='signup-profilepic'>
+            <label className='modal-labels'>Cover Photo</label>
+            <button id='signup-profilepic-button' type='button' onClick={(e) => handleClickCover(e)}>Choose Cover Photo</button>
+            <input
+              ref={hiddenFileInput2}
+              style={{display: 'none'}}
+              id='signup-profile-pic-input'
+              type='file'
+              accept='image/*'
+              name='cover_photo'
+              onChange={updateCoverPhoto}
+              ></input>
+              <p id='cover-photo-to-upload'>{cover_photo.name}</p>
           </div>
           <div className='signup-label-inputs' id='signup-password'>
           <label className='modal-labels required'>Password</label>

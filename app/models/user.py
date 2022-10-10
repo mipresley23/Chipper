@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String(2000), nullable=True)
+    cover_photo = db.Column(db.String(2000), nullable=True)
     bio = db.Column(db.String(500), nullable=True)
 
     chirps = db.relationship("Chirp", back_populates="user")
@@ -70,6 +71,7 @@ class User(db.Model, UserMixin):
             'name': self.name,
             'email': self.email,
             'profile_pic': self.profile_pic,
+            'cover_photo': self.cover_photo,
             'bio': self.bio,
             'followings': [x.to_dict_follow() for x in self.followed],
             'followers': [x.to_dict_follow() for x in self.follows]
@@ -83,4 +85,5 @@ class User(db.Model, UserMixin):
         'name': self.name,
         'bio': self.bio,
         'profile_pic': self.profile_pic,
+        'cover_photo':self.cover_photo
       }
