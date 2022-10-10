@@ -40,4 +40,5 @@ class SignUpForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), user_exists, Email(message="Must be a valid email address")])
     password = StringField('password', validators=[DataRequired(), Length(min= 6, max=255)])
     profile_pic = StringField('profile_pic')
+    cover_photo = StringField('cover_photo')
     bio = StringField('bio', validators=[Length(max=500)])

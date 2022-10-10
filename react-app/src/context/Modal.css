@@ -92,8 +92,17 @@
 #profile-image-to-upload{
   margin-left: 15px;
   position:absolute;
-  right: 20px;
-  top: 135px;
+  right: 30%;
+  top: 120px;
+  color: red;
+}
+
+#cover-photo-to-upload{
+  margin-left: 15px;
+  position:absolute;
+  right: 40%;
+  top: 195px;
+  color: red;
 }
 
 .form-header-input-containers input:focus{

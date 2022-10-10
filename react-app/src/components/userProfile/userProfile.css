@@ -46,6 +46,7 @@
 
 #profile-header-image{
   width: 100%;
+  max-height: 225px;
   position: relative;
   top: 50px;
   z-index: 1;
@@ -195,10 +196,6 @@
 
 #profile-follower-names{
   display: flex;
-}
-
-#profile-follower-user-name{
-
 }
 
 #profile-follower-user-username{

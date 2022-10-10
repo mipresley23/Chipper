@@ -70,6 +70,7 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password'],
             profile_pic=form.data['profile_pic'],
+            cover_photo=form.data['cover_photo'],
             bio=form.data['bio']
         )
         db.session.add(user)
@@ -91,7 +92,47 @@ def add_profile_pic():
     if "profile_pic" not in request.files:
         return {"error": "image required"}, 400
 
-    image = request.files["profile_pic"]
+    if 'cover_photo' not in request.files:
+        return {'error': 'image required'}, 400
+
+    image1 = request.files["profile_pic"]
+    image2 = request.files['cover_photo']
+
+    if not allowed_file(image1.filename):
+        return {"error": "file type must be png, jpg, jpeg, or gif"}, 400
+
+    if not allowed_file(image2.filename):
+        return {"error": "file type must be png, jpg, jpeg, or gif"}, 400
+
+    image1.filename = get_unique_filename(image1.filename)
+    print('image filename: ', image1.filename)
+
+    upload1 = upload_file_to_s3(image1)
+
+    image2.filename = get_unique_filename(image2.filename)
+    print('image filename: ', image2.filename)
+
+    upload2 = upload_file_to_s3(image2)
+
+    if "url" not in upload1:
+        return upload1, 400
+
+    if "url" not in upload2:
+        return upload2, 400
+
+    url1 = upload1["url"]
+
+    url2 = upload2["url"]
+
+    return {'profile_pic': url1, 'cover_photo': url2}
+
+
+@auth_routes.route('/coverphoto', methods=["POST"])
+def add_cover_photo():
+    if "cover_photo" not in request.files:
+        return {"error": "image required"}, 400
+
+    image = request.files["cover_photo"]
 
     if not allowed_file(image.filename):
         return {"error": "file type must be png, jpg, jpeg, or gif"}, 400
@@ -106,4 +147,4 @@ def add_profile_pic():
 
     url = upload["url"]
 
-    return {'profile_pic': url}
+    return {'cover_photo': url}
